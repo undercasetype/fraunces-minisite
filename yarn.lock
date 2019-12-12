@@ -8424,7 +8424,7 @@ specificity@^0.4.1:
 
 specimen-boilerplate-support@kabisa/specimen-boilerplate-support#master:
   version "1.0.0"
-  resolved "git+ssh://git@github.com/kabisa/specimen-boilerplate-support.git#3d3e8f9cdb1be32383b524f36f859a34294db4ae"
+  resolved "https://codeload.github.com/kabisa/specimen-boilerplate-support/tar.gz/3d3e8f9cdb1be32383b524f36f859a34294db4ae"
   dependencies:
     fontkit "^1.8.0"
 
