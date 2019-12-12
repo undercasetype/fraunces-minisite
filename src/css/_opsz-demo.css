@@ -1,0 +1,69 @@
+.opsz-demo-container {
+	--offset: 0;
+
+	position: relative;
+}
+
+.with-opsz,
+.without-opsz {
+	padding-top: 2.25rem;
+
+	/*
+	// TODO: set this width through JavaScript
+	//   based on parent width, also on window resize
+	// 50rem - 3rem - 3rem of prose container
+	*/
+	width: 44rem;
+}
+
+.with-opsz {
+	--opsz: 9;
+
+	font-optical-sizing: none;
+	background: var(--fraunces-white);
+}
+
+.without-opsz {
+	--opsz: 144;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.opsz-slider-window {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	width: var(--offset);
+	border-right: 8px solid var(--fraunces-yellow);
+
+	transition: width 900ms;
+}
+
+.opsz-slider-handler {
+	position: absolute;
+	width: 3rem;
+	height: 3rem;
+	background: var(--fraunces-yellow);
+	border-radius: 50%;
+	left: var(--offset);
+	top: 50%;
+	transform: translate(calc(-50% - 4px), -50%);
+	z-index: 2;
+
+	transition: left 900ms;
+}
+
+.opsz-text {
+	border-top: 8px solid var(--fraunces-yellow);
+}
+
+.opsz-large {
+	font-size: 5rem;
+}
+.opsz-medium {
+	font-size: 2rem;
+}

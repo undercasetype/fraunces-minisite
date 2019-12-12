@@ -1,7 +1,4 @@
-# file manager empty files
 .DS_Store
-.empty
-.sparkleshare
-# font editor temporary files
-*(Autosaved).glyphs
-*.vfbak
+_site/
+node_modules/
+src/_includes/.webpack

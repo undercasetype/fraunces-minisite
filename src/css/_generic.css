@@ -1,0 +1,58 @@
+@import "./_font-faces.css";
+
+.variable-support {
+	display: block;
+}
+
+@supports (font-variation-settings: normal) {
+	.variable-support {
+		display: none;
+	}
+}
+
+:root {
+	--fraunces-yellow: #fba919;
+	--fraunces-black: #000;
+	--fraunces-white: #fff;
+	--fraunces-neon: #2cff00;
+
+	--opsz: 12;
+	--wght: 1;
+	--WONK: 0;
+	--GOOF: 0;
+
+	--header-height: 5rem;
+	--marquee-marq-height: 5rem;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	font-variation-settings: "opsz" var(--opsz), "wght" var(--wght),
+		"WONK" var(--WONK), "GOOF" var(--GOOF);
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0;
+}
+
+ol,
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+body {
+	background: var(--fraunces-white);
+	color: var(--fraunces-black);
+
+	/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+	font-family: Fraunces;
+}
+
+strong {
+	--wght: 900;
+}

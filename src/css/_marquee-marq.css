@@ -1,0 +1,68 @@
+.marquee-marq {
+	background: var(--fraunces-yellow);
+	color: var(--page-bg);
+	user-select: none;
+	pointer-events: none;
+	overflow: hidden;
+	display: flex;
+	white-space: nowrap;
+}
+
+.marquee-marq-content {
+	display: flex;
+	align-items: center;
+	height: var(--marquee-marq-height);
+	font-size: 2rem;
+	line-height: 1;
+	animation: marquee-marq 300s infinite linear paused;
+}
+
+.marquee-marq-content span {
+	padding: 0 0.125em;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.goofymin {
+	--GOOF: 0;
+}
+.goofymid {
+	--GOOF: 50;
+}
+.goofymax {
+	--GOOF: 100;
+}
+.black {
+	--wght: 1000;
+}
+.bold {
+	--wght: 800;
+}
+.semibold {
+	--wght: 600;
+}
+.regular {
+	--wght: 400;
+}
+.light {
+	--wght: 200;
+}
+.thin {
+	--wght: 1;
+}
+
+.marquee-marq.reverse .marquee-marq-content {
+	animation-direction: reverse;
+}
+
+.marquee-marq.play .marquee-marq-content {
+	animation-play-state: running;
+}
+
+@keyframes marquee-marq {
+	to {
+		transform: translateX(-100%);
+	}
+}

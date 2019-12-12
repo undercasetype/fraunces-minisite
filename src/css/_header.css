@@ -1,0 +1,11 @@
+header {
+	--wght: 900;
+	--WONK: 1;
+
+	background: var(--fraunces-yellow);
+	font-size: 2rem;
+	padding: 0 1.5rem;
+	height: var(--header-height);
+	display: flex;
+	align-items: center;
+}

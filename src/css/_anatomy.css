@@ -1,0 +1,28 @@
+.anatomy {
+	padding: 5rem 0 4rem 0;
+}
+
+.uv {
+	display: block;
+	width: 80%;
+	margin: 0 auto;
+	overflow: visible;
+}
+
+.uv-text {
+	fill: #fba900;
+}
+.uv-pointers > * {
+	fill: none;
+	stroke: #000;
+	stroke-width: 0.2;
+	stroke-miterlimit: 10;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.uv-container.in-view .uv-pointers,
+.uv-container.in-view .uv-labels {
+	transform: translateY(calc(2.5px - (var(--offset) * 5px)));
+	opacity: calc(-0.5 + (var(--offset) * 4));
+}
