@@ -1,0 +1,22 @@
+.prose-content {
+	--opsz: 13;
+	--WONK: 1;
+	--wght: 200;
+
+	margin: 0 auto;
+	padding: 0 3rem;
+	max-width: 56rem;
+	font-size: 1.375rem;
+	line-height: 1.375;
+}
+
+.prose-content h2 {
+	--wght: 900;
+
+	font-size: 2.25rem;
+}
+
+.prose-content p {
+	margin: 0 0 2.25rem 0;
+	hyphens: auto;
+}

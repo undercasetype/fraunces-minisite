@@ -1,0 +1,29 @@
+.goof-demo {
+	padding: 4rem 0;
+	background: var(--fraunces-yellow);
+}
+
+.goof-demo-slider {
+	max-width: 40rem;
+	margin: 0 auto;
+	padding: 0 2rem;
+	text-align: center;
+}
+
+.goof-demo-slider label {
+	--wght: 900;
+
+	display: block;
+	font-size: 1.5rem;
+}
+
+.goof-demo-text {
+	--GOOF: 100;
+	--wght: 900;
+
+	line-height: 1;
+	text-align: center;
+	font-size: 12vw;
+	margin-bottom: 3rem;
+	color: var(--fraunces-white);
+}

@@ -1,0 +1,488 @@
+[
+	{
+		"name": "Black OpMax GoofyMin",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 0,
+			"wght": 1000,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Black OpMid GoofyMin",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 0,
+			"wght": 1000,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Black OpMin GoofyMin",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 0,
+			"wght": 1000,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Bold OpMax GoofyMin",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 0,
+			"wght": 800,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Bold OpMid GoofyMin",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 0,
+			"wght": 800,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Bold OpMin GoofyMin",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 0,
+			"wght": 800,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Semibold OpMax GoofyMin",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 0,
+			"wght": 600,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Semibold OpMid GoofyMin",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 0,
+			"wght": 600,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Semibold OpMin GoofyMin",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 0,
+			"wght": 600,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Regular OpMax GoofyMin",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 0,
+			"wght": 400,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Regular OpMid GoofyMin",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 0,
+			"wght": 400,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Regular OpMin GoofyMin",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 0,
+			"wght": 400,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Light OpMax GoofyMin",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 0,
+			"wght": 200,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Light OpMid GoofyMin",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 0,
+			"wght": 200,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Light OpMin GoofyMin",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 0,
+			"wght": 200,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Thin OpMax GoofyMin",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 0,
+			"wght": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Thin OpMid GoofyMin",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 0,
+			"wght": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Thin OpMin GoofyMin",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 0,
+			"wght": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Black OpMax GoofyMax",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 100,
+			"wght": 1000,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Black OpMid GoofyMax",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 100,
+			"wght": 1000,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Black OpMin GoofyMax",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 100,
+			"wght": 1000,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Bold OpMax GoofyMax",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 100,
+			"wght": 800,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Bold OpMid GoofyMax",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 100,
+			"wght": 800,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Bold OpMin GoofyMax",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 100,
+			"wght": 800,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Semibold OpMax GoofyMax",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 100,
+			"wght": 600,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Semibold OpMid GoofyMax",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 100,
+			"wght": 600,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Semibold OpMin GoofyMax",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 100,
+			"wght": 600,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Regular OpMax GoofyMax",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 100,
+			"wght": 400,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Regular OpMid GoofyMax",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 100,
+			"wght": 400,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Regular OpMin GoofyMax",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 100,
+			"wght": 400,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Light OpMax GoofyMax",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 100,
+			"wght": 200,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Light OpMid GoofyMax",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 100,
+			"wght": 200,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Light OpMin GoofyMax",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 100,
+			"wght": 200,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Thin OpMax GoofyMax",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 100,
+			"wght": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Thin OpMid GoofyMax",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 100,
+			"wght": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Thin OpMin GoofyMax",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 100,
+			"wght": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Black OpMax GoofyMid",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 50,
+			"wght": 1000,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Black OpMid GoofyMid",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 50,
+			"wght": 1000,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Black OpMin GoofyMid",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 50,
+			"wght": 1000,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Bold OpMax GoofyMid",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 50,
+			"wght": 800,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Bold OpMid GoofyMid",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 50,
+			"wght": 800,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Bold OpMin GoofyMid",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 50,
+			"wght": 800,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Semibold OpMax GoofyMid",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 50,
+			"wght": 600,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Semibold OpMid GoofyMid",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 50,
+			"wght": 600,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Semibold OpMin GoofyMid",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 50,
+			"wght": 600,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Regular OpMax GoofyMid",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 50,
+			"wght": 400,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Regular OpMid GoofyMid",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 50,
+			"wght": 400,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Regular OpMin GoofyMid",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 50,
+			"wght": 400,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Light OpMax GoofyMid",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 50,
+			"wght": 200,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Light OpMid GoofyMid",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 50,
+			"wght": 200,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Light OpMin GoofyMid",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 50,
+			"wght": 200,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Thin OpMax GoofyMid",
+		"axes": {
+			"opsz": 144,
+			"GOOF": 50,
+			"wght": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Thin OpMid GoofyMid",
+		"axes": {
+			"opsz": 24,
+			"GOOF": 50,
+			"wght": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "Thin OpMin GoofyMid",
+		"axes": {
+			"opsz": 9,
+			"GOOF": 50,
+			"wght": 0,
+			"WONK": 0.5
+		}
+	}
+]
