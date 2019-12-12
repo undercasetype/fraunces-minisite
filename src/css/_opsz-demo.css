@@ -39,6 +39,7 @@
 	overflow: hidden;
 	width: var(--offset);
 	border-right: 8px solid var(--fraunces-yellow);
+
 	transition: width 900ms;
 }
 
@@ -52,6 +53,7 @@
 	top: 50%;
 	transform: translate(calc(-50% - 4px), -50%);
 	z-index: 2;
+
 	transition: left 900ms;
 }
 
