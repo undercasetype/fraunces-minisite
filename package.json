@@ -59,6 +59,9 @@
 		"webpack-cli": "^3.3.10",
 		"webpack-manifest-plugin": "v3.0.0-rc.0"
 	},
+	"resolutions": {
+		"serialize-javascript": "^2.1.1"
+	},
 	"lint-staged": {
 		"*.{js,json,html,css}": [
 			"prettier --write",
