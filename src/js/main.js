@@ -85,17 +85,25 @@ for (const interactive of interactives) {
 	}
 }
 
-if ("IntersectionObserver" in window) {
-	// Pause animations when element is not in viewport
-	// eslint-disable-next-line compat/compat
-	const obs = new IntersectionObserver(els => {
-		els.forEach(el => {
-			el.intersectionRatio > 0
-				? el.target.classList.add("in-view")
-				: el.target.classList.remove("in-view");
-		});
-	});
+// Make WONK snap
+const wonkSliders = document.querySelectorAll(
+	".wonk-demo .interactive-controls-slider"
+);
+for (const wonkSlider of wonkSliders) {
+	wonkSlider.onchange = e => {
+		e.target.value = Math.round(e.target.value);
+	};
+}
 
+// Pause animations when element is not in viewport
+const obs = new IntersectionObserver(els => {
+	els.forEach(el => {
+		el.intersectionRatio > 0
+			? el.target.classList.add("in-view")
+			: el.target.classList.remove("in-view");
+	});
+});
+if ("IntersectionObserver" in window) {
 	const elements = document.querySelectorAll(".animates");
 	elements.forEach(el => {
 		obs.observe(el);
@@ -191,25 +199,28 @@ stickable.onmouseup = () => {
 	}
 };
 
-// Tempoary demo for swipe compare
-// Animate it instead of using mouse
+// Swiper for opsz demo
 const swiper = document.querySelector(".opsz-demo-container");
-let swiperCount = 0;
-let swiperSwap = false;
-setInterval(() => {
-	if (!swiperSwap) {
-		swiperCount += 10;
-		if (swiperCount >= 100) {
-			swiperSwap = true;
-		}
-	} else {
-		swiperCount -= 10;
-		if (swiperCount <= 0) {
-			swiperSwap = false;
-		}
+const swiperHandle = document.querySelector(".opsz-slider-handle");
+let swiperDragging = false;
+swiperHandle.onmousedown = () => {
+	swiperDragging = true;
+	swiperHandle.classList.add("dragging");
+};
+swiperHandle.onmouseup = () => {
+	swiperDragging = false;
+	swiperHandle.classList.remove("dragging");
+};
+// TODO: combine mousemove in one global?
+swiper.onmousemove = e => {
+	e.preventDefault();
+	if (swiperDragging) {
+		const x = e.clientX - swiper.offsetLeft;
+		const perc = (x / (swiper.offsetWidth / 100)).toFixed(2);
+		const clampedPerc = Math.max(1, Math.min(perc, 100));
+		swiper.style.setProperty("--offset", `${clampedPerc}%`);
 	}
-	swiper.style.setProperty("--offset", `${swiperCount}%`);
-}, 1000);
+};
 
 // Add subtle parallax scrolling to "UV Light Rafters" graphic
 let uvStart;
