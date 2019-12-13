@@ -133,6 +133,40 @@ marquees.forEach(el => {
 	el.classList.add("play");
 });
 
+// Generic mousemove
+const mouse = {
+	x: 0,
+	y: 0,
+	dragCallback: false, // What to do when a dragged element is moved
+	endCallback: false // What to do when a dragging stops
+};
+window.onmousemove = e => {
+	if (!mouse.dragCallback) return; // Not currently dragging
+	e.preventDefault();
+	// TODO: either debouce/throttle here, or in each callback?
+	mouse.dragCallback && mouse.dragCallback(e);
+};
+window.onmouseup = () => {
+	mouse.endCallback && mouse.endCallback();
+	mouse.dragCallback = mouse.endCallback = false;
+};
+
+// Swiper for opsz demo
+const swiper = document.querySelector(".opsz-demo-container");
+const swiperHandle = document.querySelector(".opsz-slider-handle");
+swiperHandle.onmousedown = () => {
+	swiperHandle.classList.add("dragging");
+	mouse.dragCallback = e => {
+		const x = e.clientX - swiper.offsetLeft;
+		const perc = (x / (swiper.offsetWidth / 100)).toFixed(2);
+		const clampedPerc = Math.max(1, Math.min(perc, 100));
+		swiper.style.setProperty("--offset", `${clampedPerc}%`);
+	};
+	mouse.endCallback = e => {
+		swiperHandle.classList.remove("dragging");
+	};
+};
+
 // Sticker stuff
 const stickable = document.querySelector(".sticker-hero");
 let maxStickableY;
@@ -196,29 +230,6 @@ stickable.onmouseup = () => {
 	if (sticker.el) {
 		sticker.el.classList.remove("dragging");
 		sticker.el = false;
-	}
-};
-
-// Swiper for opsz demo
-const swiper = document.querySelector(".opsz-demo-container");
-const swiperHandle = document.querySelector(".opsz-slider-handle");
-let swiperDragging = false;
-swiperHandle.onmousedown = () => {
-	swiperDragging = true;
-	swiperHandle.classList.add("dragging");
-};
-swiperHandle.onmouseup = () => {
-	swiperDragging = false;
-	swiperHandle.classList.remove("dragging");
-};
-// TODO: combine mousemove in one global?
-swiper.onmousemove = e => {
-	e.preventDefault();
-	if (swiperDragging) {
-		const x = e.clientX - swiper.offsetLeft;
-		const perc = (x / (swiper.offsetWidth / 100)).toFixed(2);
-		const clampedPerc = Math.max(1, Math.min(perc, 100));
-		swiper.style.setProperty("--offset", `${clampedPerc}%`);
 	}
 };
 
