@@ -104,6 +104,7 @@ const obs = new IntersectionObserver(els => {
 	});
 });
 if ("IntersectionObserver" in window) {
+	// eslint-disable-next-line compat/compat
 	const elements = document.querySelectorAll(".animates");
 	elements.forEach(el => {
 		obs.observe(el);
@@ -162,7 +163,7 @@ swiperHandle.onmousedown = () => {
 		const clampedPerc = Math.max(1, Math.min(perc, 100));
 		swiper.style.setProperty("--offset", `${clampedPerc}%`);
 	};
-	mouse.endCallback = e => {
+	mouse.endCallback = () => {
 		swiperHandle.classList.remove("dragging");
 	};
 };
