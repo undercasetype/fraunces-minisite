@@ -96,6 +96,7 @@ for (const wonkSlider of wonkSliders) {
 }
 
 // Pause animations when element is not in viewport
+// eslint-disable-next-line compat/compat
 const obs = new IntersectionObserver(els => {
 	els.forEach(el => {
 		el.intersectionRatio > 0
