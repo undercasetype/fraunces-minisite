@@ -87,6 +87,7 @@ const wonkSliders = document.querySelectorAll(
 for (const wonkSlider of wonkSliders) {
 	wonkSlider.onchange = e => {
 		e.target.value = Math.round(e.target.value);
+		e.target.dispatchEvent(new Event("input", { bubbles: true }));
 	};
 }
 
