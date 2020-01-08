@@ -1,0 +1,30 @@
+@font-face {
+	font-family: "Fraunces";
+	src: url("../fonts/Fraunces-VF.woff2");
+	font-weight: 100 900;
+}
+
+@font-face {
+	font-family: "Fraunces";
+	src: url("../fonts/FrauncesItalic-VF.woff2");
+	font-weight: 100 900;
+	font-style: italic;
+}
+
+body {
+	font-family: "Fraunces", monospace;
+}
+
+:root {
+	--opsz: 9;
+	--wght: 100;
+	--GOOF: 0;
+	--WONK: 0.5;
+}
+
+*,
+*::before,
+*::after {
+	font-variation-settings: "opsz" var(--opsz), "wght" var(--wght),
+		"GOOF" var(--GOOF), "WONK" var(--WONK);
+}

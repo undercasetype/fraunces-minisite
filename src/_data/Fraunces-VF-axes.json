@@ -7,17 +7,17 @@
 		"default": 9
 	},
 	{
+		"axis": "wght",
+		"name": "Weight",
+		"min": 100,
+		"max": 900,
+		"default": 100
+	},
+	{
 		"axis": "GOOF",
 		"name": "goofy",
 		"min": 0,
 		"max": 100,
-		"default": 0
-	},
-	{
-		"axis": "wght",
-		"name": "Weight",
-		"min": 0,
-		"max": 1000,
 		"default": 0
 	},
 	{

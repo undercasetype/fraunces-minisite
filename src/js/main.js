@@ -1,8 +1,7 @@
-import "../css/main.css";
 import "./assets";
+import { fontName } from "./font";
 import FontFaceObserver from "fontfaceobserver";
 
-const fontName = "Fraunces";
 const fontTimeOut = 5000; // In milliseconds
 
 let scrollPos = 0;

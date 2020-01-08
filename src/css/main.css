@@ -1,18 +1,18 @@
-@import "_generic.css";
-@import "_prose.css";
-@import "_sliders.css";
+@import "generic.css";
+@import "prose.css";
+@import "sliders.css";
 
-@import "_font-faces.css";
+@import "font.css";
 
-@import "_header.css";
-@import "_sticker-hero.css";
-@import "_marquee-marq.css";
-@import "_meet-fraunces.css";
-@import "_anatomy.css";
-@import "_goof-demo.css";
-@import "_opsz-demo.css";
-@import "_wonk-demo.css";
-@import "_charset-checkers.css";
-@import "_thank-you-for-sliding.css";
-@import "_full-charset.css";
-@import "_footer.css";
+@import "header.css";
+@import "sticker-hero.css";
+@import "marquee-marq.css";
+@import "meet-fraunces.css";
+@import "anatomy.css";
+@import "goof-demo.css";
+@import "opsz-demo.css";
+@import "wonk-demo.css";
+@import "charset-checkers.css";
+@import "thank-you-for-sliding.css";
+@import "full-charset.css";
+@import "footer.css";

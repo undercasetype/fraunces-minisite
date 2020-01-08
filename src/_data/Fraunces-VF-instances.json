@@ -1,0 +1,488 @@
+[
+	{
+		"name": "9 G0 Thin",
+		"axes": {
+			"opsz": 9,
+			"wght": 100,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G0 Light",
+		"axes": {
+			"opsz": 9,
+			"wght": 300,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G0 Regular",
+		"axes": {
+			"opsz": 9,
+			"wght": 400,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G0 Semibold",
+		"axes": {
+			"opsz": 9,
+			"wght": 600,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G0 Bold",
+		"axes": {
+			"opsz": 9,
+			"wght": 700,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G0 Black",
+		"axes": {
+			"opsz": 9,
+			"wght": 900,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G50 Thin",
+		"axes": {
+			"opsz": 9,
+			"wght": 100,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G50 Light",
+		"axes": {
+			"opsz": 9,
+			"wght": 300,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G50 Regular",
+		"axes": {
+			"opsz": 9,
+			"wght": 400,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G50 Semibold",
+		"axes": {
+			"opsz": 9,
+			"wght": 600,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G50 Bold",
+		"axes": {
+			"opsz": 9,
+			"wght": 700,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G50 Black",
+		"axes": {
+			"opsz": 9,
+			"wght": 900,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G100 Thin",
+		"axes": {
+			"opsz": 9,
+			"wght": 100,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G100 Light",
+		"axes": {
+			"opsz": 9,
+			"wght": 300,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G100 Regular",
+		"axes": {
+			"opsz": 9,
+			"wght": 400,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G100 Semibold",
+		"axes": {
+			"opsz": 9,
+			"wght": 600,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G100 Bold",
+		"axes": {
+			"opsz": 9,
+			"wght": 700,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "9 G100 Black",
+		"axes": {
+			"opsz": 9,
+			"wght": 900,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G0 Thin",
+		"axes": {
+			"opsz": 72,
+			"wght": 100,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G0 Light",
+		"axes": {
+			"opsz": 72,
+			"wght": 300,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G0 Regular",
+		"axes": {
+			"opsz": 72,
+			"wght": 400,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G0 Semibold",
+		"axes": {
+			"opsz": 72,
+			"wght": 600,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G0 Bold",
+		"axes": {
+			"opsz": 72,
+			"wght": 700,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G0 Black",
+		"axes": {
+			"opsz": 72,
+			"wght": 900,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G50 Thin",
+		"axes": {
+			"opsz": 72,
+			"wght": 100,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G50 Light",
+		"axes": {
+			"opsz": 72,
+			"wght": 300,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G50 Regular",
+		"axes": {
+			"opsz": 72,
+			"wght": 400,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G50 Semibold",
+		"axes": {
+			"opsz": 72,
+			"wght": 600,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G50 Bold",
+		"axes": {
+			"opsz": 72,
+			"wght": 700,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G50 Black",
+		"axes": {
+			"opsz": 72,
+			"wght": 900,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G100 Thin",
+		"axes": {
+			"opsz": 72,
+			"wght": 100,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G100 Light",
+		"axes": {
+			"opsz": 72,
+			"wght": 300,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G100 Regular",
+		"axes": {
+			"opsz": 72,
+			"wght": 400,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G100 Semibold",
+		"axes": {
+			"opsz": 72,
+			"wght": 600,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G100 Bold",
+		"axes": {
+			"opsz": 72,
+			"wght": 700,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "72 G100 Black",
+		"axes": {
+			"opsz": 72,
+			"wght": 900,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G0 Thin",
+		"axes": {
+			"opsz": 144,
+			"wght": 100,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G0 Light",
+		"axes": {
+			"opsz": 144,
+			"wght": 300,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G0 Regular",
+		"axes": {
+			"opsz": 144,
+			"wght": 400,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G0 Semibold",
+		"axes": {
+			"opsz": 144,
+			"wght": 600,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G0 Bold",
+		"axes": {
+			"opsz": 144,
+			"wght": 700,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G0 Black",
+		"axes": {
+			"opsz": 144,
+			"wght": 900,
+			"GOOF": 0,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G50 Thin",
+		"axes": {
+			"opsz": 144,
+			"wght": 100,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G50 Light",
+		"axes": {
+			"opsz": 144,
+			"wght": 300,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G50 Regular",
+		"axes": {
+			"opsz": 144,
+			"wght": 400,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G50 Semibold",
+		"axes": {
+			"opsz": 144,
+			"wght": 600,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G50 Bold",
+		"axes": {
+			"opsz": 144,
+			"wght": 700,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G50 Black",
+		"axes": {
+			"opsz": 144,
+			"wght": 900,
+			"GOOF": 50,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G100 Thin",
+		"axes": {
+			"opsz": 144,
+			"wght": 100,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G100 Light",
+		"axes": {
+			"opsz": 144,
+			"wght": 300,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G100 Regular",
+		"axes": {
+			"opsz": 144,
+			"wght": 400,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G100 Semibold",
+		"axes": {
+			"opsz": 144,
+			"wght": 600,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G100 Bold",
+		"axes": {
+			"opsz": 144,
+			"wght": 700,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	},
+	{
+		"name": "144 G100 Black",
+		"axes": {
+			"opsz": 144,
+			"wght": 900,
+			"GOOF": 100,
+			"WONK": 0.5
+		}
+	}
+]
