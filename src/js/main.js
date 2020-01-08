@@ -6,24 +6,19 @@ const fontTimeOut = 5000; // In milliseconds
 
 let scrollPos = 0;
 
-// Generic functions
-// From https://gist.github.com/beaucharman/e46b8e4d03ef30480d7f4db5a78498ca#gistcomment-3015837
+// Generic throttle
 const throttle = (fn, wait) => {
-	let previouslyRun, queuedToRun;
+	let last, queue;
 
-	return function invokeFn(...args) {
+	return function runFn(...args) {
 		const now = Date.now();
+		queue = clearTimeout(queue);
 
-		queuedToRun = clearTimeout(queuedToRun);
-
-		if (!previouslyRun || now - previouslyRun >= wait) {
+		if (!last || now - last >= wait) {
 			fn.apply(null, args);
-			previouslyRun = now;
+			last = now;
 		} else {
-			queuedToRun = setTimeout(
-				invokeFn.bind(null, ...args),
-				wait - (now - previouslyRun)
-			);
+			queue = setTimeout(runFn.bind(null, ...args), wait - (now - last));
 		}
 	};
 };
@@ -32,11 +27,12 @@ const throttle = (fn, wait) => {
 const font = new FontFaceObserver(fontName);
 font.load(null, fontTimeOut).then(
 	() => {
-		console.log("Font is available");
-		document.documentElement.className += " fonts-loaded";
+		// Font has loaded
+		document.documentElement.classList.add("fonts-loaded");
 	},
 	() => {
-		console.log("Font is not available");
+		// Font didn't load
+		document.documentElement.classList.add("fonts-failed");
 	}
 );
 
@@ -94,34 +90,23 @@ for (const wonkSlider of wonkSliders) {
 	};
 }
 
-// Pause animations when element is not in viewport
-// eslint-disable-next-line compat/compat
-const obs = new IntersectionObserver(els => {
-	els.forEach(el => {
-		el.intersectionRatio > 0
-			? el.target.classList.add("in-view")
-			: el.target.classList.remove("in-view");
-	});
-});
+// Watch if .am-i-in-view elements are visible on screen
+// and apply a class accordingly
 if ("IntersectionObserver" in window) {
 	// eslint-disable-next-line compat/compat
-	const elements = document.querySelectorAll(".animates");
+	const obs = new IntersectionObserver(els => {
+		els.forEach(el => {
+			el.intersectionRatio > 0
+				? el.target.classList.add("in-view")
+				: el.target.classList.remove("in-view");
+		});
+	});
+
+	const elements = document.querySelectorAll(".am-i-in-view");
 	elements.forEach(el => {
 		obs.observe(el);
 	});
 }
-/*
-
-// Character grid
-const grid = document.querySelector(".character-grid");
-const gridzoom = document.querySelector(".character-grid-zoom");
-grid.onmousemove = throttle(e => {
-	if (e.target.tagName === "LI") {
-		gridzoom.innerHTML = e.target.innerHTML;
-	}
-}, 100);
-
-*/
 
 // Repeat marquee content a few times to avoid gaps
 const marquees = document.querySelectorAll(".marquee-marq");
@@ -142,10 +127,12 @@ const mouse = {
 	endCallback: false // What to do when a dragging stops
 };
 window.onmousemove = e => {
-	if (!mouse.dragCallback) return; // Not currently dragging
-	e.preventDefault();
-	// TODO: either debouce/throttle here, or in each callback?
-	mouse.dragCallback && mouse.dragCallback(e);
+	mouse.x = e.clientX;
+	mouse.y = e.clientY;
+	if (mouse.dragCallback) {
+		e.preventDefault();
+		mouse.dragCallback(e);
+	}
 };
 window.onmouseup = () => {
 	mouse.endCallback && mouse.endCallback();
@@ -157,8 +144,8 @@ const swiper = document.querySelector(".opsz-demo-container");
 const swiperHandle = document.querySelector(".opsz-slider-handle");
 swiperHandle.onmousedown = () => {
 	swiperHandle.classList.add("dragging");
-	mouse.dragCallback = e => {
-		const x = e.clientX - swiper.offsetLeft;
+	mouse.dragCallback = () => {
+		const x = mouse.x - swiper.offsetLeft;
 		const perc = (x / (swiper.offsetWidth / 100)).toFixed(2);
 		const clampedPerc = Math.max(1, Math.min(perc, 100));
 		swiper.style.setProperty("--offset", `${clampedPerc}%`);
@@ -172,42 +159,31 @@ swiperHandle.onmousedown = () => {
 const stickable = document.querySelector(".sticker-hero");
 let maxStickableY;
 const sticker = {
-	x: 0,
-	y: 0,
-	el: false,
-	updateSticker: function(e) {
-		this.x = e.clientX + document.documentElement.scrollLeft;
+	current: false,
+	updateSticker: function() {
+		this.x = mouse.x + document.documentElement.scrollLeft;
 		this.y = Math.min(
-			e.clientY + document.documentElement.scrollTop,
+			mouse.y + document.documentElement.scrollTop,
 			maxStickableY
 		);
-		this.el && this.moveSticker();
+		this.current && this.moveSticker();
 	},
 	moveSticker: function() {
-		this.el.style.setProperty("--x", `${this.x}px`);
-		this.el.style.setProperty("--y", `${this.y}px`);
+		this.current.style.setProperty("--x", `${this.x}px`);
+		this.current.style.setProperty("--y", `${this.y}px`);
 	}
 };
-
-// Move sticker when dragging
-stickable.onmousemove = throttle(e => {
-	e.preventDefault();
-	sticker.updateSticker(e);
-}, 10);
 
 // "Pick up" sticker or create new one
 // TODO: do not snap to center, but take offset from center of sticker into account
 stickable.onmousedown = e => {
 	if (e.which !== 1) return; // Only work on left mouse button
-	e.preventDefault();
 	const onSticker = e.target.classList.contains("sticker");
-	if (onSticker && !sticker.el) {
+	if (onSticker && !sticker.current) {
 		// Move clicked sticker
-		sticker.el = e.target;
-		sticker.el.classList.add("dragging");
-		sticker.updateSticker(e);
+		sticker.current = e.target;
 		// Create "residue"
-		const residue = sticker.el.cloneNode(true);
+		const residue = sticker.current.cloneNode(true);
 		residue.classList.add("sticker-residue");
 		residue.classList.remove("sticker", "dragging");
 		stickable.prepend(residue);
@@ -217,21 +193,21 @@ stickable.onmousedown = e => {
 	} else {
 		// Create new sticker
 		// TODO: get new sticker from list instead of cloning current sticker
-		sticker.el = document
+		sticker.current = document
 			.querySelector(".sticker.sticker-1")
 			.cloneNode(true);
-		stickable.prepend(sticker.el);
-		sticker.el.classList.add("dragging");
-		sticker.updateSticker(e);
+		stickable.prepend(sticker.current);
 	}
-};
+	sticker.updateSticker(e);
+	sticker.current.classList.add("dragging");
 
-// Stop dragging sticker
-stickable.onmouseup = () => {
-	if (sticker.el) {
-		sticker.el.classList.remove("dragging");
-		sticker.el = false;
-	}
+	mouse.dragCallback = e => {
+		sticker.updateSticker(e);
+	};
+	mouse.endCallback = () => {
+		swiperHandle.classList.remove("dragging");
+		sticker.current = false;
+	};
 };
 
 // Add subtle parallax scrolling to "UV Light Rafters" graphic
