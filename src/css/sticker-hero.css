@@ -11,10 +11,10 @@
 }
 
 .sticker-hero h1 {
-	--wght: 900;
 	--opsz: 14;
 	--WONK: 1;
 
+	font-weight: 900;
 	color: var(--fraunces-white);
 	margin: 0;
 	line-height: 1;
@@ -27,9 +27,9 @@
 
 .sticker-hero h2 {
 	--opsz: 144;
-	--wght: 500;
 	--WONK: 1;
 
+	font-weight: 500;
 	color: var(--fraunces-yellow);
 	margin: 1rem 0 0 0;
 	line-height: 1.1;

@@ -17,7 +17,6 @@ body {
 
 :root {
 	--opsz: 9;
-	--wght: 100;
 	--GOOF: 0;
 	--WONK: 0.5;
 }
@@ -25,6 +24,6 @@ body {
 *,
 *::before,
 *::after {
-	font-variation-settings: "opsz" var(--opsz), "wght" var(--wght),
-		"GOOF" var(--GOOF), "WONK" var(--WONK);
+	font-variation-settings: "opsz" var(--opsz), "GOOF" var(--GOOF),
+		"WONK" var(--WONK);
 }

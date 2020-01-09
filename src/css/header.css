@@ -1,7 +1,7 @@
 header {
-	--wght: 900;
 	--WONK: 1;
 
+	font-weight: 900;
 	background: var(--fraunces-yellow);
 	font-size: 2rem;
 	padding: 0 1.5rem;

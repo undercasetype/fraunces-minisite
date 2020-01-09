@@ -35,22 +35,22 @@
 	--GOOF: 100;
 }
 .black {
-	--wght: 1000;
+	font-weight: 1000;
 }
 .bold {
-	--wght: 800;
+	font-weight: 800;
 }
 .semibold {
-	--wght: 600;
+	font-weight: 600;
 }
 .regular {
-	--wght: 400;
+	font-weight: 400;
 }
 .light {
-	--wght: 200;
+	font-weight: 200;
 }
 .thin {
-	--wght: 1;
+	font-weight: 1;
 }
 
 .marquee-marq.reverse .marquee-marq-content {

@@ -1,8 +1,8 @@
 .prose-content {
 	--opsz: 13;
 	--WONK: 1;
-	--wght: 200;
 
+	font-weight: 200;
 	margin: 0 auto;
 	padding: 0 3rem;
 	max-width: 56rem;
@@ -11,8 +11,7 @@
 }
 
 .prose-content h2 {
-	--wght: 900;
-
+	font-weight: 900;
 	font-size: 2.25rem;
 }
 
