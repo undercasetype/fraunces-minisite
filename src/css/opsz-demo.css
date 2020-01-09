@@ -26,6 +26,38 @@
 	padding-right: 2rem;
 }
 
+.opsz-demo-container h3 {
+	font-size: 1.25rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+}
+
+.without-opsz h3 {
+	justify-content: flex-end;
+}
+
+.opsz-demo-container img {
+	width: 5em;
+	height: 5em;
+	margin: 0 1em;
+	animation: nod 2s infinite ease-in-out alternate;
+}
+
+.without-opsz img {
+	animation-delay: -350ms;
+}
+
+@keyframes nod {
+	from {
+		transform: rotate(-10deg);
+	}
+	to {
+		transform: rotate(10deg);
+	}
+}
+
 .with-opsz {
 	--opsz: 9;
 

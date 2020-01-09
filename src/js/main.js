@@ -112,11 +112,14 @@ if ("IntersectionObserver" in window) {
 // Repeat marquee content a few times to avoid gaps
 const marquees = document.querySelectorAll(".marquee-marq");
 marquees.forEach(el => {
-	for (let i = 0; i < 5; i++) {
-		el.appendChild(
-			el.querySelector(".marquee-marq-content").cloneNode(true)
-		);
+	const content = el.querySelector(".marquee-marq-content");
+	let fragment = document.createDocumentFragment();
+	for (let i = 0; i <= 5; i++) {
+		// TODO: why is this so slow?
+		fragment.appendChild(content.cloneNode(true));
+		console.log("meep");
 	}
+	el.appendChild(fragment);
 	el.classList.add("play");
 });
 
