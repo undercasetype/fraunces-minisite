@@ -14,7 +14,9 @@
 	height: var(--marquee-marq-height);
 	font-size: 2rem;
 	line-height: 1;
-	animation: marquee-marq 300s infinite linear paused;
+	opacity: 1;
+	transition: opacity 2s;
+	animation: marquee-marq 300s infinite linear;
 }
 
 .marquee-marq-content span {
@@ -55,10 +57,12 @@
 
 .marquee-marq.reverse .marquee-marq-content {
 	animation-direction: reverse;
+	animation-delay: -500s;
 }
 
-.marquee-marq.play .marquee-marq-content {
-	animation-play-state: running;
+.marquee-marq.paused .marquee-marq-content {
+	animation-play-state: paused;
+	opacity: 0;
 }
 
 @keyframes marquee-marq {

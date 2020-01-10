@@ -29,6 +29,12 @@ font.load(null, fontTimeOut).then(
 	() => {
 		// Font has loaded
 		document.documentElement.classList.add("fonts-loaded");
+		// Start the marquee with a slight delay to make sure
+		// all instaces have been generated in Chrome
+		// https://github.com/bramstein/fontfaceobserver/issues/140
+		setTimeout(() => {
+			startMaqueeMarq();
+		}, 1000);
 	},
 	() => {
 		// Font didn't load
@@ -110,18 +116,14 @@ if ("IntersectionObserver" in window) {
 }
 
 // Repeat marquee content a few times to avoid gaps
-const marquees = document.querySelectorAll(".marquee-marq");
-marquees.forEach(el => {
-	const content = el.querySelector(".marquee-marq-content");
-	let fragment = document.createDocumentFragment();
-	for (let i = 0; i <= 5; i++) {
-		// TODO: why is this so slow?
-		fragment.appendChild(content.cloneNode(true));
-		console.log("meep");
-	}
-	el.appendChild(fragment);
-	el.classList.add("play");
-});
+function startMaqueeMarq() {
+	const marquees = document.querySelectorAll(".marquee-marq");
+	marquees.forEach(el => {
+		const content = el.querySelector(".marquee-marq-content");
+		el.appendChild(content.cloneNode(true));
+		el.classList.remove("paused");
+	});
+}
 
 // Generic mousemove
 const mouse = {
