@@ -38,14 +38,14 @@
 	justify-content: flex-end;
 }
 
-.opsz-demo-container img {
+.opsz-sticker {
 	width: 5em;
 	height: 5em;
 	margin: 0 1em;
 	animation: nod 2s infinite ease-in-out alternate;
 }
 
-.without-opsz img {
+.without-opsz .opsz-sticker {
 	animation-delay: -350ms;
 }
 
@@ -81,6 +81,23 @@
 	overflow: hidden;
 	width: var(--offset);
 	border-right: 8px solid var(--fraunces-yellow);
+}
+
+.opsz-demo-container .happy,
+.opsz-demo-container .sad {
+	position: absolute;
+	z-index: 1;
+	width: 5em;
+	height: 5em;
+	bottom: 1em;
+}
+
+.opsz-demo-container .happy {
+	left: -6rem;
+}
+
+.opsz-demo-container .sad {
+	right: -6rem;
 }
 
 .opsz-slider-handle {
