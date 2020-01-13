@@ -1,29 +1,32 @@
 .opsz-demo-container {
-	--width: 52rem;
 	--offset: 50%;
+	--width: 864px; /* Line up with prose content */
+
+	/* Simulate .prose */
+	--opsz: 13;
+	--WONK: 1;
+
+	font-weight: 200;
+	font-size: 1.375rem;
+	line-height: 1.375;
 
 	position: relative;
+	margin: 0 auto;
+	width: var(--width);
+}
 
-	/*
-	// TODO: set this width through JavaScript
-	//   based on parent width, also on window resize
-	// 50rem - 3rem - 3rem of prose container
-	*/
-	width: 52rem;
+.opsz-demo-container p {
+	/* Simulate .prose */
+	margin: 0 0 2.25rem 0;
+	hyphens: auto;
 }
 
 .with-opsz,
 .without-opsz {
 	padding-top: 2.25rem;
-
-	/*
-	// TODO: set this width through JavaScript
-	//   based on parent width, also on window resize
-	// 50rem - 3rem - 3rem of prose container
-	*/
-	width: 52rem;
 	padding-left: 2rem;
 	padding-right: 2rem;
+	width: var(--width);
 }
 
 .opsz-demo-container h3 {
@@ -46,7 +49,7 @@
 }
 
 .without-opsz .opsz-sticker {
-	animation-delay: -350ms;
+	animation-delay: -750ms;
 }
 
 @keyframes nod {
@@ -93,11 +96,11 @@
 }
 
 .opsz-demo-container .happy {
-	left: -6rem;
+	left: -7.5rem;
 }
 
 .opsz-demo-container .sad {
-	right: -6rem;
+	right: -7.5rem;
 }
 
 .opsz-slider-handle {

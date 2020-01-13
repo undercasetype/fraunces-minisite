@@ -239,6 +239,13 @@ const setViewportValues = () => {
 	uvStart = uvEl.offsetTop - window.innerHeight;
 	uvEnd = uvEl.offsetTop + uvEl.offsetHeight;
 	uvPerc = uvEnd - uvStart;
+
+	// Determine opsz container width
+	const opszWidth =
+		document.querySelector(".opsz-text .prose-content").offsetWidth - 32;
+	document
+		.querySelector(".opsz-demo-container")
+		.style.setProperty("--width", `${opszWidth}px`);
 };
 window.onresize = throttle(setViewportValues, 100);
 setViewportValues();
