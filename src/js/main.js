@@ -30,11 +30,11 @@ font.load(null, fontTimeOut).then(
 		// Font has loaded
 		document.documentElement.classList.add("fonts-loaded");
 		// Start the marquee with a slight delay to make sure
-		// all instaces have been generated in Chrome
-		// https://github.com/bramstein/fontfaceobserver/issues/140
+		// all instaces have been generated and elements are at
+		// their final width
 		setTimeout(() => {
 			startMaqueeMarq();
-		}, 1000);
+		}, 100);
 	},
 	() => {
 		// Font didn't load
