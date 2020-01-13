@@ -1,3 +1,39 @@
-.thank-you-for-sliding {
-	background: aquamarine;
+.thank-you {
+	padding: 4rem 0;
+	background: var(--fraunces-black);
+}
+
+.thank-you-sliders {
+	display: flex;
+	max-width: 56rem;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.thank-you-sliders li {
+	flex: auto;
+	padding: 0 1rem;
+	color: var(--fraunces-yellow);
+}
+
+.thank-you-sliders label {
+	font-weight: 900;
+	display: block;
+	font-size: 1.25rem;
+}
+
+.thank-you-demo-text {
+	line-height: 1;
+	text-align: center;
+	font-size: 12vw;
+	margin-bottom: 3rem;
+	color: var(--fraunces-white);
+}
+
+/* Addressing the wght axis directly, so apply the
+   font-variation-settings specifically for this demo */
+.thank-you-demo-text,
+.thank-you-demo-text * {
+	font-variation-settings: "opsz" var(--opsz), "wght" var(--wght),
+		"GOOF" var(--GOOF), "WONK" var(--WONK);
 }

@@ -1,7 +1,5 @@
-import "../img/goofy.svg?external";
-import "../img/old-paragraph.svg?external";
-import "../img/thank-you-for-shopping.svg?external";
-import "../img/lookin-good.svg?external";
-import "../img/not-so-much.svg?external";
-import "../img/happy.svg?external";
-import "../img/sad.svg?external";
+/**
+ * This file automatically requires every supported image in `src/img`.
+ */
+const requireAll = r => r.keys().forEach(r);
+requireAll(require.context("../img/?external", true, /\.(png|jpg|svg)$/));
