@@ -126,6 +126,7 @@
 
 .opsz-text {
 	border-top: 8px solid var(--fraunces-yellow);
+	margin-bottom: 3rem;
 }
 
 .opsz-large {
