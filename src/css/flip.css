@@ -1,0 +1,53 @@
+.flip {
+	padding: 4rem 0;
+	background: var(--fraunces-yellow);
+}
+
+.flip button {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	background: none;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	outline: 0;
+	cursor: pointer;
+	color: inherit;
+	line-height: 1;
+}
+
+.flip-text {
+	--WONK: 0.5; /* Always remains on default */
+
+	line-height: 1;
+	text-align: center;
+	font-size: 12vw;
+	margin-bottom: 3rem;
+	color: var(--fraunces-white);
+
+	/* Addressing the wght axis directly, so apply the
+	font-variation-settings specifically for this demo */
+	font-variation-settings: "opsz" var(--opsz), "wght" var(--wght),
+		"GOOF" var(--GOOF), "WONK" var(--WONK);
+}
+
+.flip-text.italic {
+	font-style: italic;
+}
+
+.flip-controls {
+	display: flex;
+	max-width: 40rem;
+	margin: 0 auto;
+}
+
+.flip-controls > li {
+	flex: none;
+	padding: 0 1rem;
+}
+
+.flip-control .active {
+	color: var(--fraunces-white);
+	font-weight: 900;
+}

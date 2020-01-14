@@ -1,4 +1,4 @@
-.opsz-demo-container {
+.opsz-demo {
 	--offset: 50%;
 	--width: 864px; /* Line up with prose content */
 
@@ -15,7 +15,7 @@
 	width: var(--width);
 }
 
-.opsz-demo-container p {
+.opsz-demo p {
 	/* Simulate .prose */
 	margin: 0 0 2.25rem 0;
 	hyphens: auto;
@@ -29,7 +29,7 @@
 	width: var(--width);
 }
 
-.opsz-demo-container h3 {
+.opsz-demo h3 {
 	font-size: 1.25rem;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -86,8 +86,8 @@
 	border-right: 8px solid var(--fraunces-yellow);
 }
 
-.opsz-demo-container .happy,
-.opsz-demo-container .sad {
+.opsz-demo .happy,
+.opsz-demo .sad {
 	position: absolute;
 	z-index: 1;
 	width: 5em;
@@ -95,11 +95,11 @@
 	bottom: 1em;
 }
 
-.opsz-demo-container .happy {
+.opsz-demo .happy {
 	left: -7.5rem;
 }
 
-.opsz-demo-container .sad {
+.opsz-demo .sad {
 	right: -7.5rem;
 }
 

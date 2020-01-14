@@ -146,7 +146,7 @@ window.onmouseup = () => {
 };
 
 // Swiper for opsz demo
-const swiper = document.querySelector(".opsz-demo-container");
+const swiper = document.querySelector(".opsz-demo");
 const swiperHandle = document.querySelector(".opsz-slider-handle");
 swiperHandle.onmousedown = () => {
 	swiperHandle.classList.add("dragging");
@@ -244,8 +244,27 @@ const setViewportValues = () => {
 	const opszWidth =
 		document.querySelector(".opsz-text .prose-content").offsetWidth - 32;
 	document
-		.querySelector(".opsz-demo-container")
+		.querySelector(".opsz-demo")
 		.style.setProperty("--width", `${opszWidth}px`);
 };
 window.onresize = throttle(setViewportValues, 100);
 setViewportValues();
+
+// Flip clock for instances
+const flip = document.querySelector(".flip");
+const flipText = document.querySelector(".flip-text");
+flip.onclick = e => {
+	const button = e.target;
+	if (button.value) {
+		const parent = button.closest("ul");
+		parent.querySelector(".active").classList.remove("active");
+		const [axis, value] = button.value.split(" ");
+		if (axis === "style") {
+			flipText.classList.remove("roman", "italic");
+			flipText.classList.add(value);
+		} else {
+			flipText.style.setProperty(`--${axis}`, value);
+		}
+		button.classList.add("active");
+	}
+};

@@ -23,36 +23,36 @@
 	padding: 0 0.125em;
 }
 
-.italic {
+.marquee-marq-content .italic {
 	font-style: italic;
 }
 
-.goofymin {
+.marquee-marq-content .goofymin {
 	--GOOF: 0;
 }
-.goofymid {
+.marquee-marq-content .goofymid {
 	--GOOF: 50;
 }
-.goofymax {
+.marquee-marq-content .goofymax {
 	--GOOF: 100;
 }
-.black {
-	font-weight: 1000;
+.marquee-marq-content .black {
+	font-weight: 900;
 }
-.bold {
-	font-weight: 800;
+.marquee-marq-content .bold {
+	font-weight: 700;
 }
-.semibold {
+.marquee-marq-content .semibold {
 	font-weight: 600;
 }
-.regular {
+.marquee-marq-content .regular {
 	font-weight: 400;
 }
-.light {
-	font-weight: 200;
+.marquee-marq-content .light {
+	font-weight: 300;
 }
-.thin {
-	font-weight: 1;
+.marquee-marq-content .thin {
+	font-weight: 100;
 }
 
 .marquee-marq.reverse .marquee-marq-content {
