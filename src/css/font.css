@@ -17,9 +17,9 @@ body {
 
 :root {
 	--opsz: 9;
-	--GOOF: 100;
+	--GOOF: 0;
 	--WONK: 0.5;
-	--wght: 400;
+	--wght: 100;
 }
 
 *,

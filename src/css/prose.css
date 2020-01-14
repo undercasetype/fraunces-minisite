@@ -17,7 +17,6 @@
 }
 
 .prose-content p {
-	--GOOF: 100;
 	margin: 0 0 2.25rem 0;
 	hyphens: auto;
 }
