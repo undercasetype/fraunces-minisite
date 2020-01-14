@@ -258,13 +258,14 @@ flip.onclick = e => {
 	if (button.value) {
 		const parent = button.closest("ul");
 		parent.querySelector(".active").classList.remove("active");
-		const [axis, value] = button.value.split(" ");
+		const [index, axis, value] = button.value.split(" ");
 		if (axis === "style") {
 			flipText.classList.remove("roman", "italic");
 			flipText.classList.add(value);
 		} else {
 			flipText.style.setProperty(`--${axis}`, value);
 		}
+		parent.style.setProperty("--offset", 6 - index);
 		button.classList.add("active");
 	}
 };

@@ -19,6 +19,9 @@
 
 .flip-text {
 	--WONK: 0.5; /* Always remains on default */
+	--GOOF: 50;
+	--opsz: 72;
+	--wght: 400;
 
 	line-height: 1;
 	text-align: center;
@@ -36,15 +39,37 @@
 	font-style: italic;
 }
 
+.flip-controls-container {
+	display: flex;
+}
+
 .flip-controls {
 	display: flex;
 	max-width: 40rem;
 	margin: 0 auto;
+
+	/* Reserve space for lists */
+	min-height: 22rem;
 }
 
 .flip-controls > li {
 	flex: none;
 	padding: 0 1rem;
+}
+
+.flip-controls h4::after {
+	/* Use control word to make sure column is at least
+	   as wide as this word */
+	content: attr(data-control);
+	display: block;
+	overflow: hidden;
+	height: 0;
+}
+
+.flip-control {
+	line-height: 1.5em;
+	padding-top: calc(var(--offset) * 1.5em);
+	transition: padding 200ms;
 }
 
 .flip-control .active {

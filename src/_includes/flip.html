@@ -1,68 +1,92 @@
 <div class="flip">
-	<div class="flip-text">
-		Instance Gratification
-	</div>
+	<div class="flip-text">Instance<br />Gratification</div>
 
-	<ul class="flip-controls">
-		<li>
-			<h4>Family</h4>
-			<ul class="flip-control">
-				<li><button type="button" class="active">Fraunces</button></li>
-			</ul>
-		</li>
-		<li>
-			<h4>Optical Size</h4>
-			<ul class="flip-control">
-				<li><button type="button" value="opsz 9">9</button></li>
-				<li>
-					<button type="button" value="opsz 72" class="active">
-						72
-					</button>
-				</li>
-				<li><button type="button" value="opsz 144">144</button></li>
-			</ul>
-		</li>
-		<li>
-			<h4>Goofy</h4>
-			<ul class="flip-control">
-				<li><button type="button" value="GOOF 0">Gmin</button></li>
-				<li>
-					<button type="button" value="GOOF 50" class="active">
-						Gmid
-					</button>
-				</li>
-				<li><button type="button" value="GOOF 100">Gmax</button></li>
-			</ul>
-		</li>
-		<li>
-			<h4>Weight</h4>
-			<ul class="flip-control">
-				<li><button type="button" value="wght 100">Thin</button></li>
-				<li><button type="button" value="wght 300">Light</button></li>
-				<li>
-					<button type="button" value="wght 400" class="active">
-						Regular
-					</button>
-				</li>
-				<li>
-					<button type="button" value="wght 600">Semibold</button>
-				</li>
-				<li><button type="button" value="wght 700">Bold</button></li>
-				<li><button type="button" value="wght 900">Black</button></li>
-			</ul>
-		</li>
-		<li>
-			<h4>Style</h4>
-			<ul class="flip-control">
-				<li>
-					<button type="button" value="style roman" class="active">
-						Roman
-					</button>
-				</li>
-				<li>
-					<button type="button" value="style italic">Italic</button>
-				</li>
-			</ul>
-		</li>
-	</ul>
+	<div class="flip-controls-container">
+		<ul class="flip-controls">
+			<li>
+				<h4>Family</h4>
+				<ul class="flip-control" style="--offset:5">
+					<li>
+						<button type="button" class="active">Fraunces</button>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h4>Optical Size</h4>
+				<ul class="flip-control" style="--offset:4">
+					<li><button type="button" value="1 opsz 9">9</button></li>
+					<li>
+						<button type="button" value="2 opsz 72" class="active">
+							72
+						</button>
+					</li>
+					<li>
+						<button type="button" value="3 opsz 144">144</button>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h4 data-control="Gmax">Goofy</h4>
+				<ul class="flip-control" style="--offset:4">
+					<li>
+						<button type="button" value="1 GOOF 0">Gmin</button>
+					</li>
+					<li>
+						<button type="button" value="2 GOOF 50" class="active">
+							Gmid
+						</button>
+					</li>
+					<li>
+						<button type="button" value="3 GOOF 100">Gmax</button>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h4 data-control="Semibold">Weight</h4>
+				<ul class="flip-control" style="--offset:3">
+					<li>
+						<button type="button" value="1 wght 100">Thin</button>
+					</li>
+					<li>
+						<button type="button" value="2 wght 300">Light</button>
+					</li>
+					<li>
+						<button type="button" value="3 wght 400" class="active">
+							Regular
+						</button>
+					</li>
+					<li>
+						<button type="button" value="4 wght 600">
+							Semibold
+						</button>
+					</li>
+					<li>
+						<button type="button" value="5 wght 700">Bold</button>
+					</li>
+					<li>
+						<button type="button" value="6 wght 900">Black</button>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h4 data-control="Roman">Style</h4>
+				<ul class="flip-control" style="--offset:5">
+					<li>
+						<button
+							type="button"
+							value="1 style roman"
+							class="active"
+						>
+							Roman
+						</button>
+					</li>
+					<li>
+						<button type="button" value="2 style italic">
+							Italic
+						</button>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
 </div>
