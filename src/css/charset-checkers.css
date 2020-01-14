@@ -4,7 +4,7 @@
 	max-width: 40rem;
 }
 
-.checkboard {
+.checkersboard {
 	--max: 80vw;
 	--gap: 1vw;
 
@@ -19,7 +19,7 @@
 	margin: 0 auto 3rem 0;
 }
 
-.checkboard > div {
+.checkersboard > div {
 	font-weight: 900;
 	background: var(--fraunces-yellow);
 	color: var(--fraunces-white);
@@ -29,24 +29,24 @@
 	font-size: 4vw;
 }
 
-.checkboard > div:nth-child(-n + 8):nth-child(even),
-.checkboard > div:nth-child(n + 8):nth-child(-n + 16):nth-child(odd),
-.checkboard > div:nth-child(n + 17):nth-child(-n + 24):nth-child(even),
-.checkboard > div:nth-child(n + 25):nth-child(-n + 32):nth-child(odd),
-.checkboard > div:nth-child(n + 33):nth-child(-n + 40):nth-child(even),
-.checkboard > div:nth-child(n + 41):nth-child(-n + 48):nth-child(odd),
-.checkboard > div:nth-child(n + 49):nth-child(-n + 56):nth-child(even),
-.checkboard > div:nth-child(n + 57):nth-child(-n + 64):nth-child(odd) {
+.checkersboard > div:nth-child(-n + 8):nth-child(even),
+.checkersboard > div:nth-child(n + 8):nth-child(-n + 16):nth-child(odd),
+.checkersboard > div:nth-child(n + 17):nth-child(-n + 24):nth-child(even),
+.checkersboard > div:nth-child(n + 25):nth-child(-n + 32):nth-child(odd),
+.checkersboard > div:nth-child(n + 33):nth-child(-n + 40):nth-child(even),
+.checkersboard > div:nth-child(n + 41):nth-child(-n + 48):nth-child(odd),
+.checkersboard > div:nth-child(n + 49):nth-child(-n + 56):nth-child(even),
+.checkersboard > div:nth-child(n + 57):nth-child(-n + 64):nth-child(odd) {
 	background: var(--fraunces-black);
 }
 
 @media screen and (min-width: 52rem) {
-	.checkboard {
+	.checkersboard {
 		--max: 50rem; /* Based on .prose width */
 		--gap: 0.375rem;
 	}
 
-	.checkboard > div {
+	.checkersboard > div {
 		font-size: 3.5rem;
 	}
 }
