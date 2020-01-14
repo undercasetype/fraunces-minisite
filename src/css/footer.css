@@ -14,6 +14,11 @@ footer a {
 	text-decoration: none;
 }
 
+.footer-brought-to-you a {
+	font-size: 1.75rem;
+	font-weight: 500;
+}
+
 footer a:hover {
 	text-decoration: underline;
 }
@@ -23,16 +28,30 @@ footer a:hover {
 }
 
 .footer-credits {
-	padding: 0 2em;
-	width: 40%;
+	padding: 0 1em;
 }
 
-.gf-link {
-	font-size: 1.75rem;
-	font-weight: 500;
-}
-
-.repo-link {
+.footer-repo-link {
 	text-align: right;
 	font-weight: 900;
+}
+
+@media screen and (max-width: 70em) {
+	footer {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	footer > * {
+		width: auto;
+	}
+
+	.footer-credits {
+		padding: 2em 0 1em 0;
+	}
+
+	.footer-credits,
+	.footer-brought-to-you {
+		text-align: center;
+	}
 }
