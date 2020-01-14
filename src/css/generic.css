@@ -25,7 +25,7 @@
 
 html,
 body {
-	-GOOF: 100;
+	--GOOF: 100;
 
 	font-weight: 400;
 	padding: 0;
