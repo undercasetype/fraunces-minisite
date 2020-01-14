@@ -37,3 +37,14 @@
 	font-variation-settings: "opsz" var(--opsz), "wght" var(--wght),
 		"GOOF" var(--GOOF), "WONK" var(--WONK);
 }
+
+@media screen and (max-width: 52rem) {
+	.thank-you-sliders {
+		flex-direction: column;
+		padding: 0 16vw;
+	}
+
+	.thank-you-sliders label {
+		margin-bottom: 1.5rem;
+	}
+}
