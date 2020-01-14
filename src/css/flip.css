@@ -76,3 +76,17 @@
 	color: var(--fraunces-white);
 	font-weight: 900;
 }
+
+@media screen and (max-width: 32rem) {
+	/* Remove titles if screen becomes too small */
+	.flip-controls h4 {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 28rem) {
+	/* Remove "family" column if screen becomes too small */
+	.flip-controls-family {
+		display: none;
+	}
+}

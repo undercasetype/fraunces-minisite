@@ -38,6 +38,5 @@ ul {
 body {
 	background: var(--fraunces-white);
 	color: var(--fraunces-black);
-
-	/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+	min-width: 320px;
 }
