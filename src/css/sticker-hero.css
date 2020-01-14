@@ -11,8 +11,9 @@
 }
 
 .sticker-hero h1 {
-	--opsz: 14;
+	--opsz: 144;
 	--WONK: 1;
+	--GOOF: 100;
 
 	font-weight: 900;
 	color: var(--fraunces-white);
