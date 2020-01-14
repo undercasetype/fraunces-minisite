@@ -1,9 +1,8 @@
 .prose-content {
 	--opsz: 13;
 	--WONK: 1;
-	--GOOF: 100;
 
-	font-weight: 400;
+	font-weight: 200;
 	margin: 0 auto;
 	padding: 0 3rem;
 	max-width: 56rem;
