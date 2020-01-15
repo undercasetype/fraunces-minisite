@@ -19,8 +19,20 @@
 }
 
 .checkersboard > div {
-	font-weight: 900;
 	background: var(--fraunces-yellow);
+	position: relative;
+}
+
+.checkersboard span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	/* transform: translate(calc(100% + var(--gap)), calc(100% + var(--gap))); */
+	z-index: 1;
+
+	font-weight: 900;
 	color: var(--fraunces-white);
 	display: flex;
 	justify-content: center;

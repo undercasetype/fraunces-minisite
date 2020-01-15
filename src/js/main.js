@@ -269,3 +269,96 @@ flip.onclick = e => {
 		button.classList.add("active");
 	}
 };
+
+/* *************************************************** */
+/* *************************************************** */
+/* *************************************************** */
+/* *************************************************** */
+
+const pieces = {
+	1: "a"
+};
+
+function getPiecePosition(piece) {
+	// Get current position of stone
+	const pos = parseInt(
+		Object.keys(pieces).find(key => pieces[key] === piece),
+		10
+	);
+
+	const x = pos % 8;
+	const y = Math.floor((pos - 1) / 8 + 1);
+
+	// Make a list of possible moves
+	const options = [];
+
+	// Same column
+	y > 1 && options.push(pos - 8);
+	y < 8 && options.push(pos + 8);
+
+	// To the left
+	if (x !== 1) {
+		options.push(pos - 1);
+		y > 1 && options.push(pos - 8 - 1);
+		y < 8 && options.push(pos + 8 - 1);
+	}
+
+	console.log(x);
+
+	// To the right
+	// if (x < 8) {
+	if (x !== 0) {
+		options.push(pos + 1);
+		y > 1 && options.push(pos - 8 + 1);
+		y < 8 && options.push(pos + 8 + 1);
+	}
+
+	console.log(JSON.parse(JSON.stringify(options)));
+
+	let option = false;
+	while (options.length) {
+		// Get random option
+		option = options
+			.sort(function() {
+				return 0.5 - Math.random();
+			})
+			.pop();
+
+		// Use this position when it's still free
+		if (!(option in pieces)) {
+			break;
+		}
+	}
+	console.log(pos + " to " + option);
+
+	return { oldPos: pos, newPos: option };
+}
+
+function drawPieces() {
+	const checkerboard = document.querySelector(".checkersboard");
+	for (const piece in pieces) {
+		const cell = checkerboard.querySelector(`.check${piece} span`);
+		cell.innerText = pieces[piece] === null ? "" : pieces[piece];
+	}
+}
+
+function movePiece() {
+	const piece = "a";
+
+	let { oldPos, newPos } = getPiecePosition(piece);
+	pieces[oldPos] = null;
+	pieces[newPos] = piece;
+}
+drawPieces();
+if (true) {
+	setInterval(() => {
+		movePiece();
+		drawPieces();
+	}, 1000);
+}
+// movePiece();
+// drawPieces();
+// document.querySelector("body").onclick = () => {
+// 	movePiece();
+// 	drawPieces();
+// };
