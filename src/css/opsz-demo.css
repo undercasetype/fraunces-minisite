@@ -27,6 +27,7 @@
 	padding-left: 2rem;
 	padding-right: 2rem;
 	width: var(--width);
+	user-select: none;
 }
 
 .opsz-demo h3 {
