@@ -26,3 +26,14 @@
 	margin-bottom: 3rem;
 	color: var(--fraunces-white);
 }
+
+@media screen and (max-width: 32rem) {
+	.goof-demo-slider {
+		max-width: 50vw;
+		padding: 0;
+	}
+
+	.goof-demo-text {
+		font-size: 15vw;
+	}
+}

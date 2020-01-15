@@ -20,3 +20,9 @@
 	margin: 0 0 2.25rem 0;
 	hyphens: auto;
 }
+
+@media screen and (max-width: 28rem) {
+	.prose-content {
+		padding: 0 1.5rem;
+	}
+}

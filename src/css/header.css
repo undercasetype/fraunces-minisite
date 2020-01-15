@@ -9,3 +9,9 @@ header {
 	display: flex;
 	align-items: center;
 }
+
+@media screen and (max-width: 28rem) {
+	header {
+		font-size: 1.5rem;
+	}
+}

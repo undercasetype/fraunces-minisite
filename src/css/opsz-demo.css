@@ -136,3 +136,11 @@
 .opsz-medium {
 	font-size: 2rem;
 }
+
+@media screen and (max-width: 28rem) {
+	.with-opsz,
+	.without-opsz {
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
+}

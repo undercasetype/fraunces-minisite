@@ -18,3 +18,13 @@
 	height: 220px;
 	margin: -0.5em 1em 0.25em -2em;
 }
+
+@media screen and (max-width: 32rem) {
+	.goofy,
+	.thank-you-for-shopping {
+		float: none;
+		height: auto;
+		width: 100%;
+		margin: 0 auto 2.25rem auto;
+	}
+}

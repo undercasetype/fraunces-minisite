@@ -27,3 +27,10 @@
 	font-size: 14vw;
 	color: var(--fraunces-white);
 }
+
+@media screen and (max-width: 32rem) {
+	.wonk-demo-slider {
+		max-width: 50vw;
+		padding: 1rem 0 3rem 0;
+	}
+}
