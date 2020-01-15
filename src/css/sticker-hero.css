@@ -17,6 +17,7 @@
 	font-weight: 900;
 	color: var(--fraunces-white);
 	margin: 0;
+	margin-top: 25px;
 	line-height: 1;
 }
 
@@ -29,7 +30,7 @@
 	--opsz: 144;
 	--WONK: 1;
 
-	font-weight: 500;
+	font-weight: 300;
 	color: var(--fraunces-yellow);
 	margin: 0.5em 0 1em 0;
 	line-height: 1.1;
