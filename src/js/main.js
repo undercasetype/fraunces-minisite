@@ -350,12 +350,12 @@ function movePiece() {
 	pieces[newPos] = piece;
 }
 drawPieces();
-if (true) {
-	setInterval(() => {
-		movePiece();
-		drawPieces();
-	}, 1000);
-}
+
+setInterval(() => {
+	movePiece();
+	drawPieces();
+}, 1000);
+
 // movePiece();
 // drawPieces();
 // document.querySelector("body").onclick = () => {
