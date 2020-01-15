@@ -143,4 +143,22 @@
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
 	}
+
+	.opsz-demo h3 {
+		flex-direction: column-reverse;
+	}
+
+	.without-opsz h3 {
+		flex-direction: column;
+	}
+}
+
+@media screen and (max-width: 70em) {
+	.opsz-demo .happy {
+		left: 0;
+	}
+
+	.opsz-demo .sad {
+		right: 0;
+	}
 }
