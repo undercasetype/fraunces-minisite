@@ -23,7 +23,7 @@
 
 .with-opsz,
 .without-opsz {
-	padding-top: 2.25rem;
+	padding-top: 4rem;
 	padding-left: 2rem;
 	padding-right: 2rem;
 	width: var(--width);
@@ -127,7 +127,7 @@
 
 .opsz-text {
 	border-top: 8px solid var(--fraunces-yellow);
-	margin-bottom: 3rem;
+	padding: 3rem 0 4rem 0;
 }
 
 .opsz-large {
