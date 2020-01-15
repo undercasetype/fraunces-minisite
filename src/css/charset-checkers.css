@@ -16,6 +16,7 @@
 	justify-content: center;
 	align-content: center;
 	margin: 0 auto 3rem 0;
+	user-select: none;
 }
 
 .checkersboard > div {
@@ -24,12 +25,12 @@
 }
 
 .checkersboard span {
+	/* transform: translate(calc(100% + var(--gap)), calc(100% + var(--gap))); */
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	/* transform: translate(calc(100% + var(--gap)), calc(100% + var(--gap))); */
 	z-index: 1;
 
 	font-weight: 900;

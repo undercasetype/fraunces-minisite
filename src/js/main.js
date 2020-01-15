@@ -276,7 +276,22 @@ flip.onclick = e => {
 /* *************************************************** */
 
 const pieces = {
-	1: "a"
+	1: "a",
+	2: "b",
+	3: "c",
+	4: "d",
+	5: "e",
+	6: "f",
+	7: "g",
+	8: "h",
+	9: "A",
+	10: "B",
+	11: "C",
+	12: "D",
+	13: "E",
+	14: "F",
+	15: "G",
+	16: "H"
 };
 
 function getPiecePosition(piece) {
@@ -292,28 +307,31 @@ function getPiecePosition(piece) {
 	// Make a list of possible moves
 	const options = [];
 
-	// Same column
-	y > 1 && options.push(pos - 8);
-	y < 8 && options.push(pos + 8);
-
 	// To the left
+	let move;
 	if (x !== 1) {
-		options.push(pos - 1);
-		y > 1 && options.push(pos - 8 - 1);
-		y < 8 && options.push(pos + 8 - 1);
+		move = pos - 8 - 1;
+		if (y > 1 && !pieces[move]) {
+			options.push(move);
+		}
+		move = pos + 8 - 1;
+		if (y < 8 && !pieces[move]) {
+			options.push(move);
+		}
 	}
-
-	console.log(x);
-
 	// To the right
-	// if (x < 8) {
 	if (x !== 0) {
-		options.push(pos + 1);
-		y > 1 && options.push(pos - 8 + 1);
-		y < 8 && options.push(pos + 8 + 1);
+		move = pos - 8 + 1;
+		if (y > 1 && !pieces[move]) {
+			options.push(move);
+		}
+		move = pos + 8 + 1;
+		if (y < 8 && !pieces[move]) {
+			options.push(move);
+		}
 	}
 
-	console.log(JSON.parse(JSON.stringify(options)));
+	// console.log(JSON.parse(JSON.stringify(options)));
 
 	let option = false;
 	while (options.length) {
@@ -329,7 +347,6 @@ function getPiecePosition(piece) {
 			break;
 		}
 	}
-	console.log(pos + " to " + option);
 
 	return { oldPos: pos, newPos: option };
 }
@@ -343,7 +360,7 @@ function drawPieces() {
 }
 
 function movePiece() {
-	const piece = "a";
+	const piece = "A";
 
 	let { oldPos, newPos } = getPiecePosition(piece);
 	pieces[oldPos] = null;
