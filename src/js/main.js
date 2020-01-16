@@ -314,31 +314,30 @@ function getPiecePosition(piece) {
 	if (x !== 1) {
 		move = pos - 8 - 1;
 		if (y > 1 && !pieces[move]) {
-			options.push(move);
+			options.push([-1, -1]);
 		}
 		move = pos + 8 - 1;
 		if (y < 8 && !pieces[move]) {
-			options.push(move);
+			options.push([-1, 1]);
 		}
 	}
+
 	// To the right
 	if (x !== 0) {
 		move = pos - 8 + 1;
 		if (y > 1 && !pieces[move]) {
-			options.push(move);
+			options.push([1, -1]);
 		}
 		move = pos + 8 + 1;
 		if (y < 8 && !pieces[move]) {
-			options.push(move);
+			options.push([1, 1]);
 		}
 	}
-
-	// console.log(JSON.parse(JSON.stringify(options)));
 
 	let option = false;
 	option = popRandomValue(options);
 
-	return { oldPos: pos, newPos: option };
+	return { oldPos: pos, move: option };
 }
 
 function popRandomValue(list) {
@@ -368,8 +367,33 @@ function movePiece() {
 
 	const piece = popRandomValue(piecesTurns);
 
-	const { oldPos, newPos } = getPiecePosition(piece);
-	if (newPos) {
+	const { oldPos, move } = getPiecePosition(piece);
+	if (move) {
+		// Start animation of character in oldPos towards newPos...
+		// ...and delete oldPos character from HTML
+		// ...and immediately inject character on newPos on animation-halways-point
+		// ...and have it animate into place
+
+		const newPos = oldPos + move[0] + move[1] * 8;
+
+		const oldCell = document.querySelector(`.check${oldPos} span`);
+		const newCell = document.querySelector(`.check${newPos} span`);
+		oldCell.style.setProperty(
+			"transform",
+			`translate(
+				calc((${move[0]} * 100%) + (${move[0]} * var(--gap))),
+				calc((${move[1]} * 100%) + (${move[1]} * var(--gap)))
+			)`
+		);
+		newCell.style.setProperty("transform", "");
+
+		setTimeout(() => {
+			oldCell.style.setProperty("transform", "");
+			newCell.style.setProperty("transform", "");
+			oldCell.innerText = "";
+			newCell.innerText = pieces[newPos];
+		}, 500);
+
 		pieces[oldPos] = null;
 		pieces[newPos] = piece;
 	} else {
@@ -377,15 +401,14 @@ function movePiece() {
 	}
 }
 drawPieces();
+setTimeout(() => {
+	setInterval(() => {
+		movePiece();
+		// drawPieces();
+	}, 1000);
+}, 3000);
 
-setInterval(() => {
-	movePiece();
-	drawPieces();
-}, 1000);
-
-// movePiece();
-// drawPieces();
 // document.querySelector("body").onclick = () => {
 // 	movePiece();
-// 	drawPieces();
+// 	// drawPieces();
 // };
