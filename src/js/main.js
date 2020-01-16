@@ -277,21 +277,22 @@ flip.onclick = e => {
 
 const pieces = {
 	1: "a",
-	2: "b",
-	3: "c",
-	4: "d",
-	5: "e",
-	6: "f",
-	7: "g",
-	8: "h",
-	9: "A",
-	10: "B",
-	11: "C",
-	12: "D",
-	13: "E",
-	14: "F",
-	15: "G",
-	16: "H"
+	3: "b",
+	5: "c",
+	7: "d",
+	10: "e",
+	12: "f",
+	14: "g",
+	16: "h",
+
+	50: "A",
+	52: "B",
+	54: "C",
+	56: "D",
+	57: "E",
+	59: "F",
+	61: "G",
+	63: "H"
 };
 
 const piecesTurns = [];
@@ -348,11 +349,12 @@ function popRandomValue(list) {
 		.pop();
 }
 
-function drawPieces() {
+function setupCheckerBoard() {
 	const checkerboard = document.querySelector(".checkersboard");
 	for (const piece in pieces) {
-		const cell = checkerboard.querySelector(`.check${piece} span`);
-		cell.innerText = pieces[piece] === null ? "" : pieces[piece];
+		const cell = checkerboard.querySelector(`.check${piece} .piece`);
+		cell.innerHTML =
+			pieces[piece] === null ? "" : `<span>${pieces[piece]}</span>`;
 	}
 }
 
@@ -366,18 +368,13 @@ function movePiece() {
 	}
 
 	const piece = popRandomValue(piecesTurns);
-
 	const { oldPos, move } = getPiecePosition(piece);
 	if (move) {
-		// Start animation of character in oldPos towards newPos...
-		// ...and delete oldPos character from HTML
-		// ...and immediately inject character on newPos on animation-halways-point
-		// ...and have it animate into place
-
 		const newPos = oldPos + move[0] + move[1] * 8;
+		const oldCell = document.querySelector(`.check${oldPos} .piece`);
+		const newCell = document.querySelector(`.check${newPos} .piece`);
 
-		const oldCell = document.querySelector(`.check${oldPos} span`);
-		const newCell = document.querySelector(`.check${newPos} span`);
+		oldCell.classList.add("moving");
 		oldCell.style.setProperty(
 			"transform",
 			`translate(
@@ -385,13 +382,13 @@ function movePiece() {
 				calc((${move[1]} * 100%) + (${move[1]} * var(--gap)))
 			)`
 		);
-		newCell.style.setProperty("transform", "");
 
 		setTimeout(() => {
 			oldCell.style.setProperty("transform", "");
+			oldCell.innerHTML = "";
+			oldCell.classList.remove("moving");
 			newCell.style.setProperty("transform", "");
-			oldCell.innerText = "";
-			newCell.innerText = pieces[newPos];
+			newCell.innerHTML = `<span>${pieces[newPos]}</span>`;
 		}, 500);
 
 		pieces[oldPos] = null;
@@ -400,15 +397,16 @@ function movePiece() {
 		movePiece();
 	}
 }
-drawPieces();
+
+setupCheckerBoard();
+
 setTimeout(() => {
 	setInterval(() => {
 		movePiece();
-		// drawPieces();
-	}, 1000);
+	}, 2000);
 }, 3000);
 
 // document.querySelector("body").onclick = () => {
 // 	movePiece();
-// 	// drawPieces();
+// 	// setupCheckerBoard();
 // };

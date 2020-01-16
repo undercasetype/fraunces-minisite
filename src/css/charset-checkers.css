@@ -24,7 +24,7 @@
 	position: relative;
 }
 
-.checkersboard span {
+.checkersboard .piece {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -38,6 +38,20 @@
 	align-items: center;
 	font-size: 4vw;
 	transition: transform 500ms ease-in-out;
+}
+
+.moving span {
+	animation: jump 500ms;
+}
+
+@keyframes jump {
+	0%,
+	100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.75);
+	}
 }
 
 .checkersboard > div:nth-child(-n + 8):nth-child(even),
