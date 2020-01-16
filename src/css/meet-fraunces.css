@@ -8,12 +8,12 @@ figcaption {
 	font-size: 1rem;
 }
 
-figcaption .fig-left {
+.fig-left {
 	float: left;
 	margin: 0 1em 0.25em -2em;
 }
 
-figcaption .fig-center {
+.fig-center {
 	float: center;
 	margin: 0 0 2.25rem 0;
 	width: 100%;
