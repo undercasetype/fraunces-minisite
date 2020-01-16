@@ -294,6 +294,8 @@ const pieces = {
 	16: "H"
 };
 
+const piecesTurns = [];
+
 function getPiecePosition(piece) {
 	// Get current position of stone
 	const pos = parseInt(
@@ -334,21 +336,17 @@ function getPiecePosition(piece) {
 	// console.log(JSON.parse(JSON.stringify(options)));
 
 	let option = false;
-	while (options.length) {
-		// Get random option
-		option = options
-			.sort(function() {
-				return 0.5 - Math.random();
-			})
-			.pop();
-
-		// Use this position when it's still free
-		if (!(option in pieces)) {
-			break;
-		}
-	}
+	option = popRandomValue(options);
 
 	return { oldPos: pos, newPos: option };
+}
+
+function popRandomValue(list) {
+	return list
+		.sort(function() {
+			return 0.5 - Math.random();
+		})
+		.pop();
 }
 
 function drawPieces() {
@@ -360,11 +358,23 @@ function drawPieces() {
 }
 
 function movePiece() {
-	const piece = "A";
+	if (!piecesTurns.length) {
+		for (const piece in pieces) {
+			if (pieces[piece] !== null) {
+				piecesTurns.push(pieces[piece]);
+			}
+		}
+	}
 
-	let { oldPos, newPos } = getPiecePosition(piece);
-	pieces[oldPos] = null;
-	pieces[newPos] = piece;
+	const piece = popRandomValue(piecesTurns);
+
+	const { oldPos, newPos } = getPiecePosition(piece);
+	if (newPos) {
+		pieces[oldPos] = null;
+		pieces[newPos] = piece;
+	} else {
+		movePiece();
+	}
 }
 drawPieces();
 
