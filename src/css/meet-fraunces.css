@@ -1,22 +1,39 @@
+figure {
+	text-align: center;
+}
+
+figcaption {
+	font-style: italic;
+	color: var(--fraunces-yellow);
+	font-size: 1rem;
+}
+
+figcaption .fig-left {
+	float: left;
+	margin: 0 1em 0.25em -2em;
+}
+
+figcaption .fig-center {
+	float: center;
+	margin: 0 0 2.25rem 0;
+	width: 100%;
+}
+
 .meet-fraunces {
 	padding: 4rem 0;
 }
 
 .goofy {
-	float: left;
 	height: 120px;
-	margin: 0 1em 0.25em -2em;
 }
 
 .old-paragraph {
 	width: 100%;
-	margin: 0 0 2.25rem 0;
 }
 
 .thank-you-for-shopping {
-	float: left;
 	height: 220px;
-	margin: -0.5em 1em 0.25em -2em;
+	margin: 0 0 0.5em 0;
 }
 
 @media screen and (max-width: 32rem) {

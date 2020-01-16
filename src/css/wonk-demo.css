@@ -19,7 +19,8 @@
 
 .wonk-demo-text {
 	--WONK: 0;
-	--opsz: 15;
+	--opsz: 144;
+	--GOOF: 50;
 
 	font-weight: 900;
 	line-height: 1;

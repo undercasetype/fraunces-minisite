@@ -21,6 +21,10 @@ body {
 	--WONK: 0.5;
 }
 
+a {
+	color: inherit;
+}
+
 *,
 *::before,
 *::after {

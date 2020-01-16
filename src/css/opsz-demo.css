@@ -17,13 +17,13 @@
 
 .opsz-demo p {
 	/* Simulate .prose */
-	margin: 0 0 2.25rem 0;
+	margin: 0 0 3rem 0;
 	hyphens: auto;
 }
 
 .with-opsz,
 .without-opsz {
-	padding-top: 4rem;
+	padding-top: 1rem;
 	padding-left: 2rem;
 	padding-right: 2rem;
 	width: var(--width);
@@ -43,8 +43,8 @@
 }
 
 .opsz-sticker {
-	width: 5em;
-	height: 5em;
+	width: 6em;
+	height: 6em;
 	margin: 0 1em;
 	animation: nod 2s infinite ease-in-out alternate;
 }
