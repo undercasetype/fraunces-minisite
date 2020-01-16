@@ -277,22 +277,25 @@ flip.onclick = e => {
 
 const pieces = {
 	1: "a",
-	2: "b",
-	3: "c",
-	4: "d",
-	5: "e",
-	6: "f",
-	7: "g",
-	8: "h",
-	9: "A",
-	10: "B",
-	11: "C",
-	12: "D",
-	13: "E",
-	14: "F",
-	15: "G",
-	16: "H"
+	3: "b",
+	5: "c",
+	7: "d",
+	10: "e",
+	12: "f",
+	14: "g",
+	16: "h",
+
+	50: "A",
+	52: "B",
+	54: "C",
+	56: "D",
+	57: "E",
+	59: "F",
+	61: "G",
+	63: "H"
 };
+
+const piecesTurns = [];
 
 function getPiecePosition(piece) {
 	// Get current position of stone
@@ -312,70 +315,98 @@ function getPiecePosition(piece) {
 	if (x !== 1) {
 		move = pos - 8 - 1;
 		if (y > 1 && !pieces[move]) {
-			options.push(move);
+			options.push([-1, -1]);
 		}
 		move = pos + 8 - 1;
 		if (y < 8 && !pieces[move]) {
-			options.push(move);
+			options.push([-1, 1]);
 		}
 	}
+
 	// To the right
 	if (x !== 0) {
 		move = pos - 8 + 1;
 		if (y > 1 && !pieces[move]) {
-			options.push(move);
+			options.push([1, -1]);
 		}
 		move = pos + 8 + 1;
 		if (y < 8 && !pieces[move]) {
-			options.push(move);
+			options.push([1, 1]);
 		}
 	}
-
-	// console.log(JSON.parse(JSON.stringify(options)));
 
 	let option = false;
-	while (options.length) {
-		// Get random option
-		option = options
-			.sort(function() {
-				return 0.5 - Math.random();
-			})
-			.pop();
+	option = popRandomValue(options);
 
-		// Use this position when it's still free
-		if (!(option in pieces)) {
-			break;
-		}
-	}
-
-	return { oldPos: pos, newPos: option };
+	return { oldPos: pos, move: option };
 }
 
-function drawPieces() {
+function popRandomValue(list) {
+	return list
+		.sort(function() {
+			return 0.5 - Math.random();
+		})
+		.pop();
+}
+
+function setupCheckerBoard() {
 	const checkerboard = document.querySelector(".checkersboard");
 	for (const piece in pieces) {
-		const cell = checkerboard.querySelector(`.check${piece} span`);
-		cell.innerText = pieces[piece] === null ? "" : pieces[piece];
+		const cell = checkerboard.querySelector(`.check${piece} .piece`);
+		cell.innerHTML =
+			pieces[piece] === null ? "" : `<span>${pieces[piece]}</span>`;
 	}
 }
 
 function movePiece() {
-	const piece = "A";
+	if (!piecesTurns.length) {
+		for (const piece in pieces) {
+			if (pieces[piece] !== null) {
+				piecesTurns.push(pieces[piece]);
+			}
+		}
+	}
 
-	let { oldPos, newPos } = getPiecePosition(piece);
-	pieces[oldPos] = null;
-	pieces[newPos] = piece;
+	const piece = popRandomValue(piecesTurns);
+	const { oldPos, move } = getPiecePosition(piece);
+	if (move) {
+		const newPos = oldPos + move[0] + move[1] * 8;
+		const oldCell = document.querySelector(`.check${oldPos} .piece`);
+		const newCell = document.querySelector(`.check${newPos} .piece`);
+
+		oldCell.classList.add("moving");
+		oldCell.style.setProperty(
+			"transform",
+			`translate(
+				calc((${move[0]} * 100%) + (${move[0]} * var(--gap))),
+				calc((${move[1]} * 100%) + (${move[1]} * var(--gap)))
+			)`
+		);
+
+		setTimeout(() => {
+			oldCell.style.setProperty("transform", "");
+			oldCell.innerHTML = "";
+			oldCell.classList.remove("moving");
+			newCell.style.setProperty("transform", "");
+			newCell.innerHTML = `<span>${pieces[newPos]}</span>`;
+		}, 500);
+
+		pieces[oldPos] = null;
+		pieces[newPos] = piece;
+	} else {
+		movePiece();
+	}
 }
-drawPieces();
 
-setInterval(() => {
-	movePiece();
-	drawPieces();
-}, 1000);
+setupCheckerBoard();
 
-// movePiece();
-// drawPieces();
+setTimeout(() => {
+	setInterval(() => {
+		movePiece();
+	}, 2000);
+}, 3000);
+
 // document.querySelector("body").onclick = () => {
 // 	movePiece();
-// 	drawPieces();
+// 	// setupCheckerBoard();
 // };

@@ -24,21 +24,34 @@
 	position: relative;
 }
 
-.checkersboard span {
-	/* transform: translate(calc(100% + var(--gap)), calc(100% + var(--gap))); */
+.checkersboard .piece {
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
 	z-index: 1;
-
 	font-weight: 900;
 	color: var(--fraunces-white);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 4vw;
+	transition: transform 500ms ease-in-out;
+}
+
+.moving span {
+	animation: jump 500ms;
+}
+
+@keyframes jump {
+	0%,
+	100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.75);
+	}
 }
 
 .checkersboard > div:nth-child(-n + 8):nth-child(even),
