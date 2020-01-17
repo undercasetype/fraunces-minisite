@@ -274,28 +274,325 @@ flip.onclick = e => {
 /* *************************************************** */
 /* *************************************************** */
 /* *************************************************** */
-
+const piecesTurns = [];
 const pieces = {
 	1: "a",
-	3: "b",
-	5: "c",
-	7: "d",
-	10: "e",
-	12: "f",
-	14: "g",
-	16: "h",
+	3: "c",
+	5: "e",
+	7: "g",
 
-	50: "A",
-	52: "B",
-	54: "C",
-	56: "D",
-	57: "E",
-	59: "F",
-	61: "G",
-	63: "H"
+	10: "i",
+	12: "l",
+	14: "n",
+	16: "o",
+
+	17: "r",
+	19: "s",
+	21: "t",
+	23: "u",
+
+	26: "w",
+	28: "y",
+	30: "z",
+	32: "€", ////////// Joker
+
+	34: "A",
+	36: "C",
+	38: "E",
+	40: "G",
+
+	41: "I",
+	43: "L",
+	45: "N",
+	47: "O",
+
+	50: "R",
+	52: "S",
+	54: "T",
+	56: "U",
+
+	57: "W",
+	59: "Y",
+	61: "Z",
+	63: "Æ" ////////// Joker
 };
 
-const piecesTurns = [];
+const originalPieceVariants = {
+	A: [
+		"À",
+		"Á",
+		"Â",
+		"Ã",
+		"Ä",
+		"Ā",
+		"Ă",
+		"Ǻ",
+		"Ạ",
+		"Ȁ",
+		"Ȃ",
+		"Ắ",
+		"Ặ",
+		"Ằ",
+		"Ẳ",
+		"Ẵ",
+		"Ấ",
+		"Ậ",
+		"Ầ",
+		"Ẩ",
+		"Ẫ",
+		"Ả"
+	],
+	a: [
+		"à",
+		"á",
+		"â",
+		"ã",
+		"ä",
+		"ā",
+		"ă",
+		"ǻ",
+		"ạ",
+		"ȁ",
+		"ȃ",
+		"ắ",
+		"ặ",
+		"ằ",
+		"ẳ",
+		"ẵ",
+		"ấ",
+		"ậ",
+		"ầ",
+		"ẩ",
+		"ẫ",
+		"ả"
+	],
+	// 'Æ': [ 'Ǽ' ],
+	// 'æ': [ 'ǽ' ],
+	C: ["Ć", "Ĉ", "Č", "Ċ", "Ç"],
+	c: ["ć", "ĉ", "č", "ċ", "ç"],
+	// D: ["Ď"],
+	// d: ["ď"],
+	E: [
+		"È",
+		"É",
+		"Ê",
+		"Ẽ",
+		"Ě",
+		"Ë",
+		"Ē",
+		"Ĕ",
+		"Ė",
+		"Ẹ",
+		"Ę",
+		"Ȅ",
+		"Ȇ",
+		"Ế",
+		"Ệ",
+		"Ề",
+		"Ể",
+		"Ễ",
+		"Ẻ"
+	],
+	e: [
+		"è",
+		"é",
+		"ê",
+		"ẽ",
+		"ě",
+		"ë",
+		"ē",
+		"ĕ",
+		"ė",
+		"ẹ",
+		"ę",
+		"ȅ",
+		"ȇ",
+		"ế",
+		"ệ",
+		"ề",
+		"ể",
+		"ễ",
+		"ẻ"
+	],
+	G: ["Ĝ", "Ǧ", "Ğ", "Ġ", "Ģ"],
+	g: ["ĝ", "ǧ", "ğ", "ġ", "ģ"],
+	// H: ["Ĥ"],
+	// h: ["ĥ"],
+	I: ["Ì", "Í", "Î", "Ĩ", "Ï", "Ī", "Ĭ", "İ", "Ị", "Ȉ", "Ȋ", "Ỉ"],
+	i: ["ì", "í", "î", "ĩ", "ï", "ī", "ĭ", "ị", "ȉ", "ȋ", "ỉ"],
+	// J: ["Ĵ"],
+	// j: ["ĵ"],
+	// K: ["Ķ"],
+	// k: ["ķ"],
+	L: ["Ĺ", "Ľ", "Ļ", "Ŀ"],
+	l: ["ĺ", "ľ", "ļ", "ŀ"],
+	N: ["Ń", "Ñ", "Ň", "Ņ"],
+	n: ["ń", "ñ", "ň", "ņ", "ŉ"],
+	O: [
+		"Ò",
+		"Ó",
+		"Ô",
+		"Õ",
+		"Ö",
+		"Ō",
+		"Ŏ",
+		"Ő",
+		"Ọ",
+		"Ǫ",
+		"Ȍ",
+		"Ȏ",
+		"Ȫ",
+		"Ȭ",
+		"Ȱ",
+		"Ố",
+		"Ộ",
+		"Ồ",
+		"Ổ",
+		"Ỗ",
+		"Ỏ",
+		"Ớ",
+		"Ợ",
+		"Ờ",
+		"Ở",
+		"Ỡ",
+		"Ø"
+	],
+	o: [
+		"ò",
+		"ó",
+		"ô",
+		"õ",
+		"ö",
+		"ō",
+		"ŏ",
+		"ő",
+		"ọ",
+		"ǫ",
+		"ȍ",
+		"ȏ",
+		"ȫ",
+		"ȭ",
+		"ȱ",
+		"ố",
+		"ộ",
+		"ồ",
+		"ổ",
+		"ỗ",
+		"ỏ",
+		"ớ",
+		"ợ",
+		"ờ",
+		"ở",
+		"ỡ",
+		"ǿ"
+	],
+	R: ["Ŕ", "Ř", "Ŗ", "Ȑ", "Ȓ"],
+	r: ["ŕ", "ř", "ŗ", "ȑ", "ȓ"],
+	S: ["Ś", "Ŝ", "Š", "Ş", "Ș"],
+	s: ["ś", "ŝ", "š", "ş", "ș"],
+	T: ["Ť", "Ţ", "Ț"],
+	t: ["ť", "ţ", "ț"],
+	U: [
+		"Ù",
+		"Ú",
+		"Û",
+		"Ũ",
+		"Ü",
+		"Ū",
+		"Ŭ",
+		"Ů",
+		"Ű",
+		"Ụ",
+		"Ų",
+		"Ȕ",
+		"Ȗ",
+		"Ứ",
+		"Ự",
+		"Ừ",
+		"Ử",
+		"Ữ"
+	],
+	u: [
+		"ù",
+		"ú",
+		"û",
+		"ũ",
+		"ü",
+		"ū",
+		"ŭ",
+		"ů",
+		"ű",
+		"ụ",
+		"ų",
+		"ȕ",
+		"ȗ",
+		"ứ",
+		"ự",
+		"ừ",
+		"ử",
+		"ữ"
+	],
+	W: ["Ẁ", "Ẃ", "Ŵ", "Ẅ"],
+	w: ["ẁ", "ẃ", "ŵ", "ẅ"],
+	Y: ["Ỳ", "Ý", "Ŷ", "Ỹ", "Ÿ", "Ȳ", "Ỵ", "Ỷ"],
+	y: ["ỳ", "ý", "ŷ", "ỹ", "ÿ", "ȳ", "ỵ", "ỷ"],
+	Z: ["Ź", "Ž", "Ż"],
+	z: ["ź", "ž", "ż"],
+
+	"€": [
+		"€",
+		"¤",
+		"$",
+		"¢",
+		"ƒ",
+		"£",
+		"¥",
+		"₣",
+		"₤",
+		"₦",
+		"₧",
+		"₩",
+		"₫",
+		"₭",
+		"₱",
+		"₲",
+		"₵",
+		"₹",
+		"₺",
+		"₼",
+		"₽"
+	],
+	Æ: [
+		"Æ",
+		"æ",
+		"Đ",
+		"đ",
+		"Ð",
+		"ð",
+		"Ħ",
+		"ħ",
+		"ı",
+		"ȷ",
+		"Ł",
+		"ł",
+		"Ŋ",
+		"ŋ",
+		"Ø",
+		"ø",
+		"Œ",
+		"œ",
+		"ẞ",
+		"ß",
+		"ĸ",
+		"Ŧ",
+		"ŧ",
+		"Þ",
+		"þ",
+		"Ə",
+		"ə"
+	]
+};
+let pieceVariants = JSON.parse(JSON.stringify(originalPieceVariants));
 
 function getPiecePosition(piece) {
 	// Get current position of stone
@@ -341,6 +638,7 @@ function getPiecePosition(piece) {
 	return { oldPos: pos, move: option };
 }
 
+// Return random value from array and delete it
 function popRandomValue(list) {
 	return list
 		.sort(function() {
@@ -349,15 +647,18 @@ function popRandomValue(list) {
 		.pop();
 }
 
+// Fill entire checkeboard
 function setupCheckerBoard() {
 	const checkerboard = document.querySelector(".checkersboard");
 	for (const piece in pieces) {
+		const newPiece = popRandomValue(pieceVariants[pieces[piece]]);
 		const cell = checkerboard.querySelector(`.check${piece} .piece`);
 		cell.innerHTML =
-			pieces[piece] === null ? "" : `<span>${pieces[piece]}</span>`;
+			pieces[piece] === null ? "" : `<span>${newPiece}</span>`;
 	}
 }
 
+// Move piece to new cell and change its character
 function movePiece() {
 	if (!piecesTurns.length) {
 		for (const piece in pieces) {
@@ -382,13 +683,24 @@ function movePiece() {
 				calc((${move[1]} * 100%) + (${move[1]} * var(--gap)))
 			)`
 		);
+		oldCell.style.setProperty("opacity", 0);
+
+		// Get new variant
+		if (!pieceVariants[piece].length) {
+			pieceVariants[piece] = [...originalPieceVariants[piece]];
+		}
+		const newPiece = popRandomValue(pieceVariants[piece]);
 
 		setTimeout(() => {
 			oldCell.style.setProperty("transform", "");
+			oldCell.style.setProperty("opacity", "");
 			oldCell.innerHTML = "";
 			oldCell.classList.remove("moving");
+		}, 1000);
+
+		setTimeout(() => {
 			newCell.style.setProperty("transform", "");
-			newCell.innerHTML = `<span>${pieces[newPos]}</span>`;
+			newCell.innerHTML = `<span class="new">${newPiece}</span>`;
 		}, 500);
 
 		pieces[oldPos] = null;
@@ -404,9 +716,8 @@ setTimeout(() => {
 	setInterval(() => {
 		movePiece();
 	}, 2000);
-}, 3000);
+}, 2000);
 
 // document.querySelector("body").onclick = () => {
-// 	movePiece();
-// 	// setupCheckerBoard();
+// movePiece();
 // };

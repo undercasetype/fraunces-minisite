@@ -40,3 +40,7 @@ body {
 	color: var(--fraunces-black);
 	min-width: 320px;
 }
+
+a {
+	color: inherit;
+}

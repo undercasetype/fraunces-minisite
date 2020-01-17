@@ -37,7 +37,12 @@
 	justify-content: center;
 	align-items: center;
 	font-size: 4vw;
-	transition: transform 500ms ease-in-out;
+	transition: transform 500ms ease-in-out, opacity 250ms 500ms;
+}
+
+.checkersboard span.new {
+	animation: fadein 250ms 250ms forwards;
+	opacity: 0;
 }
 
 .moving span {
@@ -51,6 +56,12 @@
 	}
 	50% {
 		transform: scale(1.75);
+	}
+}
+
+@keyframes fadein {
+	to {
+		opacity: 1;
 	}
 }
 
