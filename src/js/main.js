@@ -276,23 +276,28 @@ flip.onclick = e => {
 /* *************************************************** */
 
 const pieces = {
-	1: "a",
-	3: "b",
-	5: "c",
-	7: "d",
-	10: "e",
-	12: "f",
-	14: "g",
-	16: "h",
+	1: "a"
+	// 3: "b",
+	// 5: "c",
+	// 7: "d",
+	// 10: "e",
+	// 12: "f",
+	// 14: "g",
+	// 16: "h",
 
-	50: "A",
-	52: "B",
-	54: "C",
-	56: "D",
-	57: "E",
-	59: "F",
-	61: "G",
-	63: "H"
+	// 50: "A",
+	// 52: "B",
+	// 54: "C",
+	// 56: "D",
+	// 57: "E",
+	// 59: "F",
+	// 61: "G",
+	// 63: "H"
+};
+
+let pieceVariants;
+const originalPieceVariants = {
+	a: ["à", "á", "ä", "å"]
 };
 
 const piecesTurns = [];
@@ -356,6 +361,8 @@ function setupCheckerBoard() {
 		cell.innerHTML =
 			pieces[piece] === null ? "" : `<span>${pieces[piece]}</span>`;
 	}
+
+	pieceVariants = JSON.parse(JSON.stringify(originalPieceVariants));
 }
 
 function movePiece() {
@@ -383,12 +390,18 @@ function movePiece() {
 			)`
 		);
 
+		// Get new variant
+		if (!pieceVariants[piece].length) {
+			pieceVariants[piece] = [...originalPieceVariants[piece]];
+		}
+		const newPiece = popRandomValue(pieceVariants[piece]);
+
 		setTimeout(() => {
 			oldCell.style.setProperty("transform", "");
 			oldCell.innerHTML = "";
 			oldCell.classList.remove("moving");
 			newCell.style.setProperty("transform", "");
-			newCell.innerHTML = `<span>${pieces[newPos]}</span>`;
+			newCell.innerHTML = `<span>${newPiece}</span>`;
 		}, 500);
 
 		pieces[oldPos] = null;
@@ -403,7 +416,7 @@ setupCheckerBoard();
 setTimeout(() => {
 	setInterval(() => {
 		movePiece();
-	}, 2000);
+	}, 1000);
 }, 3000);
 
 // document.querySelector("body").onclick = () => {
