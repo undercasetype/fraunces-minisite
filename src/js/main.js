@@ -683,6 +683,7 @@ function movePiece() {
 				calc((${move[1]} * 100%) + (${move[1]} * var(--gap)))
 			)`
 		);
+		oldCell.style.setProperty("opacity", 0);
 
 		// Get new variant
 		if (!pieceVariants[piece].length) {
@@ -692,10 +693,14 @@ function movePiece() {
 
 		setTimeout(() => {
 			oldCell.style.setProperty("transform", "");
+			oldCell.style.setProperty("opacity", "");
 			oldCell.innerHTML = "";
 			oldCell.classList.remove("moving");
+		}, 1000);
+
+		setTimeout(() => {
 			newCell.style.setProperty("transform", "");
-			newCell.innerHTML = `<span>${newPiece}</span>`;
+			newCell.innerHTML = `<span class="new">${newPiece}</span>`;
 		}, 500);
 
 		pieces[oldPos] = null;
@@ -710,10 +715,9 @@ setupCheckerBoard();
 setTimeout(() => {
 	setInterval(() => {
 		movePiece();
-	}, 1000);
-}, 1000);
+	}, 2000);
+}, 2000);
 
 // document.querySelector("body").onclick = () => {
-// 	movePiece();
-// 	// setupCheckerBoard();
+// movePiece();
 // };
