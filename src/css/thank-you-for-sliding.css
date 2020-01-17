@@ -22,6 +22,19 @@
 	font-size: 1.25rem;
 }
 
+.thank-you-demo-text-container {
+	position: relative;
+}
+
+.thank-you-sticker {
+	position: absolute;
+	bottom: 1em;
+	left: 15%;
+	width: 6em;
+	height: 6em;
+	transform: rotate(12deg);
+}
+
 .thank-you-demo-text {
 	line-height: 1;
 	text-align: center;
@@ -46,5 +59,10 @@
 
 	.thank-you-sliders label {
 		margin-bottom: 1.5rem;
+	}
+
+	.thank-you-sticker {
+		bottom: 0;
+		left: 10%;
 	}
 }
