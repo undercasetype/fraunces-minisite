@@ -21,7 +21,7 @@
 	box-sizing: border-box;
 	border: none;
 	width: 100%;
-	height: 0.5em;
+	height: 0.35em;
 	background: black;
 }
 [type="range"]::-moz-range-track {
@@ -47,7 +47,7 @@
 	background: var(--fraunces-yellow);
 }
 [type="range"]::-webkit-slider-thumb {
-	margin-top: -1.25em;
+	margin-top: -1.35em;
 	box-sizing: border-box;
 	width: 3em;
 	height: 3em;
