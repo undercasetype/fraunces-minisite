@@ -8,7 +8,7 @@
 
 	font-weight: 300;
 	font-size: 1.375rem;
-	line-height: 1.375;
+	line-height: 1.25;
 
 	position: relative;
 	margin: 0 auto;
@@ -63,8 +63,6 @@
 }
 
 .with-opsz {
-	--opsz: 9;
-
 	font-optical-sizing: none;
 	background: var(--fraunces-white);
 }
@@ -130,12 +128,29 @@
 	padding: 3rem 0 4rem 0;
 }
 
-.opsz-large {
-	font-size: 7rem;
+.opsz-small {
+	line-height: 1.375;
+	font-size: 1rem;
+}
+
+.opsz-medium-with {
+	--opsz: 72;
+
+	font-size: 2.5rem;
 }
 
 .opsz-medium {
 	font-size: 2.5rem;
+}
+
+.opsz-large {
+	font-size: 7rem;
+}
+
+.opsz-large-with {
+	--opsz: 144;
+
+	font-size: 7rem;
 }
 
 @media screen and (max-width: 28rem) {

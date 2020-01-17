@@ -3,15 +3,27 @@ header {
 
 	font-weight: 900;
 	background: var(--fraunces-yellow);
-	font-size: 2rem;
+	font-size: 1.1rem;
 	padding: 0 1.5rem;
-	height: var(--header-height);
+	height: 3rem;
+	display: flex;
+	align-items: center;
+}
+
+.sub {
+	--WONK: 1;
+
+	font-weight: 400;
+	background: var(--fraunces-yellow);
+	font-size: 1.1rem;
+	padding: 0 0.5rem;
+	height: 3rem;
 	display: flex;
 	align-items: center;
 }
 
 @media screen and (max-width: 28rem) {
 	header {
-		font-size: 1.5rem;
+		font-size: 1.25rem;
 	}
 }

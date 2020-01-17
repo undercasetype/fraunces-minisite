@@ -17,6 +17,8 @@
 }
 
 .thank-you-sliders label {
+	--GOOF: 100;
+
 	font-weight: 900;
 	display: block;
 	font-size: 1.25rem;
@@ -39,7 +41,7 @@
 	line-height: 1;
 	text-align: center;
 	font-size: 12vw;
-	margin-bottom: 3rem;
+	margin-bottom: 6rem;
 	color: var(--fraunces-white);
 }
 
