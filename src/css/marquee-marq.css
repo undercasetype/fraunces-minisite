@@ -11,7 +11,7 @@
 .marquee-marq-content {
 	display: flex;
 	align-items: center;
-	height: 3rem;
+	height: var(--marquee-marq-height);
 	font-size: 1.5rem;
 	line-height: 1;
 	opacity: 1;

@@ -27,7 +27,7 @@ figcaption {
 	height: 120px;
 }
 
-.old-paragraph {
+.full-width {
 	width: 100%;
 }
 
@@ -37,8 +37,8 @@ figcaption {
 }
 
 @media screen and (max-width: 32rem) {
-	.goofy,
-	.thank-you-for-shopping {
+	.fig-left,
+	.fig-center {
 		float: none;
 		height: auto;
 		width: 100%;

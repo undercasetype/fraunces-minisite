@@ -5,21 +5,14 @@ header {
 	background: var(--fraunces-yellow);
 	font-size: 1.1rem;
 	padding: 0 1.5rem;
-	height: 3rem;
+	height: var(--header-height);
 	display: flex;
 	align-items: center;
 }
 
-.sub {
-	--WONK: 1;
-
+span {
+	padding-left: 0.75rem;
 	font-weight: 400;
-	background: var(--fraunces-yellow);
-	font-size: 1.1rem;
-	padding: 0 0.5rem;
-	height: 3rem;
-	display: flex;
-	align-items: center;
 }
 
 @media screen and (max-width: 28rem) {
