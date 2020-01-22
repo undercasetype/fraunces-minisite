@@ -4,6 +4,7 @@ import FontFaceObserver from "fontfaceobserver";
 
 const fontTimeOut = 5000; // In milliseconds
 const numberOfStickers = 7; // How many hero-stickers-0x.svg do we have?
+const minStickableY = 60; // Keep stickers inside viewport top
 let scrollPos = 0;
 
 // Generic throttle
@@ -168,15 +169,27 @@ const sticker = {
 	current: false,
 	updateSticker: function() {
 		this.x = mouse.x + document.documentElement.scrollLeft;
-		this.y = Math.min(
-			mouse.y + document.documentElement.scrollTop,
-			maxStickableY
+		this.y = Math.max(
+			minStickableY,
+			Math.min(
+				mouse.y + document.documentElement.scrollTop,
+				maxStickableY
+			)
 		);
 		this.current && this.moveSticker();
 	},
 	moveSticker: function() {
+		console.log(this.x, this.y);
 		this.current.style.setProperty("--x", `${this.x}px`);
 		this.current.style.setProperty("--y", `${this.y}px`);
+	},
+	generateSticker: function() {
+		const number = Math.floor(Math.random() * numberOfStickers + 1);
+		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
+		const newSticker = document.createElement("div");
+		newSticker.classList.add("sticker", "dragging", `sticker-${number}`);
+		newSticker.style.setProperty("--tilt", `${tilt}deg`);
+		return newSticker;
 	}
 };
 
@@ -191,17 +204,7 @@ stickable.onmousedown = e => {
 		sticker.current.classList.add("dragging");
 	} else {
 		// Create new sticker
-		const whichNewSticker = Math.floor(
-			Math.random() * numberOfStickers + 1
-		);
-		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
-		sticker.current = document.createElement("div");
-		sticker.current.classList.add(
-			"sticker",
-			"dragging",
-			`sticker-${whichNewSticker}`
-		);
-		sticker.current.style.setProperty("--tilt", `${tilt}deg`);
+		sticker.current = sticker.generateSticker();
 		stickable.appendChild(sticker.current);
 	}
 	sticker.updateSticker(e);
@@ -232,7 +235,7 @@ window.onscroll = throttle(() => {
 // Update variables related to the viewport
 const setViewportValues = () => {
 	// Redetermine area stickers can be moved in
-	maxStickableY = stickable.offsetTop + stickable.offsetHeight;
+	maxStickableY = stickable.offsetTop + stickable.offsetHeight - 40;
 
 	// Redetermine "UV Light Rafters" image offsets
 	uvStart = uvEl.offsetTop - window.innerHeight;
