@@ -3,20 +3,21 @@ header {
 
 	font-weight: 900;
 	background: var(--fraunces-yellow);
-	font-size: 1.1rem;
+	font-size: 1.25rem;
 	padding: 0 1.5rem;
 	height: var(--header-height);
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 }
 
-span {
+a {
 	padding-left: 0.75rem;
 	font-weight: 400;
 }
 
 @media screen and (max-width: 28rem) {
 	header {
-		font-size: 1.25rem;
+		font-size: 1.1rem;
 	}
 }
