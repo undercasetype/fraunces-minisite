@@ -179,17 +179,21 @@ const sticker = {
 		this.current && this.moveSticker();
 	},
 	moveSticker: function() {
-		console.log(this.x, this.y);
 		this.current.style.setProperty("--x", `${this.x}px`);
 		this.current.style.setProperty("--y", `${this.y}px`);
 	},
-	generateSticker: function() {
+	generateSticker: function(x, y) {
 		const number = Math.floor(Math.random() * numberOfStickers + 1);
 		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
 		const newSticker = document.createElement("div");
 		newSticker.classList.add("sticker", "dragging", `sticker-${number}`);
 		newSticker.style.setProperty("--tilt", `${tilt}deg`);
-		return newSticker;
+		if (x && y) {
+			newSticker.style.setProperty("--x", `${x}px`);
+			newSticker.style.setProperty("--y", `${y}px`);
+		}
+		sticker.current = newSticker;
+		stickable.appendChild(sticker.current);
 	}
 };
 
@@ -204,8 +208,7 @@ stickable.onmousedown = e => {
 		sticker.current.classList.add("dragging");
 	} else {
 		// Create new sticker
-		sticker.current = sticker.generateSticker();
-		stickable.appendChild(sticker.current);
+		sticker.generateSticker();
 	}
 	sticker.updateSticker(e);
 
@@ -711,12 +714,22 @@ function movePiece() {
 
 setupCheckerBoard();
 
+// Stick four random stickers on the screen
+const margin = 200;
+function clamp(number, min, max) {
+	return Math.max(min, Math.min(number, max));
+}
+function fitSrceen(number) {
+	return clamp(Math.floor(Math.random() * number), margin, number - margin);
+}
+for (let i = 0; i < 4; i++) {
+	let randomX = fitSrceen(window.innerWidth);
+	let randomY = fitSrceen(window.innerHeight);
+	sticker.generateSticker(randomX, randomY);
+}
+
 setTimeout(() => {
 	setInterval(() => {
 		movePiece();
 	}, 2000);
 }, 2000);
-
-// document.querySelector("body").onclick = () => {
-// movePiece();
-// };
