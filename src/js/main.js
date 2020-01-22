@@ -3,7 +3,7 @@ import { fontName } from "./font";
 import FontFaceObserver from "fontfaceobserver";
 
 const fontTimeOut = 5000; // In milliseconds
-
+const numberOfStickers = 7; // How many hero-stickers-0x.svg do we have?
 let scrollPos = 0;
 
 // Generic throttle
@@ -191,12 +191,18 @@ stickable.onmousedown = e => {
 		sticker.current.classList.add("dragging");
 	} else {
 		// Create new sticker
-		// TODO: get new sticker from list instead of cloning current sticker
-		sticker.current = document
-			.querySelector(".sticker.sticker-1")
-			.cloneNode(true);
-		stickable.prepend(sticker.current);
-		sticker.current.classList.add("dragging");
+		const whichNewSticker = Math.floor(
+			Math.random() * numberOfStickers + 1
+		);
+		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
+		sticker.current = document.createElement("div");
+		sticker.current.classList.add(
+			"sticker",
+			"dragging",
+			`sticker-${whichNewSticker}`
+		);
+		sticker.current.style.setProperty("--tilt", `${tilt}deg`);
+		stickable.appendChild(sticker.current);
 	}
 	sticker.updateSticker(e);
 
