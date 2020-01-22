@@ -188,14 +188,7 @@ stickable.onmousedown = e => {
 	if (onSticker && !sticker.current) {
 		// Move clicked sticker
 		sticker.current = e.target;
-		// Create "residue"
-		const residue = sticker.current.cloneNode(true);
-		residue.classList.add("sticker-residue");
-		residue.classList.remove("sticker", "dragging");
-		stickable.prepend(residue);
-		setTimeout(() => {
-			residue.remove();
-		}, 70000); // Timeout should be longer than CSS fade animation
+		sticker.current.classList.add("dragging");
 	} else {
 		// Create new sticker
 		// TODO: get new sticker from list instead of cloning current sticker
@@ -203,15 +196,15 @@ stickable.onmousedown = e => {
 			.querySelector(".sticker.sticker-1")
 			.cloneNode(true);
 		stickable.prepend(sticker.current);
+		sticker.current.classList.add("dragging");
 	}
 	sticker.updateSticker(e);
-	sticker.current.classList.add("dragging");
 
 	mouse.dragCallback = e => {
 		sticker.updateSticker(e);
 	};
 	mouse.endCallback = () => {
-		swiperHandle.classList.remove("dragging");
+		sticker.current.classList.remove("dragging");
 		sticker.current = false;
 	};
 };
@@ -270,10 +263,7 @@ flip.onclick = e => {
 	}
 };
 
-/* *************************************************** */
-/* *************************************************** */
-/* *************************************************** */
-/* *************************************************** */
+// Checkerboard logic
 const piecesTurns = [];
 const pieces = {
 	1: "a",
