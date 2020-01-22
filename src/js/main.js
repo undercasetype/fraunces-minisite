@@ -3,7 +3,8 @@ import { fontName } from "./font";
 import FontFaceObserver from "fontfaceobserver";
 
 const fontTimeOut = 5000; // In milliseconds
-
+const numberOfStickers = 7; // How many hero-stickers-0x.svg do we have?
+const minStickableY = 60; // Keep stickers inside viewport top
 let scrollPos = 0;
 
 // Generic throttle
@@ -168,15 +169,31 @@ const sticker = {
 	current: false,
 	updateSticker: function() {
 		this.x = mouse.x + document.documentElement.scrollLeft;
-		this.y = Math.min(
-			mouse.y + document.documentElement.scrollTop,
-			maxStickableY
+		this.y = Math.max(
+			minStickableY,
+			Math.min(
+				mouse.y + document.documentElement.scrollTop,
+				maxStickableY
+			)
 		);
 		this.current && this.moveSticker();
 	},
 	moveSticker: function() {
 		this.current.style.setProperty("--x", `${this.x}px`);
 		this.current.style.setProperty("--y", `${this.y}px`);
+	},
+	generateSticker: function(x, y) {
+		const number = Math.floor(Math.random() * numberOfStickers + 1);
+		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
+		const newSticker = document.createElement("div");
+		newSticker.classList.add("sticker", "dragging", `sticker-${number}`);
+		newSticker.style.setProperty("--tilt", `${tilt}deg`);
+		if (x && y) {
+			newSticker.style.setProperty("--x", `${x}px`);
+			newSticker.style.setProperty("--y", `${y}px`);
+		}
+		sticker.current = newSticker;
+		stickable.appendChild(sticker.current);
 	}
 };
 
@@ -188,30 +205,18 @@ stickable.onmousedown = e => {
 	if (onSticker && !sticker.current) {
 		// Move clicked sticker
 		sticker.current = e.target;
-		// Create "residue"
-		const residue = sticker.current.cloneNode(true);
-		residue.classList.add("sticker-residue");
-		residue.classList.remove("sticker", "dragging");
-		stickable.prepend(residue);
-		setTimeout(() => {
-			residue.remove();
-		}, 70000); // Timeout should be longer than CSS fade animation
+		sticker.current.classList.add("dragging");
 	} else {
 		// Create new sticker
-		// TODO: get new sticker from list instead of cloning current sticker
-		sticker.current = document
-			.querySelector(".sticker.sticker-1")
-			.cloneNode(true);
-		stickable.prepend(sticker.current);
+		sticker.generateSticker();
 	}
 	sticker.updateSticker(e);
-	sticker.current.classList.add("dragging");
 
 	mouse.dragCallback = e => {
 		sticker.updateSticker(e);
 	};
 	mouse.endCallback = () => {
-		swiperHandle.classList.remove("dragging");
+		sticker.current.classList.remove("dragging");
 		sticker.current = false;
 	};
 };
@@ -233,7 +238,7 @@ window.onscroll = throttle(() => {
 // Update variables related to the viewport
 const setViewportValues = () => {
 	// Redetermine area stickers can be moved in
-	maxStickableY = stickable.offsetTop + stickable.offsetHeight;
+	maxStickableY = stickable.offsetTop + stickable.offsetHeight - 40;
 
 	// Redetermine "UV Light Rafters" image offsets
 	uvStart = uvEl.offsetTop - window.innerHeight;
@@ -270,10 +275,7 @@ flip.onclick = e => {
 	}
 };
 
-/* *************************************************** */
-/* *************************************************** */
-/* *************************************************** */
-/* *************************************************** */
+// Checkerboard logic
 const piecesTurns = [];
 const pieces = {
 	1: "a",
@@ -712,12 +714,22 @@ function movePiece() {
 
 setupCheckerBoard();
 
+// Stick four random stickers on the screen
+const margin = 200;
+function clamp(number, min, max) {
+	return Math.max(min, Math.min(number, max));
+}
+function fitSrceen(number) {
+	return clamp(Math.floor(Math.random() * number), margin, number - margin);
+}
+for (let i = 0; i < 4; i++) {
+	let randomX = fitSrceen(window.innerWidth);
+	let randomY = fitSrceen(window.innerHeight);
+	sticker.generateSticker(randomX, randomY);
+}
+
 setTimeout(() => {
 	setInterval(() => {
 		movePiece();
 	}, 2000);
 }, 2000);
-
-// document.querySelector("body").onclick = () => {
-// movePiece();
-// };

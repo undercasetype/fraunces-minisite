@@ -35,6 +35,7 @@
 	width: 6em;
 	height: 6em;
 	transform: rotate(12deg);
+	pointer-events: none;
 }
 
 .thank-you-demo-text {
