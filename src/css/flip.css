@@ -28,13 +28,15 @@
 	font-size: 12vw;
 	margin-bottom: 3rem;
 	color: var(--fraunces-white);
+
+	/* Addressing the wght axis directly, so apply the
+	font-variation-settings specifically for this demo */
 	transition: font-variation-settings 0.35s ease-in;
 	font-variation-settings: "opsz" var(--opsz), "wght" var(--wght),
 		"GOOF" var(--GOOF), "WONK" var(--WONK);
 }
 
 .flip-text.italic {
-	/* transform: skew(0deg); */
 	font-style: italic;
 }
 
