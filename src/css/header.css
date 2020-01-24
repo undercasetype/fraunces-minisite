@@ -11,7 +11,7 @@ header {
 	justify-content: space-between;
 }
 
-a {
+header a {
 	padding-left: 0.75rem;
 	font-weight: 400;
 }
