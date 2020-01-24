@@ -264,6 +264,7 @@ flip.onclick = e => {
 		const parent = button.closest("ul");
 		parent.querySelector(".active").classList.remove("active");
 		const [index, axis, value] = button.value.split(" ");
+
 		if (axis === "style") {
 			flipText.classList.remove("roman", "italic");
 			flipText.classList.add(value);
