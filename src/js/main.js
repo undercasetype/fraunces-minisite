@@ -202,7 +202,8 @@ const sticker = {
 stickable.onmousedown = e => {
 	if (e.which !== 1) return; // Only work on left mouse button
 	const onSticker = e.target.classList.contains("sticker");
-	if (onSticker && !sticker.current) {
+
+	if (onSticker) {
 		// Move clicked sticker
 		sticker.current = e.target;
 		sticker.current.classList.add("dragging");
