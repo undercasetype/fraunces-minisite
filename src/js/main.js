@@ -168,11 +168,12 @@ let maxStickableY;
 const sticker = {
 	current: false,
 	updateSticker: function() {
-		this.x = mouse.x + document.documentElement.scrollLeft;
+		this.x = mouse.x - sticker.offsetX;
 		this.y = Math.max(
 			minStickableY,
 			Math.min(
 				mouse.y + document.documentElement.scrollTop,
+				mouse.y + document.documentElement.scrollTop - sticker.offsetY,
 				maxStickableY
 			)
 		);
@@ -203,6 +204,10 @@ stickable.onmousedown = e => {
 	if (e.which !== 1) return; // Only work on left mouse button
 	const onSticker = e.target.classList.contains("sticker");
 	if (onSticker && !sticker.current) {
+		const offsetLeft = parseInt(e.target.style.getPropertyValue("--x"), 10);
+		const offsetTop = parseInt(e.target.style.getPropertyValue("--y"), 10);
+		sticker.offsetX = mouse.x - offsetLeft;
+		sticker.offsetY = mouse.y - offsetTop;
 		// Move clicked sticker
 		sticker.current = e.target;
 		sticker.current.classList.add("dragging");
