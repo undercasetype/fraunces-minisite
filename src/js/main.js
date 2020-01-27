@@ -146,6 +146,16 @@ window.onmouseup = () => {
 	mouse.dragCallback = mouse.endCallback = false;
 };
 
+window.addEventListener("touchmove", e => {
+	mouse.x = e.touches[0].clientX;
+	mouse.y = e.touches[0].clientY;
+});
+
+window.addEventListener("touchend", () => {
+	mouse.endCallback && mouse.endCallback();
+	mouse.dragCallback = mouse.endCallback = false;
+});
+
 // Swiper for opsz demo
 const swiper = document.querySelector(".opsz-demo");
 const swiperHandle = document.querySelector(".opsz-slider-handle");
@@ -201,6 +211,7 @@ const sticker = {
 // TODO: do not snap to center, but take offset from center of sticker into account
 stickable.onmousedown = e => {
 	if (e.which !== 1) return; // Only work on left mouse button
+
 	const onSticker = e.target.classList.contains("sticker");
 
 	if (onSticker) {
@@ -221,6 +232,29 @@ stickable.onmousedown = e => {
 		sticker.current = false;
 	};
 };
+
+stickable.addEventListener("touchmove", e => {
+	const onSticker = e.target.classList.contains("sticker");
+
+	if (onSticker) {
+		e.preventDefault();
+		// Move clicked sticker
+		sticker.current = e.target;
+		sticker.current.classList.add("dragging");
+		sticker.updateSticker(e);
+	}
+});
+
+stickable.addEventListener("touchend", e => {
+	const onSticker = e.target.classList.contains("sticker");
+
+	mouse.endCallback = () => {
+		if (onSticker) {
+			sticker.current.classList.remove("dragging");
+			sticker.current = false;
+		}
+	};
+});
 
 // Add subtle parallax scrolling to "UV Light Rafters" graphic
 let uvStart;
