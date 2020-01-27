@@ -156,21 +156,31 @@ window.addEventListener("touchend", () => {
 	mouse.dragCallback = mouse.endCallback = false;
 });
 
+const calculateSwiperOffset = () => {
+	const x = mouse.x - swiper.offsetLeft;
+	const perc = (x / (swiper.offsetWidth / 100)).toFixed(2);
+	const clampedPerc = Math.max(1, Math.min(perc, 100));
+	swiper.style.setProperty("--offset", `${clampedPerc}%`);
+};
+
 // Swiper for opsz demo
 const swiper = document.querySelector(".opsz-demo");
 const swiperHandle = document.querySelector(".opsz-slider-handle");
 swiperHandle.onmousedown = () => {
 	swiperHandle.classList.add("dragging");
-	mouse.dragCallback = () => {
-		const x = mouse.x - swiper.offsetLeft;
-		const perc = (x / (swiper.offsetWidth / 100)).toFixed(2);
-		const clampedPerc = Math.max(1, Math.min(perc, 100));
-		swiper.style.setProperty("--offset", `${clampedPerc}%`);
-	};
+	mouse.dragCallback = () => calculateSwiperOffset();
 	mouse.endCallback = () => {
 		swiperHandle.classList.remove("dragging");
 	};
 };
+
+swiperHandle.addEventListener("touchmove", () => {
+	swiperHandle.classList.add("dragging");
+	calculateSwiperOffset();
+	mouse.endCallback = () => {
+		swiperHandle.classList.remove("dragging");
+	};
+});
 
 // Sticker stuff
 const stickable = document.querySelector(".sticker-hero");
