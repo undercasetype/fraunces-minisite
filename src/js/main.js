@@ -149,6 +149,11 @@ window.onmouseup = () => {
 window.addEventListener("touchmove", e => {
 	mouse.x = e.touches[0].clientX;
 	mouse.y = e.touches[0].clientY;
+
+	if (mouse.dragCallback) {
+		e.preventDefault();
+		mouse.dragCallback(e);
+	}
 });
 
 window.addEventListener("touchend", () => {
@@ -221,7 +226,6 @@ const sticker = {
 // TODO: do not snap to center, but take offset from center of sticker into account
 stickable.onmousedown = e => {
 	if (e.which !== 1) return; // Only work on left mouse button
-
 	const onSticker = e.target.classList.contains("sticker");
 
 	if (onSticker) {
@@ -251,14 +255,24 @@ stickable.onmousedown = e => {
 
 stickable.addEventListener("touchmove", e => {
 	const onSticker = e.target.classList.contains("sticker");
-
 	if (onSticker) {
 		e.preventDefault();
+
+		sticker.offsetX = 0;
+		sticker.offsetY = 0;
 		// Move clicked sticker
 		sticker.current = e.target;
 		sticker.current.classList.add("dragging");
-		sticker.updateSticker(e);
 	}
+
+	sticker.updateSticker(e);
+	mouse.dragCallback = e => {
+		sticker.updateSticker(e);
+	};
+	mouse.endCallback = () => {
+		sticker.current.classList.remove("dragging");
+		sticker.current = false;
+	};
 });
 
 stickable.addEventListener("touchend", e => {
