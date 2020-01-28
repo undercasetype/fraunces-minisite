@@ -260,7 +260,7 @@ stickable.addEventListener("touchmove", e => {
 		e.preventDefault();
 
 		sticker.offsetX = 0;
-		sticker.offsetY = 0;
+		sticker.offsetY = headerEl.clientHeight;
 		// Move clicked sticker
 		sticker.current = e.target;
 		sticker.current.classList.add("dragging");
