@@ -141,19 +141,25 @@ window.onmousemove = e => {
 		mouse.dragCallback(e);
 	}
 };
-window.onmouseup = () => {
-	mouse.endCallback && mouse.endCallback();
-	mouse.dragCallback = mouse.endCallback = false;
-};
+
+window.addEventListener("touchstart", e => {
+	// TODO: This fires too late
+	mouse.x = e.touches[0].clientX;
+	mouse.y = e.touches[0].clientY;
+});
 
 window.addEventListener("touchmove", e => {
 	mouse.x = e.touches[0].clientX;
 	mouse.y = e.touches[0].clientY;
-
 	if (mouse.dragCallback) {
 		mouse.dragCallback(e);
 	}
 });
+
+window.onmouseup = () => {
+	mouse.endCallback && mouse.endCallback();
+	mouse.dragCallback = mouse.endCallback = false;
+};
 
 window.addEventListener("touchend", () => {
 	mouse.endCallback && mouse.endCallback();
@@ -226,12 +232,27 @@ const sticker = {
 // "Pick up" sticker or create new one
 // TODO: do not snap to center, but take offset from center of sticker into account
 stickable.onmousedown = e => {
-	if (e.which !== 1) return; // Only work on left mouse button
+	moveStuff(e);
+};
+stickable.addEventListener("touchstart", e => {
+	e.preventDefault();
+	// TODO: this shouldn't happen here
+	mouse.x = e.touches[0].clientX;
+	mouse.y = e.touches[0].clientY;
+	moveStuff(e);
+});
+
+function moveStuff(e) {
+	// TODO
+	// if (e.which !== 1) return; // Only work on left mouse button
+
 	const onSticker = e.target.classList.contains("sticker");
 
 	if (onSticker) {
 		const offsetLeft = parseInt(e.target.style.getPropertyValue("--x"), 10);
 		const offsetTop = parseInt(e.target.style.getPropertyValue("--y"), 10);
+		// TODO: this fires before offsets have been properly set
+		// In other words window.addEventListener("touchstart", e => ... hasn't fired yet
 		sticker.offsetX = mouse.x - offsetLeft;
 		sticker.offsetY = mouse.y - offsetTop;
 		// Move clicked sticker
@@ -243,6 +264,7 @@ stickable.onmousedown = e => {
 		sticker.offsetY = headerEl.clientHeight;
 		sticker.generateSticker();
 	}
+
 	sticker.updateSticker(e);
 
 	mouse.dragCallback = e => {
@@ -252,40 +274,7 @@ stickable.onmousedown = e => {
 		sticker.current.classList.remove("dragging");
 		sticker.current = false;
 	};
-};
-
-stickable.addEventListener("touchmove", e => {
-	const onSticker = e.target.classList.contains("sticker");
-	if (onSticker) {
-		e.preventDefault();
-
-		sticker.offsetX = 0;
-		sticker.offsetY = headerEl.clientHeight;
-		// Move clicked sticker
-		sticker.current = e.target;
-		sticker.current.classList.add("dragging");
-	}
-
-	sticker.updateSticker(e);
-	mouse.dragCallback = e => {
-		sticker.updateSticker(e);
-	};
-	mouse.endCallback = () => {
-		sticker.current.classList.remove("dragging");
-		sticker.current = false;
-	};
-});
-
-stickable.addEventListener("touchend", e => {
-	const onSticker = e.target.classList.contains("sticker");
-
-	mouse.endCallback = () => {
-		if (onSticker) {
-			sticker.current.classList.remove("dragging");
-			sticker.current = false;
-		}
-	};
-});
+}
 
 // Add subtle parallax scrolling to "UV Light Rafters" graphic
 let uvStart;
