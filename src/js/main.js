@@ -146,25 +146,51 @@ window.onmouseup = () => {
 	mouse.dragCallback = mouse.endCallback = false;
 };
 
+window.addEventListener("touchmove", e => {
+	mouse.x = e.touches[0].clientX;
+	mouse.y = e.touches[0].clientY;
+
+	if (mouse.dragCallback) {
+		mouse.dragCallback(e);
+	}
+});
+
+window.addEventListener("touchend", () => {
+	mouse.endCallback && mouse.endCallback();
+	mouse.dragCallback = mouse.endCallback = false;
+});
+
+const calculateSwiperOffset = () => {
+	const x = mouse.x - swiper.offsetLeft;
+	const perc = (x / (swiper.offsetWidth / 100)).toFixed(2);
+	const clampedPerc = Math.max(1, Math.min(perc, 100));
+	swiper.style.setProperty("--offset", `${clampedPerc}%`);
+};
+
 // Swiper for opsz demo
 const swiper = document.querySelector(".opsz-demo");
 const swiperHandle = document.querySelector(".opsz-slider-handle");
 swiperHandle.onmousedown = () => {
 	swiperHandle.classList.add("dragging");
-	mouse.dragCallback = () => {
-		const x = mouse.x - swiper.offsetLeft;
-		const perc = (x / (swiper.offsetWidth / 100)).toFixed(2);
-		const clampedPerc = Math.max(1, Math.min(perc, 100));
-		swiper.style.setProperty("--offset", `${clampedPerc}%`);
-	};
+	mouse.dragCallback = () => calculateSwiperOffset();
 	mouse.endCallback = () => {
 		swiperHandle.classList.remove("dragging");
 	};
 };
 
+swiperHandle.addEventListener("touchmove", () => {
+	swiperHandle.classList.add("dragging");
+	calculateSwiperOffset();
+	mouse.endCallback = () => {
+		swiperHandle.classList.remove("dragging");
+	};
+});
+
 // Sticker stuff
 const stickable = document.querySelector(".sticker-hero");
+const headerEl = document.querySelector("header");
 let maxStickableY;
+
 const sticker = {
 	current: false,
 	updateSticker: function() {
@@ -214,7 +240,7 @@ stickable.onmousedown = e => {
 	} else {
 		// Create new sticker
 		sticker.offsetX = 0;
-		sticker.offsetY = 0;
+		sticker.offsetY = headerEl.clientHeight;
 		sticker.generateSticker();
 	}
 	sticker.updateSticker(e);
@@ -227,6 +253,39 @@ stickable.onmousedown = e => {
 		sticker.current = false;
 	};
 };
+
+stickable.addEventListener("touchmove", e => {
+	const onSticker = e.target.classList.contains("sticker");
+	if (onSticker) {
+		e.preventDefault();
+
+		sticker.offsetX = 0;
+		sticker.offsetY = headerEl.clientHeight;
+		// Move clicked sticker
+		sticker.current = e.target;
+		sticker.current.classList.add("dragging");
+	}
+
+	sticker.updateSticker(e);
+	mouse.dragCallback = e => {
+		sticker.updateSticker(e);
+	};
+	mouse.endCallback = () => {
+		sticker.current.classList.remove("dragging");
+		sticker.current = false;
+	};
+});
+
+stickable.addEventListener("touchend", e => {
+	const onSticker = e.target.classList.contains("sticker");
+
+	mouse.endCallback = () => {
+		if (onSticker) {
+			sticker.current.classList.remove("dragging");
+			sticker.current = false;
+		}
+	};
+});
 
 // Add subtle parallax scrolling to "UV Light Rafters" graphic
 let uvStart;
