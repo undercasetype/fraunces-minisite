@@ -172,7 +172,6 @@ const sticker = {
 		this.y = Math.max(
 			minStickableY,
 			Math.min(
-				mouse.y + document.documentElement.scrollTop,
 				mouse.y + document.documentElement.scrollTop - sticker.offsetY,
 				maxStickableY
 			)
@@ -213,6 +212,8 @@ stickable.onmousedown = e => {
 		sticker.current.classList.add("dragging");
 	} else {
 		// Create new sticker
+		sticker.offsetX = 0;
+		sticker.offsetY = 0;
 		sticker.generateSticker();
 	}
 	sticker.updateSticker(e);
