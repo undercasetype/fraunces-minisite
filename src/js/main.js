@@ -202,6 +202,7 @@ const sticker = {
 stickable.onmousedown = e => {
 	if (e.which !== 1) return; // Only work on left mouse button
 	const onSticker = e.target.classList.contains("sticker");
+  
 	if (onSticker) {
 		const offsetLeft = parseInt(e.target.style.getPropertyValue("--x"), 10);
 		const offsetTop = parseInt(e.target.style.getPropertyValue("--y"), 10);
