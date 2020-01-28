@@ -46,7 +46,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	transform: translate(var(--x), var(--y)) translate(-50%, -75%)
+	transform: translate(var(--x), var(--y)) translate(-50%, -50%)
 		rotate(var(--tilt));
 	transition: filter 100ms;
 	user-select: none;

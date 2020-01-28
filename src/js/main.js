@@ -189,7 +189,9 @@ swiperHandle.addEventListener("touchmove", () => {
 
 // Sticker stuff
 const stickable = document.querySelector(".sticker-hero");
+const headerEl = document.querySelector("header");
 let maxStickableY;
+
 const sticker = {
 	current: false,
 	updateSticker: function() {
@@ -239,7 +241,7 @@ stickable.onmousedown = e => {
 	} else {
 		// Create new sticker
 		sticker.offsetX = 0;
-		sticker.offsetY = 0;
+		sticker.offsetY = headerEl.clientHeight;
 		sticker.generateSticker();
 	}
 	sticker.updateSticker(e);
