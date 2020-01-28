@@ -203,7 +203,7 @@ const sticker = {
 stickable.onmousedown = e => {
 	if (e.which !== 1) return; // Only work on left mouse button
 	const onSticker = e.target.classList.contains("sticker");
-	if (onSticker && !sticker.current) {
+	if (onSticker) {
 		const offsetLeft = parseInt(e.target.style.getPropertyValue("--x"), 10);
 		const offsetTop = parseInt(e.target.style.getPropertyValue("--y"), 10);
 		sticker.offsetX = mouse.x - offsetLeft;
@@ -269,6 +269,7 @@ flip.onclick = e => {
 		const parent = button.closest("ul");
 		parent.querySelector(".active").classList.remove("active");
 		const [index, axis, value] = button.value.split(" ");
+
 		if (axis === "style") {
 			flipText.classList.remove("roman", "italic");
 			flipText.classList.add(value);
