@@ -151,7 +151,6 @@ window.addEventListener("touchmove", e => {
 	mouse.y = e.touches[0].clientY;
 
 	if (mouse.dragCallback) {
-		e.preventDefault();
 		mouse.dragCallback(e);
 	}
 });
