@@ -31,6 +31,7 @@
 
 	/* Addressing the wght axis directly, so apply the
 	font-variation-settings specifically for this demo */
+	transition: font-variation-settings 0.1s ease-in;
 	font-variation-settings: "opsz" var(--opsz), "wght" var(--wght),
 		"GOOF" var(--GOOF), "WONK" var(--WONK);
 }
