@@ -2,6 +2,7 @@
 	padding: 6rem 0 4rem 0;
 	background: var(--fraunces-black);
 	color: var(--fraunces-yellow);
+	position: relative;
 }
 
 .wonk-demo-slider {
@@ -29,9 +30,42 @@
 	color: var(--fraunces-white);
 }
 
+.extra-wonk-sticker {
+	position: absolute;
+
+	top: 18%;
+	right: 11%;
+	width: 12em;
+	height: 12em;
+	transform: rotate(12deg);
+}
+
+@media screen and (max-width: 64rem) {
+	.extra-wonk-sticker {
+		top: 16%;
+		right: 9%;
+	}
+}
+
+@media screen and (max-width: 48rem) {
+	.extra-wonk-sticker {
+		top: 5%;
+		right: 7%;
+		width: 8em;
+		height: 8em;
+	}
+}
+
 @media screen and (max-width: 32rem) {
 	.wonk-demo-slider {
 		max-width: 50vw;
 		padding: 1rem 0 3rem 0;
+	}
+
+	.extra-wonk-sticker {
+		top: 2%;
+		right: 7%;
+		width: 8em;
+		height: 8em;
 	}
 }
