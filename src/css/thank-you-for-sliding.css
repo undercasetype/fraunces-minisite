@@ -31,9 +31,9 @@
 .thank-you-sticker {
 	position: absolute;
 	bottom: 1em;
-	left: 15%;
-	width: 6em;
-	height: 6em;
+	left: 14%;
+	width: 12em;
+	height: 12em;
 	transform: rotate(12deg);
 	pointer-events: none;
 }
@@ -54,6 +54,7 @@
 		"GOOF" var(--GOOF), "WONK" var(--WONK);
 }
 
+/* 832 */
 @media screen and (max-width: 52rem) {
 	.thank-you-sliders {
 		flex-direction: column;
@@ -66,6 +67,18 @@
 
 	.thank-you-sticker {
 		bottom: 0;
-		left: 10%;
+		left: 5%;
+		width: 8em;
+		height: 8em;
+	}
+}
+
+/*  512 */
+@media screen and (max-width: 32rem) {
+	.thank-you-sticker {
+		bottom: 0;
+		left: 6%;
+		width: 6em;
+		height: 6em;
 	}
 }
