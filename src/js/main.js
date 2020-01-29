@@ -88,9 +88,8 @@ for (const interactive of interactives) {
 }
 
 // Make WONK snap
-const wonkSliders = document.querySelectorAll(
-	".wonk-demo .interactive-controls-slider"
-);
+const wonkSliders = document.querySelectorAll(".wonk-slider");
+
 for (const wonkSlider of wonkSliders) {
 	wonkSlider.onchange = e => {
 		e.target.value = Math.round(e.target.value);
