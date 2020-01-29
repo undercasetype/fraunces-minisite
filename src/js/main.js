@@ -132,18 +132,6 @@ const mouse = {
 	dragCallback: false, // What to do when a dragged element is moved
 	endCallback: false // What to do when a dragging stops
 };
-window.onmousemove = e => {
-	mouse.x = e.clientX;
-	mouse.y = e.clientY;
-	if (mouse.dragCallback) {
-		e.preventDefault();
-		mouse.dragCallback(e);
-	}
-};
-window.onmouseup = () => {
-	mouse.endCallback && mouse.endCallback();
-	mouse.dragCallback = mouse.endCallback = false;
-};
 
 window.addEventListener("touchmove", e => {
 	mouse.x = e.touches[0].clientX;
@@ -158,6 +146,19 @@ window.addEventListener("touchend", () => {
 	mouse.endCallback && mouse.endCallback();
 	mouse.dragCallback = mouse.endCallback = false;
 });
+
+window.onmousemove = e => {
+	mouse.x = e.clientX;
+	mouse.y = e.clientY;
+	if (mouse.dragCallback) {
+		e.preventDefault();
+		mouse.dragCallback(e);
+	}
+};
+window.onmouseup = () => {
+	mouse.endCallback && mouse.endCallback();
+	mouse.dragCallback = mouse.endCallback = false;
+};
 
 const calculateSwiperOffset = () => {
 	const x = mouse.x - swiper.offsetLeft;
@@ -252,39 +253,6 @@ stickable.onmousedown = e => {
 		sticker.current = false;
 	};
 };
-
-stickable.addEventListener("touchmove", e => {
-	const onSticker = e.target.classList.contains("sticker");
-	if (onSticker) {
-		e.preventDefault();
-
-		sticker.offsetX = 0;
-		sticker.offsetY = headerEl.clientHeight;
-		// Move clicked sticker
-		sticker.current = e.target;
-		sticker.current.classList.add("dragging");
-	}
-
-	sticker.updateSticker(e);
-	mouse.dragCallback = e => {
-		sticker.updateSticker(e);
-	};
-	mouse.endCallback = () => {
-		sticker.current.classList.remove("dragging");
-		sticker.current = false;
-	};
-});
-
-stickable.addEventListener("touchend", e => {
-	const onSticker = e.target.classList.contains("sticker");
-
-	mouse.endCallback = () => {
-		if (onSticker) {
-			sticker.current.classList.remove("dragging");
-			sticker.current = false;
-		}
-	};
-});
 
 // Add subtle parallax scrolling to "UV Light Rafters" graphic
 let uvStart;
