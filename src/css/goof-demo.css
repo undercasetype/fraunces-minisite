@@ -1,6 +1,7 @@
 .goof-demo {
 	padding: 6rem 0 4rem 0;
 	background: var(--fraunces-yellow);
+	position: relative;
 }
 
 .goof-demo-slider {
@@ -25,6 +26,33 @@
 	font-size: 12vw;
 	margin-bottom: 3rem;
 	color: var(--fraunces-white);
+}
+
+.goof-demo .a-touch-of-class-sticker {
+	position: absolute;
+	top: 15%;
+	right: 9%;
+	width: 12em;
+	height: 12em;
+	transform: rotate(12deg);
+	pointer-events: none;
+}
+
+@media screen and (max-width: 64rem) {
+	.goof-demo .a-touch-of-class-sticker {
+		right: 5%;
+		width: 10em;
+		height: 10em;
+	}
+}
+
+@media screen and (max-width: 48rem) {
+	.goof-demo .a-touch-of-class-sticker {
+		top: 4%;
+		right: 7%;
+		width: 6em;
+		height: 6em;
+	}
 }
 
 @media screen and (max-width: 32rem) {
