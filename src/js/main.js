@@ -229,24 +229,31 @@ const sticker = {
 	}
 };
 
-stickable.onmousemove = () => {
+stickable.onmousemove = e => {
+	e.preventDefault();
+	console.log("mouse move");
 	if (!sticker.current) {
 		// Create new sticker
 		sticker.offsetX = 0;
 		sticker.offsetY = headerEl.clientHeight;
 		sticker.generateSticker();
 	}
-
 	sticker.updateSticker();
-
 	mouse.dragCallback = e => {
 		sticker.updateSticker(e);
 	};
 };
 
+// Don't stick the sticker when leaving the sticker area.
+stickable.onmouseleave = () => {
+	sticker.current = false;
+};
+
 // "Pick up" sticker or create new one
 // TODO: do not snap to center, but take offset from center of sticker into account
 stickable.onmousedown = e => {
+	console.log("mouse down");
+
 	if (e.which !== 1) return; // Only work on left mouse button
 
 	sticker.offsetX = 0;
