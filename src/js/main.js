@@ -226,6 +226,10 @@ const sticker = {
 			sticker.current = newSticker;
 			stickable.appendChild(sticker.current);
 		}
+	},
+	destroySticker: function() {
+		stickable.removeChild(sticker.current);
+		sticker.current = false;
 	}
 };
 
@@ -260,7 +264,7 @@ stickable.onmousedown = e => {
 
 // Don't stick the sticker when leaving the sticker area.
 stickable.onmouseleave = () => {
-	sticker.current = false;
+	sticker.destroySticker();
 };
 
 stickable.addEventListener("touchstart", e => {
