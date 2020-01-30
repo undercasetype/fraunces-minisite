@@ -277,39 +277,6 @@ stickable.addEventListener("touchstart", e => {
 	};
 });
 
-stickable.addEventListener("touchmove", e => {
-	const onSticker = e.target.classList.contains("sticker");
-	if (onSticker) {
-		e.preventDefault();
-
-		sticker.offsetX = 0;
-		sticker.offsetY = headerEl.clientHeight;
-		// Move clicked sticker
-		sticker.current = e.target;
-		sticker.current.classList.add("dragging");
-	}
-
-	sticker.updateSticker(e);
-	mouse.dragCallback = e => {
-		sticker.updateSticker(e);
-	};
-	mouse.endCallback = () => {
-		sticker.current.classList.remove("dragging");
-		sticker.current = false;
-	};
-});
-
-stickable.addEventListener("touchend", e => {
-	const onSticker = e.target.classList.contains("sticker");
-
-	mouse.endCallback = () => {
-		if (onSticker) {
-			sticker.current.classList.remove("dragging");
-			sticker.current = false;
-		}
-	};
-});
-
 // Add subtle parallax scrolling to "UV Light Rafters" graphic
 let uvStart;
 let uvEnd;
