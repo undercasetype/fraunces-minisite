@@ -135,6 +135,7 @@ const mouse = {
 window.onmousemove = e => {
 	mouse.x = e.clientX;
 	mouse.y = e.clientY;
+
 	if (mouse.dragCallback) {
 		e.preventDefault();
 		mouse.dragCallback(e);
@@ -207,49 +208,54 @@ const sticker = {
 		this.current.style.setProperty("--x", `${this.x}px`);
 		this.current.style.setProperty("--y", `${this.y}px`);
 	},
-	generateSticker: function(x, y) {
+	generateSticker: function(x, y, noCurrent) {
 		const number = Math.floor(Math.random() * numberOfStickers + 1);
 		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
 		const newSticker = document.createElement("div");
-		newSticker.classList.add("sticker", "dragging", `sticker-${number}`);
+		newSticker.classList.add("sticker", `sticker-${number}`);
 		newSticker.style.setProperty("--tilt", `${tilt}deg`);
 		if (x && y) {
 			newSticker.style.setProperty("--x", `${x}px`);
 			newSticker.style.setProperty("--y", `${y}px`);
 		}
-		sticker.current = newSticker;
-		stickable.appendChild(sticker.current);
+
+		if (noCurrent) {
+			stickable.appendChild(newSticker);
+			sticker.current = false;
+		} else {
+			sticker.current = newSticker;
+			stickable.appendChild(sticker.current);
+		}
 	}
+};
+
+stickable.onmousemove = () => {
+	if (!sticker.current) {
+		// Create new sticker
+		sticker.offsetX = 0;
+		sticker.offsetY = headerEl.clientHeight;
+		sticker.generateSticker();
+	}
+
+	sticker.updateSticker();
+
+	mouse.dragCallback = e => {
+		sticker.updateSticker(e);
+	};
 };
 
 // "Pick up" sticker or create new one
 // TODO: do not snap to center, but take offset from center of sticker into account
 stickable.onmousedown = e => {
 	if (e.which !== 1) return; // Only work on left mouse button
-	const onSticker = e.target.classList.contains("sticker");
 
-	if (onSticker) {
-		const offsetLeft = parseInt(e.target.style.getPropertyValue("--x"), 10);
-		const offsetTop = parseInt(e.target.style.getPropertyValue("--y"), 10);
-		sticker.offsetX = mouse.x - offsetLeft;
-		sticker.offsetY = mouse.y - offsetTop;
-		// Move clicked sticker
-		sticker.current = e.target;
-		sticker.current.classList.add("dragging");
-	} else {
-		// Create new sticker
-		sticker.offsetX = 0;
-		sticker.offsetY = headerEl.clientHeight;
-		sticker.generateSticker();
-	}
+	sticker.offsetX = 0;
+	sticker.offsetY = headerEl.clientHeight;
+	sticker.generateSticker();
 	sticker.updateSticker(e);
 
 	mouse.dragCallback = e => {
 		sticker.updateSticker(e);
-	};
-	mouse.endCallback = () => {
-		sticker.current.classList.remove("dragging");
-		sticker.current = false;
 	};
 };
 
@@ -791,7 +797,7 @@ function fitSrceen(number) {
 for (let i = 0; i < 4; i++) {
 	let randomX = fitSrceen(window.innerWidth);
 	let randomY = fitSrceen(window.innerHeight);
-	sticker.generateSticker(randomX, randomY);
+	sticker.generateSticker(randomX, randomY, true);
 }
 
 setTimeout(() => {
