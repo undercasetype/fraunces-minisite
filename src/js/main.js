@@ -146,7 +146,7 @@ window.onmouseup = () => {
 	mouse.dragCallback = mouse.endCallback = false;
 };
 
-window.addEventListener("touchmove", e => {
+window.addEventListener("touchstart", e => {
 	mouse.x = e.touches[0].clientX;
 	mouse.y = e.touches[0].clientY;
 
@@ -231,7 +231,6 @@ const sticker = {
 
 stickable.onmousemove = e => {
 	e.preventDefault();
-	console.log("mouse move");
 	if (!sticker.current) {
 		// Create new sticker
 		sticker.offsetX = 0;
@@ -249,11 +248,22 @@ stickable.onmouseleave = () => {
 	sticker.current = false;
 };
 
+stickable.addEventListener("touchstart", e => {
+	e.preventDefault();
+
+	sticker.offsetX = 0;
+	sticker.offsetY = headerEl.clientHeight;
+	sticker.generateSticker();
+
+	sticker.updateSticker();
+
+	mouse.dragCallback = e => {
+		sticker.updateSticker(e);
+	};
+});
 // "Pick up" sticker or create new one
 // TODO: do not snap to center, but take offset from center of sticker into account
 stickable.onmousedown = e => {
-	console.log("mouse down");
-
 	if (e.which !== 1) return; // Only work on left mouse button
 
 	sticker.offsetX = 0;
