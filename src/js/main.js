@@ -243,6 +243,21 @@ stickable.onmousemove = e => {
 	};
 };
 
+// "Pick up" sticker or create new one
+// TODO: do not snap to center, but take offset from center of sticker into account
+stickable.onmousedown = e => {
+	if (e.which !== 1) return; // Only work on left mouse button
+
+	sticker.offsetX = 0;
+	sticker.offsetY = headerEl.clientHeight;
+	sticker.generateSticker();
+	sticker.updateSticker(e);
+
+	mouse.dragCallback = e => {
+		sticker.updateSticker(e);
+	};
+};
+
 // Don't stick the sticker when leaving the sticker area.
 stickable.onmouseleave = () => {
 	sticker.current = false;
@@ -261,20 +276,6 @@ stickable.addEventListener("touchstart", e => {
 		sticker.updateSticker(e);
 	};
 });
-// "Pick up" sticker or create new one
-// TODO: do not snap to center, but take offset from center of sticker into account
-stickable.onmousedown = e => {
-	if (e.which !== 1) return; // Only work on left mouse button
-
-	sticker.offsetX = 0;
-	sticker.offsetY = headerEl.clientHeight;
-	sticker.generateSticker();
-	sticker.updateSticker(e);
-
-	mouse.dragCallback = e => {
-		sticker.updateSticker(e);
-	};
-};
 
 stickable.addEventListener("touchmove", e => {
 	const onSticker = e.target.classList.contains("sticker");
