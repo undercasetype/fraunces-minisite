@@ -132,19 +132,6 @@ const mouse = {
 	dragCallback: false, // What to do when a dragged element is moved
 	endCallback: false // What to do when a dragging stops
 };
-window.onmousemove = e => {
-	mouse.x = e.clientX;
-	mouse.y = e.clientY;
-
-	if (mouse.dragCallback) {
-		e.preventDefault();
-		mouse.dragCallback(e);
-	}
-};
-window.onmouseup = () => {
-	mouse.endCallback && mouse.endCallback();
-	mouse.dragCallback = mouse.endCallback = false;
-};
 
 window.addEventListener("touchstart", e => {
 	mouse.x = e.touches[0].clientX;
@@ -159,6 +146,19 @@ window.addEventListener("touchend", () => {
 	mouse.endCallback && mouse.endCallback();
 	mouse.dragCallback = mouse.endCallback = false;
 });
+
+window.onmousemove = e => {
+	mouse.x = e.clientX;
+	mouse.y = e.clientY;
+	if (mouse.dragCallback) {
+		e.preventDefault();
+		mouse.dragCallback(e);
+	}
+};
+window.onmouseup = () => {
+	mouse.endCallback && mouse.endCallback();
+	mouse.dragCallback = mouse.endCallback = false;
+};
 
 const calculateSwiperOffset = () => {
 	const x = mouse.x - swiper.offsetLeft;
