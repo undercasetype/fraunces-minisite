@@ -290,19 +290,26 @@ setViewportValues();
 
 // Flip clock for instances
 const flip = document.querySelector(".flip");
-const flipText = document.querySelector(".flip-text");
+const flipTexts = document.querySelectorAll(".flip-text");
+
 flip.onclick = e => {
 	const button = e.target;
 	if (button.value) {
 		const parent = button.closest("ul");
 		parent.querySelector(".active").classList.remove("active");
 		const [index, axis, value] = button.value.split(" ");
+		const [flipText1, italicText, flipText2] = flipTexts;
 
 		if (axis === "style") {
-			flipText.classList.remove("roman", "italic");
-			flipText.classList.add(value);
+			[flipText1, flipText2].forEach(text => {
+				text.classList.remove("roman", "italic");
+				text.classList.add(value);
+			});
+			italicText.classList.add("italic");
 		} else {
-			flipText.style.setProperty(`--${axis}`, value);
+			[...flipTexts].forEach(text =>
+				text.style.setProperty(`--${axis}`, value)
+			);
 		}
 		parent.style.setProperty("--offset", 6 - index);
 		button.classList.add("active");
