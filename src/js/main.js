@@ -129,35 +129,41 @@ function startMaqueeMarq() {
 const mouse = {
 	x: 0,
 	y: 0,
-	endX: 0,
-	endY: 0,
 	dragCallback: false, // What to do when a dragged element is moved
-	endCallback: false // What to do when a dragging stops
-};
-
-window.onmousemove = e => {
-	mouse.x = e.clientX;
-	mouse.y = e.clientY;
-	if (mouse.dragCallback) {
-		e.preventDefault();
-		mouse.dragCallback(e);
+	endCallback: false, // What to do when a dragging stops
+	executeCallback: function(e) {
+		if (mouse.dragCallback) {
+			if (e.cancelable) {
+				e.preventDefault();
+			}
+			mouse.dragCallback(e);
+		}
 	}
 };
-window.onmouseup = () => {
+window.addEventListener("mousemove", e => {
+	mouse.x = e.clientX;
+	mouse.y = e.clientY;
+	mouse.executeCallback(e);
+});
+window.addEventListener("touchstart", e => {
+	mouse.x = e.changedTouches[0].clientX;
+	mouse.y = e.changedTouches[0].clientY;
+	mouse.executeCallback(e);
+});
+window.addEventListener("mouseup", () => {
 	mouse.endCallback && mouse.endCallback();
 	mouse.dragCallback = mouse.endCallback = false;
-};
+});
 
+// Swiper for opsz demo
+const swiper = document.querySelector(".opsz-demo");
+const swiperHandle = document.querySelector(".opsz-slider-handle");
 const calculateSwiperOffset = () => {
 	const x = mouse.x - swiper.offsetLeft;
 	const perc = (x / (swiper.offsetWidth / 100)).toFixed(2);
 	const clampedPerc = Math.max(1, Math.min(perc, 100));
 	swiper.style.setProperty("--offset", `${clampedPerc}%`);
 };
-
-// Swiper for opsz demo
-const swiper = document.querySelector(".opsz-demo");
-const swiperHandle = document.querySelector(".opsz-slider-handle");
 swiperHandle.onmousedown = () => {
 	swiperHandle.classList.add("dragging");
 	mouse.dragCallback = () => calculateSwiperOffset();
@@ -165,7 +171,6 @@ swiperHandle.onmousedown = () => {
 		swiperHandle.classList.remove("dragging");
 	};
 };
-
 swiperHandle.addEventListener("touchmove", e => {
 	swiperHandle.classList.add("dragging");
 	mouse.x = e.touches[0].clientX;
@@ -181,8 +186,11 @@ swiperHandle.addEventListener("touchmove", e => {
 const stickable = document.querySelector(".sticker-hero");
 const headerEl = document.querySelector("header");
 let maxStickableY;
-
 const sticker = {
+	x: 0,
+	y: 0,
+	offsetX: 0,
+	offsetY: headerEl.clientHeight,
 	current: false,
 	updateSticker: function() {
 		this.x = mouse.x - sticker.offsetX;
@@ -199,27 +207,18 @@ const sticker = {
 		this.current.style.setProperty("--x", `${this.x}px`);
 		this.current.style.setProperty("--y", `${this.y}px`);
 	},
-	generateSticker: function(x, y, noCurrentTarget) {
-		const number = Math.floor(Math.random() * numberOfStickers + 1);
+	generateSticker: function(x, y) {
 		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
+		const stickerNumber = Math.floor(Math.random() * numberOfStickers + 1);
 		const newSticker = document.createElement("div");
-		newSticker.classList.add("sticker", `sticker-${number}`);
+		newSticker.classList.add("sticker", `sticker-${stickerNumber}`);
 		newSticker.style.setProperty("--tilt", `${tilt}deg`);
 		if (x && y) {
 			newSticker.style.setProperty("--x", `${x}px`);
 			newSticker.style.setProperty("--y", `${y}px`);
 		}
-
-		// noCurrentTarget is set when generating stickers on page load.
-		// This is required to ensure that we're dragging a new sticker around
-		// when the mouse is moved.
-		if (noCurrentTarget) {
-			stickable.appendChild(newSticker);
-			sticker.current = false;
-		} else {
-			sticker.current = newSticker;
-			stickable.appendChild(sticker.current);
-		}
+		sticker.current = newSticker;
+		stickable.appendChild(sticker.current);
 	},
 	destroySticker: function() {
 		stickable.removeChild(sticker.current);
@@ -227,55 +226,36 @@ const sticker = {
 	}
 };
 
-stickable.addEventListener("touchstart", e => {
-	mouse.x = e.changedTouches[0].clientX;
-	mouse.y = e.changedTouches[0].clientY;
-});
-
 stickable.addEventListener("touchend", e => {
 	// Prevent mouse behaviour on touch devices.
-	e.preventDefault();
+	if (e.cancelable) {
+		e.preventDefault();
+	}
 
-	mouse.endX = e.changedTouches[0].clientX;
-	mouse.endY = e.changedTouches[0].clientY;
-
-	if (mouse.y == mouse.endY) {
-		sticker.offsetX = 0;
-		sticker.offsetY = headerEl.clientHeight;
+	if (mouse.y === e.changedTouches[0].clientY) {
 		sticker.generateSticker();
 		sticker.updateSticker();
 	}
 });
 
-stickable.onmousemove = () => {
-	if (!sticker.current) {
-		// Create new sticker
-		sticker.offsetX = 0;
-		sticker.offsetY = headerEl.clientHeight;
+stickable.addEventListener("mousemove", () => {
+	if (!sticker.current && mouse.x && mouse.y) {
 		sticker.generateSticker();
 	}
 	sticker.updateSticker();
-	mouse.dragCallback = e => {
-		sticker.updateSticker(e);
-	};
-};
+});
 
-stickable.onmousedown = e => {
+// Place sticker and create new one
+stickable.addEventListener("mousedown", e => {
 	if (e.which !== 1) return; // Only work on left mouse button
-	sticker.offsetX = 0;
-	sticker.offsetY = headerEl.clientHeight;
 	sticker.generateSticker();
-	sticker.updateSticker(e);
-
-	mouse.dragCallback = e => {
-		sticker.updateSticker(e);
-	};
-};
+	sticker.updateSticker();
+});
 
 // Don't stick the sticker when leaving the sticker area.
-stickable.onmouseleave = () => {
+stickable.addEventListener("mouseleave", () => {
 	sticker.destroySticker();
-};
+});
 
 // Add subtle parallax scrolling to "UV Light Rafters" graphic
 let uvStart;
@@ -769,7 +749,13 @@ function movePiece() {
 	}
 }
 
+// Start checkerboard animation
 setupCheckerBoard();
+setTimeout(() => {
+	setInterval(() => {
+		movePiece();
+	}, 2000);
+}, 2000);
 
 // Stick four random stickers on the screen
 const margin = 200;
@@ -782,11 +768,6 @@ function fitSrceen(number) {
 for (let i = 0; i < 4; i++) {
 	let randomX = fitSrceen(window.innerWidth);
 	let randomY = fitSrceen(window.innerHeight);
-	sticker.generateSticker(randomX, randomY, true);
+	sticker.generateSticker(randomX, randomY);
 }
-
-setTimeout(() => {
-	setInterval(() => {
-		movePiece();
-	}, 2000);
-}, 2000);
+sticker.current = false;
