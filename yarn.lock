@@ -695,6 +695,12 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@googlefonts/badge@https://github.com/googlefonts/friends-badge":
+  version "0.9.1"
+  resolved "https://github.com/googlefonts/friends-badge#9121b6299936a418c73bb2fe327d4741ef8fd5bb"
+  dependencies:
+    lodash.throttle "4.0.1"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -5428,6 +5434,11 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash.debounce@^4.0.0:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
+
 lodash.isfinite@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/lodash.isfinite/-/lodash.isfinite-3.3.2.tgz#fb89b65a9a80281833f0b7478b3a5104f898ebb3"
@@ -5437,6 +5448,13 @@ lodash.memoize@4.1.2, lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
+
+lodash.throttle@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.0.1.tgz#b3211662ee9d82f56903d0731262aaaa873a6330"
+  integrity sha1-syEWYu6dgvVpA9BzEmKqqoc6YzA=
+  dependencies:
+    lodash.debounce "^4.0.0"
 
 lodash.unescape@4.0.1:
   version "4.0.1"

@@ -82,6 +82,7 @@
 		}
 	},
 	"dependencies": {
+		"@googlefonts/badge": "https://github.com/googlefonts/friends-badge",
 		"fontfaceobserver": "^2.1.0"
 	},
 	"engines": {

@@ -2,11 +2,11 @@ footer {
 	padding: 3rem;
 	background: var(--fraunces-yellow);
 	display: flex;
+	justify-content: center;
 }
 
 footer > * {
-	flex: auto;
-	width: 30%;
+	width: 25%;
 }
 
 footer a {
@@ -16,11 +16,6 @@ footer a {
 
 footer p {
 	--GOOF: 100;
-}
-
-.footer-brought-to-you a {
-	font-size: 1.75rem;
-	font-weight: 500;
 }
 
 footer a:hover {
@@ -52,10 +47,10 @@ footer a:hover {
 
 	.footer-credits {
 		padding: 2em 0 1em 0;
+		text-align: center;
 	}
 
-	.footer-credits,
-	.footer-brought-to-you {
-		text-align: center;
+	.footer-repo-link {
+		padding-bottom: 5rem;
 	}
 }

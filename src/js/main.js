@@ -1,12 +1,14 @@
 import "./assets";
 import { fontName } from "./font";
 import FontFaceObserver from "fontfaceobserver";
+import gfBadge from "@googlefonts/badge";
 
 const fontTimeOut = 5000; // In milliseconds
 const numberOfStickers = 7; // How many hero-stickers-0x.svg do we have?
 const minStickableY = 60; // Keep stickers inside viewport top
 let scrollPos = 0;
 
+gfBadge();
 // Generic throttle
 const throttle = (fn, wait) => {
 	let last, queue;
