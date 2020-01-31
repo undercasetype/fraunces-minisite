@@ -129,23 +129,11 @@ function startMaqueeMarq() {
 const mouse = {
 	x: 0,
 	y: 0,
+	endX: 0,
+	endY: 0,
 	dragCallback: false, // What to do when a dragged element is moved
 	endCallback: false // What to do when a dragging stops
 };
-
-window.addEventListener("touchstart", e => {
-	mouse.x = e.touches[0].clientX;
-	mouse.y = e.touches[0].clientY;
-
-	if (mouse.dragCallback) {
-		mouse.dragCallback(e);
-	}
-});
-
-window.addEventListener("touchend", () => {
-	mouse.endCallback && mouse.endCallback();
-	mouse.dragCallback = mouse.endCallback = false;
-});
 
 window.onmousemove = e => {
 	mouse.x = e.clientX;
@@ -178,9 +166,12 @@ swiperHandle.onmousedown = () => {
 	};
 };
 
-swiperHandle.addEventListener("touchmove", () => {
+swiperHandle.addEventListener("touchmove", e => {
 	swiperHandle.classList.add("dragging");
+	mouse.x = e.touches[0].clientX;
+	mouse.y = e.touches[0].clientY;
 	calculateSwiperOffset();
+
 	mouse.endCallback = () => {
 		swiperHandle.classList.remove("dragging");
 	};
@@ -233,8 +224,27 @@ const sticker = {
 	}
 };
 
-stickable.onmousemove = e => {
+stickable.addEventListener("touchstart", e => {
+	mouse.x = e.changedTouches[0].clientX;
+	mouse.y = e.changedTouches[0].clientY;
+});
+
+stickable.addEventListener("touchend", e => {
+	// Prevent mouse behaviour on touche devices.
 	e.preventDefault();
+
+	mouse.endX = e.changedTouches[0].clientX;
+	mouse.endY = e.changedTouches[0].clientY;
+
+	if (mouse.y == mouse.endY) {
+		sticker.offsetX = 0;
+		sticker.offsetY = headerEl.clientHeight;
+		sticker.generateSticker();
+		sticker.updateSticker();
+	}
+});
+
+stickable.onmousemove = () => {
 	if (!sticker.current) {
 		// Create new sticker
 		sticker.offsetX = 0;
@@ -251,7 +261,6 @@ stickable.onmousemove = e => {
 // TODO: do not snap to center, but take offset from center of sticker into account
 stickable.onmousedown = e => {
 	if (e.which !== 1) return; // Only work on left mouse button
-
 	sticker.offsetX = 0;
 	sticker.offsetY = headerEl.clientHeight;
 	sticker.generateSticker();
@@ -266,20 +275,6 @@ stickable.onmousedown = e => {
 stickable.onmouseleave = () => {
 	sticker.destroySticker();
 };
-
-stickable.addEventListener("touchstart", e => {
-	e.preventDefault();
-
-	sticker.offsetX = 0;
-	sticker.offsetY = headerEl.clientHeight;
-	sticker.generateSticker();
-
-	sticker.updateSticker();
-
-	mouse.dragCallback = e => {
-		sticker.updateSticker(e);
-	};
-});
 
 // Add subtle parallax scrolling to "UV Light Rafters" graphic
 let uvStart;
