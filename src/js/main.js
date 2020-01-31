@@ -199,7 +199,7 @@ const sticker = {
 		this.current.style.setProperty("--x", `${this.x}px`);
 		this.current.style.setProperty("--y", `${this.y}px`);
 	},
-	generateSticker: function(x, y, noCurrent) {
+	generateSticker: function(x, y, noCurrentTarget) {
 		const number = Math.floor(Math.random() * numberOfStickers + 1);
 		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
 		const newSticker = document.createElement("div");
@@ -210,7 +210,10 @@ const sticker = {
 			newSticker.style.setProperty("--y", `${y}px`);
 		}
 
-		if (noCurrent) {
+		// noCurrentTarget is set when generating stickers on page load.
+		// This is required to ensure that we're dragging a new sticker around
+		// when the mouse is moved.
+		if (noCurrentTarget) {
 			stickable.appendChild(newSticker);
 			sticker.current = false;
 		} else {
@@ -230,7 +233,7 @@ stickable.addEventListener("touchstart", e => {
 });
 
 stickable.addEventListener("touchend", e => {
-	// Prevent mouse behaviour on touche devices.
+	// Prevent mouse behaviour on touch devices.
 	e.preventDefault();
 
 	mouse.endX = e.changedTouches[0].clientX;
@@ -257,8 +260,6 @@ stickable.onmousemove = () => {
 	};
 };
 
-// "Pick up" sticker or create new one
-// TODO: do not snap to center, but take offset from center of sticker into account
 stickable.onmousedown = e => {
 	if (e.which !== 1) return; // Only work on left mouse button
 	sticker.offsetX = 0;
