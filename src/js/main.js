@@ -4,7 +4,6 @@ import FontFaceObserver from "fontfaceobserver";
 
 const fontTimeOut = 5000; // In milliseconds
 const numberOfStickers = 7; // How many hero-stickers-0x.svg do we have?
-const minStickableY = 60; // Keep stickers inside viewport top
 let scrollPos = 0;
 
 // Generic throttle
@@ -185,7 +184,6 @@ swiperHandle.addEventListener("touchmove", e => {
 // Sticker stuff
 const stickable = document.querySelector(".sticker-hero");
 const headerEl = document.querySelector("header");
-let maxStickableY;
 const sticker = {
 	x: 0,
 	y: 0,
@@ -195,15 +193,7 @@ const sticker = {
 	updateSticker: function() {
 		this.x = calculateVwPos(mouse.x - sticker.offsetX);
 		this.y = calculateVhPos(
-			Math.max(
-				minStickableY,
-				Math.min(
-					mouse.y +
-						document.documentElement.scrollTop -
-						sticker.offsetY,
-					maxStickableY
-				)
-			)
+			mouse.y + document.documentElement.scrollTop - sticker.offsetY
 		);
 		this.current && this.moveSticker();
 	},
@@ -277,9 +267,6 @@ window.onscroll = throttle(() => {
 
 // Update variables related to the viewport
 const setViewportValues = () => {
-	// Redetermine area stickers can be moved in
-	maxStickableY = stickable.offsetTop + stickable.offsetHeight - 40;
-
 	// Redetermine "UV Light Rafters" image offsets
 	uvStart = uvEl.offsetTop - window.innerHeight;
 	uvEnd = uvEl.offsetTop + uvEl.offsetHeight;
@@ -763,19 +750,19 @@ setTimeout(() => {
 
 // Stick four random stickers on the screen
 const margin = 200;
-function clamp(number, min, max) {
+const clamp = (number, min, max) => {
 	return Math.max(min, Math.min(number, max));
-}
-function fitSrceen(number) {
+};
+const fitSrceen = number => {
 	return clamp(Math.floor(Math.random() * number), margin, number - margin);
-}
-
-const pixelToViewport = (axis, elementDimension) =>
-	(axis / elementDimension) * 100;
-
-const calculateVwPos = x => pixelToViewport(x, stickable.clientWidth);
-const calculateVhPos = y => pixelToViewport(y, stickable.clientHeight);
-
+};
+const calculateVwPos = x => {
+	return (x / stickable.clientWidth) * 100;
+};
+const calculateVhPos = y => {
+	const elementOffset = window.innerHeight - stickable.clientHeight;
+	return (y / (stickable.clientHeight + elementOffset)) * 100;
+};
 for (let i = 0; i < 4; i++) {
 	let randomX = calculateVwPos(fitSrceen(window.innerWidth));
 	let randomY = calculateVhPos(fitSrceen(window.innerHeight));
