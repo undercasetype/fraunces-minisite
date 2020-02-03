@@ -1,5 +1,5 @@
 module.exports = {
-	title: "Fraunces",
+	title: "Fraunces by Undercase Type",
 	description:
 		'Fraunces is a display, "Old Style" soft-serif typeface inspired by the mannerisms of early 20th century typefaces such as Windsor, Souvenir, and the Cooper Series.',
 
@@ -7,31 +7,32 @@ module.exports = {
 	metatags: [
 		{
 			property: "og:title",
-			content: ""
+			content: "Fraunces by Undercase Type"
 		},
 		{
 			property: "og:description",
-			content: ""
+			content:
+				"Fraunces is a display, 'Old Style' soft-serif typeface inspired by the mannerisms of early 20th century typefaces such as Windsor, Souvenir, and the Cooper Series."
 		},
 		{
 			property: "og:image",
-			content: ""
+			content: "/src/img/fraunces_site.png"
 		},
 		{
 			property: "og:url",
-			content: ""
+			content: "http://fraunces.undercase.xyz"
 		},
 		{
 			property: "og:site_name",
-			content: ""
+			content: "Fraunces by Undercase Type"
 		},
 		{
 			name: "twitter:card",
-			content: ""
+			content: "Fraunces"
 		},
 		{
 			name: "twitter:image:alt",
-			content: ""
+			content: "Fraunces by Undercase Type"
 		}
 	]
 };
