@@ -9,6 +9,7 @@
 	font-size: 3.5vw;
 	position: relative;
 	z-index: 1000;
+	overflow: hidden;
 }
 
 .sticker-hero h1 {
