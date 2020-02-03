@@ -51,7 +51,7 @@
 	transition: filter 100ms;
 	user-select: none;
 	background-size: 100% 100%;
-	cursor: grab;
+	cursor: none;
 	filter: drop-shadow(1.5px 1.5px 1px rgba(0, 0, 0, 0.1));
 }
 
