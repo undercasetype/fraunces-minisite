@@ -191,13 +191,15 @@ const sticker = {
 	offsetY: headerEl.clientHeight,
 	current: false,
 	updateSticker: function() {
-		this.x = mouse.x - sticker.offsetX;
-		this.y = mouse.y + document.documentElement.scrollTop - sticker.offsetY;
+		this.x = calculateVwPos(mouse.x - sticker.offsetX);
+		this.y = calculateVhPos(
+			mouse.y + document.documentElement.scrollTop - sticker.offsetY
+		);
 		this.current && this.moveSticker();
 	},
 	moveSticker: function() {
-		this.current.style.setProperty("--x", `${this.x}px`);
-		this.current.style.setProperty("--y", `${this.y}px`);
+		this.current.style.setProperty("--x", `${this.x}vw`);
+		this.current.style.setProperty("--y", `${this.y}vh`);
 	},
 	generateSticker: function(x, y) {
 		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
@@ -206,8 +208,8 @@ const sticker = {
 		newSticker.classList.add("sticker", `sticker-${stickerNumber}`);
 		newSticker.style.setProperty("--tilt", `${tilt}deg`);
 		if (x && y) {
-			newSticker.style.setProperty("--x", `${x}px`);
-			newSticker.style.setProperty("--y", `${y}px`);
+			newSticker.style.setProperty("--x", `${x}vw`);
+			newSticker.style.setProperty("--y", `${y}vh`);
 		}
 		sticker.current = newSticker;
 		stickable.appendChild(sticker.current);
@@ -748,15 +750,23 @@ setTimeout(() => {
 
 // Stick four random stickers on the screen
 const margin = 200;
-function clamp(number, min, max) {
+const clamp = (number, min, max) => {
 	return Math.max(min, Math.min(number, max));
-}
-function fitSrceen(number) {
+};
+const fitSrceen = number => {
 	return clamp(Math.floor(Math.random() * number), margin, number - margin);
-}
+};
+const calculateVwPos = x => {
+	return (x / stickable.clientWidth) * 100;
+};
+const calculateVhPos = y => {
+	const elementOffset = window.innerHeight - stickable.clientHeight;
+	return (y / (stickable.clientHeight + elementOffset)) * 100;
+};
 for (let i = 0; i < 4; i++) {
-	let randomX = fitSrceen(window.innerWidth);
-	let randomY = fitSrceen(window.innerHeight);
+	let randomX = calculateVwPos(fitSrceen(window.innerWidth));
+	let randomY = calculateVhPos(fitSrceen(window.innerHeight));
+
 	sticker.generateSticker(randomX, randomY);
 }
 sticker.current = false;
