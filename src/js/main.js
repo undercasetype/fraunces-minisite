@@ -4,7 +4,7 @@ import FontFaceObserver from "fontfaceobserver";
 
 const fontTimeOut = 5000; // In milliseconds
 const numberOfStickers = 7; // How many hero-stickers-0x.svg do we have?
-const minStickableY = 0; // Keep stickers inside viewport top
+const minStickableY = 0; // Make sure sticker can go under the header bar which allows a smoother sticker interaction.
 let scrollPos = 0;
 
 // Generic throttle
