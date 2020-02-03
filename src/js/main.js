@@ -193,19 +193,23 @@ const sticker = {
 	offsetY: headerEl.clientHeight,
 	current: false,
 	updateSticker: function() {
-		this.x = mouse.x - sticker.offsetX;
-		this.y = Math.max(
-			minStickableY,
-			Math.min(
-				mouse.y + document.documentElement.scrollTop - sticker.offsetY,
-				maxStickableY
+		this.x = calculateVwPos(mouse.x - sticker.offsetX);
+		this.y = calculateVhPos(
+			Math.max(
+				minStickableY,
+				Math.min(
+					mouse.y +
+						document.documentElement.scrollTop -
+						sticker.offsetY,
+					maxStickableY
+				)
 			)
 		);
 		this.current && this.moveSticker();
 	},
 	moveSticker: function() {
-		this.current.style.setProperty("--x", `${this.x}px`);
-		this.current.style.setProperty("--y", `${this.y}px`);
+		this.current.style.setProperty("--x", `${this.x}vw`);
+		this.current.style.setProperty("--y", `${this.y}vh`);
 	},
 	generateSticker: function(x, y) {
 		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
@@ -214,8 +218,8 @@ const sticker = {
 		newSticker.classList.add("sticker", `sticker-${stickerNumber}`);
 		newSticker.style.setProperty("--tilt", `${tilt}deg`);
 		if (x && y) {
-			newSticker.style.setProperty("--x", `${x}px`);
-			newSticker.style.setProperty("--y", `${y}px`);
+			newSticker.style.setProperty("--x", `${x}vw`);
+			newSticker.style.setProperty("--y", `${y}vh`);
 		}
 		sticker.current = newSticker;
 		stickable.appendChild(sticker.current);
@@ -765,9 +769,17 @@ function clamp(number, min, max) {
 function fitSrceen(number) {
 	return clamp(Math.floor(Math.random() * number), margin, number - margin);
 }
+
+const pixelToViewport = (axis, elementDimension) =>
+	(axis / elementDimension) * 100;
+
+const calculateVwPos = x => pixelToViewport(x, stickable.clientWidth);
+const calculateVhPos = y => pixelToViewport(y, stickable.clientHeight);
+
 for (let i = 0; i < 4; i++) {
-	let randomX = fitSrceen(window.innerWidth);
-	let randomY = fitSrceen(window.innerHeight);
+	let randomX = calculateVwPos(fitSrceen(window.innerWidth));
+	let randomY = calculateVhPos(fitSrceen(window.innerHeight));
+
 	sticker.generateSticker(randomX, randomY);
 }
 sticker.current = false;
