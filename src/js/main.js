@@ -4,7 +4,6 @@ import FontFaceObserver from "fontfaceobserver";
 
 const fontTimeOut = 5000; // In milliseconds
 const numberOfStickers = 7; // How many hero-stickers-0x.svg do we have?
-const minStickableY = 60; // Keep stickers inside viewport top
 let scrollPos = 0;
 
 // Generic throttle
@@ -185,7 +184,6 @@ swiperHandle.addEventListener("touchmove", e => {
 // Sticker stuff
 const stickable = document.querySelector(".sticker-hero");
 const headerEl = document.querySelector("header");
-let maxStickableY;
 const sticker = {
 	x: 0,
 	y: 0,
@@ -194,13 +192,7 @@ const sticker = {
 	current: false,
 	updateSticker: function() {
 		this.x = mouse.x - sticker.offsetX;
-		this.y = Math.max(
-			minStickableY,
-			Math.min(
-				mouse.y + document.documentElement.scrollTop - sticker.offsetY,
-				maxStickableY
-			)
-		);
+		this.y = mouse.y + document.documentElement.scrollTop - sticker.offsetY;
 		this.current && this.moveSticker();
 	},
 	moveSticker: function() {
@@ -273,9 +265,6 @@ window.onscroll = throttle(() => {
 
 // Update variables related to the viewport
 const setViewportValues = () => {
-	// Redetermine area stickers can be moved in
-	maxStickableY = stickable.offsetTop + stickable.offsetHeight - 40;
-
 	// Redetermine "UV Light Rafters" image offsets
 	uvStart = uvEl.offsetTop - window.innerHeight;
 	uvEnd = uvEl.offsetTop + uvEl.offsetHeight;
