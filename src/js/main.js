@@ -9,17 +9,24 @@ let scrollPos = 0;
 // Generic: throttle
 const throttle = (fn, wait) => {
 	let last, queue;
-
 	return function runFn(...args) {
 		const now = Date.now();
 		queue = clearTimeout(queue);
-
 		if (!last || now - last >= wait) {
 			fn.apply(null, args);
 			last = now;
 		} else {
 			queue = setTimeout(runFn.bind(null, ...args), wait - (now - last));
 		}
+	};
+};
+
+const debounce = (fn, time) => {
+	let timeout;
+	return function() {
+		const functionCall = () => fn.apply(this, arguments);
+		clearTimeout(timeout);
+		timeout = setTimeout(functionCall, time);
 	};
 };
 
@@ -199,16 +206,15 @@ const sticker = {
 	offsetY: headerEl.clientHeight,
 	current: false,
 	next: [],
-	updateSticker: function() {
+	moveSticker: function() {
 		this.x = calculateVwPos(mouse.x - sticker.offsetX);
 		this.y = calculateVhPos(
 			mouse.y + document.documentElement.scrollTop - sticker.offsetY
 		);
-		this.current && this.moveSticker();
-	},
-	moveSticker: function() {
-		this.current.style.setProperty("--x", `${this.x}vw`);
-		this.current.style.setProperty("--y", `${this.y}vh`);
+		if (this.current) {
+			this.current.style.setProperty("--x", `${this.x}vw`);
+			this.current.style.setProperty("--y", `${this.y}vh`);
+		}
 	},
 	generateSticker: function(x, y) {
 		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
@@ -216,15 +222,26 @@ const sticker = {
 		const newSticker = document.createElement("div");
 		newSticker.classList.add("sticker", `sticker-${stickerNumber}`);
 		newSticker.style.setProperty("--tilt", `${tilt}deg`);
+		this.current = newSticker;
+		stickable.appendChild(this.current);
 		if (x && y) {
 			newSticker.style.setProperty("--x", `${x}vw`);
 			newSticker.style.setProperty("--y", `${y}vh`);
+		} else {
+			this.moveSticker();
 		}
-		this.current = newSticker;
-		stickable.appendChild(this.current);
 	},
+	placeSticker: function() {
+		sticker.current = false;
+		this.delayedPlaceSticker();
+	},
+	delayedPlaceSticker: debounce(() => {
+		sticker.generateSticker();
+	}, 3000),
 	destroySticker: function() {
-		stickable.removeChild(this.current);
+		if (this.current) {
+			stickable.removeChild(this.current);
+		}
 		sticker.current = false;
 	},
 	getRandomStickerNumber: function() {
@@ -245,23 +262,23 @@ stickable.addEventListener("touchend", e => {
 	}
 
 	if (mouse.y === e.changedTouches[0].clientY) {
-		sticker.generateSticker();
-		sticker.updateSticker();
+		sticker.placeSticker();
 	}
 });
 
 stickable.addEventListener("mousemove", () => {
-	if (!sticker.current && mouse.x && mouse.y) {
-		sticker.generateSticker();
-	}
-	sticker.updateSticker();
+	sticker.moveSticker();
 });
 
 // Place sticker and create new one
 stickable.addEventListener("mousedown", e => {
 	if (e.which !== 1) return; // Only work on left mouse button
-	sticker.generateSticker();
-	sticker.updateSticker();
+	sticker.placeSticker();
+});
+
+// Don't stick the sticker when leaving the sticker area.
+stickable.addEventListener("mouseenter", () => {
+	sticker.placeSticker();
 });
 
 // Don't stick the sticker when leaving the sticker area.
@@ -779,3 +796,7 @@ for (let i = 0; i < 4; i++) {
 	sticker.generateSticker(randomX, randomY);
 }
 sticker.current = false;
+
+setTimeout(() => {
+	sticker.generateSticker();
+}, 3000);
