@@ -236,8 +236,9 @@ const sticker = {
 		this.delayedPlaceSticker();
 	},
 	delayedPlaceSticker: debounce(() => {
+		// TODO: check if no mouseleave has occurred in the mean time!
 		sticker.generateSticker();
-	}, 3000),
+	}, 1000),
 	destroySticker: function() {
 		if (this.current) {
 			stickable.removeChild(this.current);
@@ -267,6 +268,9 @@ stickable.addEventListener("touchend", e => {
 });
 
 stickable.addEventListener("mousemove", () => {
+	if (!sticker.current && mouse.x && mouse.y) {
+		sticker.generateSticker();
+	}
 	sticker.moveSticker();
 });
 
@@ -276,7 +280,7 @@ stickable.addEventListener("mousedown", e => {
 	sticker.placeSticker();
 });
 
-// Don't stick the sticker when leaving the sticker area.
+//
 stickable.addEventListener("mouseenter", () => {
 	sticker.placeSticker();
 });
@@ -798,5 +802,5 @@ for (let i = 0; i < 4; i++) {
 sticker.current = false;
 
 setTimeout(() => {
-	sticker.generateSticker();
+	sticker.placeSticker();
 }, 3000);
