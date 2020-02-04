@@ -1,4 +1,8 @@
-module.exports = {
+const { webpackAssetUrl } = require("../../_tools/webpackHelpers");
+
+const siteAbsUrl = "https://fraunces.undercase.xyz";
+
+module.exports = async () => ({
 	title: "Fraunces by Undercase Type",
 	description:
 		'Fraunces is a display, "Old Style" soft-serif typeface inspired by the mannerisms of early 20th century typefaces such as Windsor, Souvenir, and the Cooper Series.',
@@ -16,11 +20,11 @@ module.exports = {
 		},
 		{
 			property: "og:image",
-			content: "https://fraunces.undercase.xyz/img/fraunces_site.png"
+			content: await webpackAssetUrl(siteAbsUrl, "img/fraunces_site.png")
 		},
 		{
 			property: "og:url",
-			content: "https://fraunces.undercase.xyz"
+			content: siteAbsUrl
 		},
 		{
 			property: "og:site_name",
@@ -35,4 +39,4 @@ module.exports = {
 			content: "Fraunces by Undercase Type"
 		}
 	]
-};
+});
