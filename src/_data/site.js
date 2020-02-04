@@ -16,11 +16,11 @@ module.exports = {
 		},
 		{
 			property: "og:image",
-			content: "/src/img/fraunces_site.png"
+			content: "https://fraunces.undercase.xyz/img/fraunces_site.png"
 		},
 		{
 			property: "og:url",
-			content: "http://fraunces.undercase.xyz"
+			content: "https://fraunces.undercase.xyz"
 		},
 		{
 			property: "og:site_name",
