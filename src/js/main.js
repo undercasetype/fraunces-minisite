@@ -198,6 +198,7 @@ const sticker = {
 	offsetX: 0,
 	offsetY: headerEl.clientHeight,
 	current: false,
+	next: [],
 	updateSticker: function() {
 		this.x = calculateVwPos(mouse.x - sticker.offsetX);
 		this.y = calculateVhPos(
@@ -211,7 +212,7 @@ const sticker = {
 	},
 	generateSticker: function(x, y) {
 		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
-		const stickerNumber = Math.floor(Math.random() * numberOfStickers + 1);
+		const stickerNumber = this.getRandomStickerNumber();
 		const newSticker = document.createElement("div");
 		newSticker.classList.add("sticker", `sticker-${stickerNumber}`);
 		newSticker.style.setProperty("--tilt", `${tilt}deg`);
@@ -219,12 +220,21 @@ const sticker = {
 			newSticker.style.setProperty("--x", `${x}vw`);
 			newSticker.style.setProperty("--y", `${y}vh`);
 		}
-		sticker.current = newSticker;
-		stickable.appendChild(sticker.current);
+		this.current = newSticker;
+		stickable.appendChild(this.current);
 	},
 	destroySticker: function() {
-		stickable.removeChild(sticker.current);
+		stickable.removeChild(this.current);
 		sticker.current = false;
+	},
+	getRandomStickerNumber: function() {
+		if (this.next.length === 0) {
+			this.next = Array.from(
+				{ length: numberOfStickers },
+				(v, k) => k + 1
+			);
+		}
+		return popRandomValue(this.next);
 	}
 };
 
