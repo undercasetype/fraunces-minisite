@@ -32,6 +32,21 @@ function popRandomValue(list) {
 		.pop();
 }
 
+// Generic: detect pssive
+let supportsPassive = false;
+try {
+	const opts = Object.defineProperty({}, "passive", {
+		get: function() {
+			supportsPassive = true;
+			return true; // Abide getter-return linter check
+		}
+	});
+	window.addEventListener("testPassive", null, opts);
+	window.removeEventListener("testPassive", null, opts);
+} catch (e) {
+	// Do nothing
+}
+
 // Set up FontFaceObserver
 const font = new FontFaceObserver(fontName);
 font.load(null, fontTimeOut).then(
@@ -171,24 +186,28 @@ const calculateSwiperOffset = () => {
 	const clampedPerc = Math.max(1, Math.min(perc, 100));
 	swiper.style.setProperty("--offset", `${clampedPerc}%`);
 };
-swiperHandle.onmousedown = e => {
+swiperHandle.addEventListener("mousedown", e => {
 	e.preventDefault();
 	swiperHandle.classList.add("dragging");
 	mouse.dragCallback = () => calculateSwiperOffset();
 	mouse.endCallback = () => {
 		swiperHandle.classList.remove("dragging");
 	};
-};
-swiperHandle.addEventListener("touchmove", e => {
-	swiperHandle.classList.add("dragging");
-	mouse.x = e.touches[0].clientX;
-	mouse.y = e.touches[0].clientY;
-	calculateSwiperOffset();
-
-	mouse.endCallback = () => {
-		swiperHandle.classList.remove("dragging");
-	};
 });
+swiperHandle.addEventListener(
+	"touchmove",
+	e => {
+		swiperHandle.classList.add("dragging");
+		mouse.x = e.touches[0].clientX;
+		mouse.y = e.touches[0].clientY;
+		calculateSwiperOffset();
+
+		mouse.endCallback = () => {
+			swiperHandle.classList.remove("dragging");
+		};
+	},
+	supportsPassive ? { passive: true } : false
+);
 
 // Sticker stuff
 const stickable = document.querySelector(".sticker-hero");
