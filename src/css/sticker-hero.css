@@ -43,7 +43,7 @@
 	--x: 0;
 	--y: 0;
 	--tilt: 0;
-	--animatable: 0;
+	--animatable: false;
 
 	position: absolute;
 	top: 0;
