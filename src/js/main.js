@@ -211,7 +211,9 @@ const sticker = {
 		this.current.style.setProperty("--y", `${this.y}vh`);
 	},
 	generateSticker: function(x, y) {
-		this.current.classList.remove("dragging");
+		if (this.current) {
+			this.current.classList.remove("dragging");
+		}
 		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
 		const scale = (Math.random() * (1 - 0.5) + 0.75).toFixed(2); // Generate a value between 0.75 and 1.25
 		const stickerNumber = this.getRandomStickerNumber();
@@ -234,7 +236,9 @@ const sticker = {
 		stickable.appendChild(this.current);
 	},
 	destroySticker: function() {
-		stickable.removeChild(this.current);
+		if (this.current) {
+			stickable.removeChild(this.current);
+		}
 		sticker.current = false;
 	},
 	getRandomStickerNumber: function() {
