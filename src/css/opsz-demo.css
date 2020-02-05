@@ -9,10 +9,10 @@
 	font-weight: 300;
 	font-size: 1.375rem;
 	line-height: 1.25;
-
 	position: relative;
 	margin: 0 auto;
 	width: var(--width);
+	user-select: none;
 }
 
 .opsz-demo p {
@@ -27,7 +27,6 @@
 	padding-left: 2rem;
 	padding-right: 2rem;
 	width: var(--width);
-	user-select: none;
 }
 
 .opsz-demo h3 {
