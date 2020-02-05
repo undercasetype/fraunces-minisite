@@ -6,7 +6,6 @@
 .checkersboard {
 	--max: 80vw;
 	--gap: 1vw;
-
 	--unit: calc(var(--max) / 8 - var(--gap));
 
 	display: grid;
@@ -82,7 +81,7 @@
 		--gap: 0.375rem;
 	}
 
-	.checkersboard > div {
+	.checkersboard .piece {
 		font-size: 3.5rem;
 	}
 }

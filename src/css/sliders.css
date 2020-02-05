@@ -1,8 +1,4 @@
 [type="range"] {
-	--range: calc(var(--max) - var(--min));
-	--ratio: calc((var(--val) - var(--min)) / var(--range));
-	--sx: calc(0.5 * 3em + var(--ratio) * (100% - 3em));
-
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -40,11 +36,12 @@
 }
 [type="range"]::-moz-range-progress {
 	height: 0.5em;
-	background: var(--fraunces-yellow);
+	background: black;
 }
 [type="range"]::-ms-fill-lower {
 	height: 0.5em;
 	background: var(--fraunces-yellow);
+	background: black;
 }
 [type="range"]::-webkit-slider-thumb {
 	margin-top: -1.35em;
@@ -78,11 +75,15 @@
 [type="range"].dark::-webkit-slider-runnable-track {
 	background: var(--fraunces-yellow);
 }
+[type="range"].dark::-moz-range-progress,
 [type="range"].dark::-moz-range-track {
 	background: var(--fraunces-yellow);
 }
-[type="range"].dark::-ms-track {
-	background: var(--fraunces-yellow);
+[type="range"].dark::-ms-track,
+[type="range"].dark::-ms-fill-lower {
+	/* Older Edge has trouble using CSS variables in
+	   pseudo elements, so use hardcoded color. */
+	background: #fba919;
 }
 [type="range"].dark::-webkit-slider-thumb {
 	background: white;

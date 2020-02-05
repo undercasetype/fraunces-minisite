@@ -171,7 +171,8 @@ const calculateSwiperOffset = () => {
 	const clampedPerc = Math.max(1, Math.min(perc, 100));
 	swiper.style.setProperty("--offset", `${clampedPerc}%`);
 };
-swiperHandle.onmousedown = () => {
+swiperHandle.onmousedown = e => {
+	e.preventDefault();
 	swiperHandle.classList.add("dragging");
 	mouse.dragCallback = () => calculateSwiperOffset();
 	mouse.endCallback = () => {
@@ -307,7 +308,7 @@ const setViewportValues = () => {
 
 	// Determine opsz container width
 	const opszWidth =
-		document.querySelector(".opsz-text .prose-content").offsetWidth - 32;
+		document.querySelector(".opsz-text .prose-content").offsetWidth - 48; // 48 = 3rem = handle size
 	document
 		.querySelector(".opsz-demo")
 		.style.setProperty("--width", `${opszWidth}px`);

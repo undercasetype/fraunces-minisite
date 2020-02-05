@@ -6,6 +6,7 @@
 .uv {
 	display: block;
 	width: 80%;
+	max-width: 80rem;
 	margin: 0 auto;
 	overflow: visible;
 }

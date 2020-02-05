@@ -28,6 +28,7 @@ footer a:hover {
 }
 
 .footer-repo-link {
+	white-space: nowrap;
 	text-align: right;
 	font-weight: 900;
 }
