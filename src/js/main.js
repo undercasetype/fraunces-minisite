@@ -234,11 +234,15 @@ const sticker = {
 		}
 
 		this.current = newSticker;
-		stickable.appendChild(this.current);
+		window.requestAnimationFrame(() => {
+			stickable.appendChild(newSticker);
+		});
 	},
 	destroySticker: function() {
-		if (this.current) {
-			stickable.removeChild(this.current);
+		if (stickable.current) {
+			window.requestAnimationFrame(() => {
+				stickable.removeChild(stickable.current);
+			});
 		}
 		sticker.current = false;
 	},
