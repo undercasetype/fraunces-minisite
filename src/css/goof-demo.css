@@ -19,6 +19,7 @@
 
 .goof-demo-text {
 	--GOOF: 100;
+	--opsz: 144;
 
 	font-weight: 900;
 	line-height: 1;
