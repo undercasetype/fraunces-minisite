@@ -43,6 +43,7 @@
 	--x: 0;
 	--y: 0;
 	--tilt: 0;
+	--animatable: 0;
 
 	position: absolute;
 	top: 0;
@@ -62,7 +63,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	animation: bounce-in 600ms linear both;
+	animation: var(--animatable);
 	background-size: 100% 100%;
 }
 

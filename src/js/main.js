@@ -260,6 +260,10 @@ stickable.addEventListener("mousemove", () => {
 // Place sticker and create new one
 stickable.addEventListener("mousedown", e => {
 	if (e.which !== 1) return; // Only work on left mouse button
+	sticker.current.style.setProperty(
+		"--animatable",
+		"bounce-in 600ms linear both"
+	);
 	sticker.generateSticker();
 	sticker.updateSticker();
 });
