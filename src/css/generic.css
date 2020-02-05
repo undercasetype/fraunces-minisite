@@ -44,3 +44,7 @@ body {
 a {
 	color: inherit;
 }
+
+strong {
+	font-weight: 700;
+}
