@@ -1,38 +1,30 @@
 footer {
-	padding: 3rem;
 	background: var(--fraunces-yellow);
-	display: flex;
-}
-
-footer > * {
-	flex: auto;
-	width: 30%;
 }
 
 footer a {
-	color: var(--fraunces-black);
+	color: inherit;
 	text-decoration: none;
-}
-
-footer p {
-	--GOOF: 100;
-}
-
-.footer-brought-to-you a {
-	font-size: 1.75rem;
-	font-weight: 500;
 }
 
 footer a:hover {
 	text-decoration: underline;
 }
 
-.footer-credits p:not(:last-child) {
-	margin: 0 0 1em 0;
+.footer-inner {
+	max-width: 70em;
+	margin: 0 auto;
+	display: flex;
+	padding: 3rem;
+}
+
+.footer-brought-to-you img {
+	height: 3.5rem;
 }
 
 .footer-credits {
-	padding: 0 1em;
+	padding: 0 2em;
+	--GOOF: 100;
 }
 
 .footer-repo-link {
@@ -41,17 +33,13 @@ footer a:hover {
 }
 
 @media screen and (max-width: 70em) {
-	footer {
+	.footer-inner {
 		flex-direction: column;
 		align-items: center;
 	}
 
-	footer > * {
-		width: auto;
-	}
-
 	.footer-credits {
-		padding: 2em 0 1em 0;
+		padding: 2em 0 3em 0;
 	}
 
 	.footer-credits,
