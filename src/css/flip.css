@@ -43,20 +43,17 @@
 
 .flip-controls-container {
 	display: flex;
+	margin-bottom: 4rem;
 }
 
 .flip-controls {
 	display: flex;
 	max-width: 40rem;
 	margin: 0 auto;
-
-	/* Reserve space for lists */
-	min-height: 22rem;
 }
 
-.flip-controls > li {
-	flex: none;
-	padding: 0 1rem;
+.flip-controls h4 {
+	text-align: center;
 }
 
 .flip-controls h4::after {
@@ -66,12 +63,29 @@
 	display: block;
 	overflow: hidden;
 	height: 0;
+	font-weight: 900;
+	margin-left: 0.75em;
+	padding-right: 0.75em;
+}
+
+.flip-controls > li {
+	flex: none;
+	display: flex;
+	flex-direction: column;
 }
 
 .flip-control {
 	line-height: 1.5em;
-	padding-top: calc(var(--offset) * 1.5em);
+	height: calc(11 * 1.5em); /* Height of tallest column */
 	transition: padding 200ms;
+	border-right: 1px solid black;
+	margin-left: 0.75em;
+	padding-right: 0.75em;
+	padding-top: calc(var(--offset) * 1.5em);
+}
+
+.flip-control-borderless {
+	border-right: 0;
 }
 
 .flip-control .active {
