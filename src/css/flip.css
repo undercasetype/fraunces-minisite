@@ -28,6 +28,7 @@
 	font-size: 12vw;
 	margin-bottom: 3rem;
 	color: var(--fraunces-white);
+	outline: 0;
 
 	/* Addressing the wght axis directly, so apply the
 	font-variation-settings specifically for this demo */
