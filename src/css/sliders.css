@@ -40,7 +40,7 @@
 }
 [type="range"]::-moz-range-progress {
 	height: 0.5em;
-	background: var(--fraunces-yellow);
+	background: black;
 }
 [type="range"]::-ms-fill-lower {
 	height: 0.5em;
@@ -78,6 +78,7 @@
 [type="range"].dark::-webkit-slider-runnable-track {
 	background: var(--fraunces-yellow);
 }
+[type="range"].dark::-moz-range-progress,
 [type="range"].dark::-moz-range-track {
 	background: var(--fraunces-yellow);
 }
