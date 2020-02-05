@@ -43,12 +43,13 @@
 	--x: 0;
 	--y: 0;
 	--tilt: 0;
+	--scale: 1;
 
 	position: absolute;
 	top: 0;
 	left: 0;
 	transform: translate(var(--x), var(--y)) translate(-50%, -50%)
-		rotate(var(--tilt));
+		rotate(var(--tilt)) scale(var(--scale));
 	transition: filter 100ms;
 	user-select: none;
 	cursor: none;
@@ -71,7 +72,6 @@
 }
 
 .sticker.dragging {
-	cursor: grabbing;
 	filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.2));
 }
 
