@@ -1,5 +1,12 @@
 .variable-support {
-	display: block;
+	display: flex;
+	height: 5em;
+	justify-content: center;
+	align-items: center;
+	background: red;
+	color: white;
+	font-size: 2em;
+	padding: 0 2em;
 }
 
 @supports (font-variation-settings: normal) {
