@@ -260,6 +260,7 @@ stickable.addEventListener("mousemove", () => {
 // Place sticker and create new one
 stickable.addEventListener("mousedown", e => {
 	if (e.which !== 1) return; // Only work on left mouse button
+
 	sticker.generateSticker();
 	sticker.updateSticker();
 });
@@ -777,5 +778,6 @@ for (let i = 0; i < 4; i++) {
 	let randomY = calculateVhPos(fitSrceen(window.innerHeight));
 
 	sticker.generateSticker(randomX, randomY);
+	sticker.current.classList.add("static");
 }
 sticker.current = false;
