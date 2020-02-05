@@ -6,7 +6,7 @@ const fontTimeOut = 5000; // In milliseconds
 const numberOfStickers = 7; // How many hero-stickers-0x.svg do we have?
 let scrollPos = 0;
 
-// Generic throttle
+// Generic: throttle
 const throttle = (fn, wait) => {
 	let last, queue;
 
@@ -22,6 +22,15 @@ const throttle = (fn, wait) => {
 		}
 	};
 };
+
+// Generic: return random value from array and delete it
+function popRandomValue(list) {
+	return list
+		.sort(function() {
+			return 0.5 - Math.random();
+		})
+		.pop();
+}
 
 // Set up FontFaceObserver
 const font = new FontFaceObserver(fontName);
@@ -42,7 +51,7 @@ font.load(null, fontTimeOut).then(
 	}
 );
 
-// Interactive contols (sliders that tweak axes)
+// Interactive controls (sliders that tweak axes)
 const interactives = document.querySelectorAll(".interactive-controls");
 for (const interactive of interactives) {
 	const area = interactive.querySelector(".interactive-controls-text");
@@ -88,7 +97,6 @@ for (const interactive of interactives) {
 
 // Make WONK snap
 const wonkSliders = document.querySelectorAll(".wonk-slider");
-
 for (const wonkSlider of wonkSliders) {
 	wonkSlider.onchange = e => {
 		e.target.value = Math.round(e.target.value);
@@ -190,6 +198,7 @@ const sticker = {
 	offsetX: 0,
 	offsetY: headerEl.clientHeight,
 	current: false,
+	next: [],
 	updateSticker: function() {
 		this.x = calculateVwPos(mouse.x - sticker.offsetX);
 		this.y = calculateVhPos(
@@ -203,7 +212,7 @@ const sticker = {
 	},
 	generateSticker: function(x, y) {
 		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
-		const stickerNumber = Math.floor(Math.random() * numberOfStickers + 1);
+		const stickerNumber = this.getRandomStickerNumber();
 		const newSticker = document.createElement("div");
 		newSticker.classList.add("sticker", `sticker-${stickerNumber}`);
 		newSticker.style.setProperty("--tilt", `${tilt}deg`);
@@ -211,12 +220,21 @@ const sticker = {
 			newSticker.style.setProperty("--x", `${x}vw`);
 			newSticker.style.setProperty("--y", `${y}vh`);
 		}
-		sticker.current = newSticker;
-		stickable.appendChild(sticker.current);
+		this.current = newSticker;
+		stickable.appendChild(this.current);
 	},
 	destroySticker: function() {
-		stickable.removeChild(sticker.current);
+		stickable.removeChild(this.current);
 		sticker.current = false;
+	},
+	getRandomStickerNumber: function() {
+		if (this.next.length === 0) {
+			this.next = Array.from(
+				{ length: numberOfStickers },
+				(v, k) => k + 1
+			);
+		}
+		return popRandomValue(this.next);
 	}
 };
 
@@ -666,15 +684,6 @@ function getPiecePosition(piece) {
 	option = popRandomValue(options);
 
 	return { oldPos: pos, move: option };
-}
-
-// Return random value from array and delete it
-function popRandomValue(list) {
-	return list
-		.sort(function() {
-			return 0.5 - Math.random();
-		})
-		.pop();
 }
 
 // Fill entire checkeboard
