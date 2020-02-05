@@ -9,7 +9,7 @@
 }
 
 :root {
-	--fraunces-yellow: #fba919;
+	--fraunces-yellow: #fba919; /* Also see sliders.css */
 	--fraunces-black: #000;
 	--fraunces-white: #fff;
 	--fraunces-neon: #2cff00;
