@@ -211,6 +211,7 @@ const sticker = {
 		this.current.style.setProperty("--y", `${this.y}vh`);
 	},
 	generateSticker: function(x, y) {
+		this.current.classList.remove("dragging");
 		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
 		const scale = (Math.random() * (1 - 0.5) + 0.75).toFixed(2); // Generate a value between 0.75 and 1.25
 		const stickerNumber = this.getRandomStickerNumber();
@@ -220,12 +221,12 @@ const sticker = {
 		newSticker.style.setProperty("--scale", scale);
 
 		if (x && y) {
+			// New sticker isn't draggable, but placed directly
 			newSticker.style.setProperty("--x", `${x}vw`);
 			newSticker.style.setProperty("--y", `${y}vh`);
 			newSticker.classList.add("static");
-		}
-
-		if (!newSticker.classList.contains("static")) {
+		} else {
+			// New sticker will be dragged
 			newSticker.classList.add("dragging");
 		}
 
@@ -270,7 +271,6 @@ stickable.addEventListener("mousemove", () => {
 stickable.addEventListener("mousedown", e => {
 	if (e.which !== 1) return; // Only work on left mouse button
 
-	sticker.current.classList.remove("dragging");
 	sticker.generateSticker();
 	sticker.updateSticker();
 });
