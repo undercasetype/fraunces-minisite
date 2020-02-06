@@ -177,3 +177,16 @@
 		right: 0;
 	}
 }
+
+@media screen and (max-width: 48em) {
+	.opsz-medium,
+	.opsz-medium-with,
+	.opsz-large,
+	.opsz-large-with {
+		font-size: 1.5rem;
+	}
+
+	.opsz-demo p {
+		margin: 0 0 2.25rem 0;
+	}
+}
