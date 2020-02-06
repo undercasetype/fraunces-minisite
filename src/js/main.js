@@ -222,9 +222,16 @@ const sticker = {
 	offsetY: headerEl.clientHeight,
 	current: false,
 	next: [],
+	calculateVwPos: function(x) {
+		return (x / stickable.clientWidth) * 100;
+	},
+	calculateVhPos: function(y) {
+		const elementOffset = window.innerHeight - stickable.clientHeight;
+		return (y / (stickable.clientHeight + elementOffset)) * 100;
+	},
 	updateSticker: function() {
-		this.x = calculateVwPos(mouse.x - sticker.offsetX);
-		this.y = calculateVhPos(
+		this.x = this.calculateVwPos(mouse.x - sticker.offsetX);
+		this.y = this.calculateVhPos(
 			mouse.y + document.documentElement.scrollTop - sticker.offsetY
 		);
 		this.current && this.moveSticker();
@@ -799,25 +806,18 @@ setTimeout(() => {
 }, 2000);
 
 // Stick four random stickers on the screen
-const margin = 200;
-const clamp = (number, min, max) => {
-	return Math.max(min, Math.min(number, max));
-};
-const fitSrceen = number => {
-	return clamp(Math.floor(Math.random() * number), margin, number - margin);
-};
-const calculateVwPos = x => {
-	return (x / stickable.clientWidth) * 100;
-};
-const calculateVhPos = y => {
-	const elementOffset = window.innerHeight - stickable.clientHeight;
-	return (y / (stickable.clientHeight + elementOffset)) * 100;
-};
+const staticOptions = [
+	[15, 20],
+	[15, 40],
+	[85, 30],
+	[20, 65],
+	[75, 80],
+	[30, 85],
+	[80, 55],
+	[80, 10]
+];
 for (let i = 0; i < 4; i++) {
-	let randomX = calculateVwPos(fitSrceen(window.innerWidth));
-	let randomY = calculateVhPos(fitSrceen(window.innerHeight));
-
-	sticker.generateSticker(randomX, randomY);
-	sticker.current.classList.add("static");
+	const randomLocation = popRandomValue(staticOptions);
+	sticker.generateSticker(randomLocation[0], randomLocation[1]);
 }
 sticker.current = false;
