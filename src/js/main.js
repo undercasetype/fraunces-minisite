@@ -59,10 +59,13 @@ font.load(null, fontTimeOut).then(
 		setTimeout(() => {
 			startMaqueeMarq();
 		}, 100);
+
+		setViewportValues();
 	},
 	() => {
 		// Font didn't load
 		document.documentElement.classList.add("fonts-failed");
+		setViewportValues();
 	}
 );
 
@@ -329,6 +332,8 @@ const setViewportValues = () => {
 	uvEnd = uvEl.offsetTop + uvEl.offsetHeight;
 	uvPerc = uvEnd - uvStart;
 
+	console.log("viewport");
+
 	// Determine opsz container width
 	const opszWidth =
 		document.querySelector(".opsz-text .prose-content").offsetWidth - 48; // 48 = 3rem = handle size
@@ -337,7 +342,6 @@ const setViewportValues = () => {
 		.style.setProperty("--width", `${opszWidth}px`);
 };
 window.onresize = throttle(setViewportValues, 100);
-setViewportValues();
 
 // Flip clock for instances
 const flip = document.querySelector(".flip");
