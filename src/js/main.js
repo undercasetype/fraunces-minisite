@@ -59,10 +59,13 @@ font.load(null, fontTimeOut).then(
 		setTimeout(() => {
 			startMaqueeMarq();
 		}, 100);
+
+		setViewportValues();
 	},
 	() => {
 		// Font didn't load
 		document.documentElement.classList.add("fonts-failed");
+		setViewportValues();
 	}
 );
 
@@ -337,7 +340,6 @@ const setViewportValues = () => {
 		.style.setProperty("--width", `${opszWidth}px`);
 };
 window.onresize = throttle(setViewportValues, 100);
-setViewportValues();
 
 // Flip clock for instances
 const flip = document.querySelector(".flip");
