@@ -37,6 +37,7 @@
 	width: 12em;
 	height: 12em;
 	transform: rotate(12deg);
+	pointer-events: none;
 }
 
 @media screen and (max-width: 64rem) {
