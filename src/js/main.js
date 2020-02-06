@@ -332,8 +332,6 @@ const setViewportValues = () => {
 	uvEnd = uvEl.offsetTop + uvEl.offsetHeight;
 	uvPerc = uvEnd - uvStart;
 
-	console.log("viewport");
-
 	// Determine opsz container width
 	const opszWidth =
 		document.querySelector(".opsz-text .prose-content").offsetWidth - 48; // 48 = 3rem = handle size
