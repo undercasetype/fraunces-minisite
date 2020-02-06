@@ -261,12 +261,12 @@ const sticker = {
 		});
 	},
 	destroySticker: function() {
-		if (stickable.current) {
+		if (sticker.current) {
 			window.requestAnimationFrame(() => {
-				stickable.removeChild(stickable.current);
+				stickable.removeChild(sticker.current);
+				sticker.current = false;
 			});
 		}
-		sticker.current = false;
 	},
 	getRandomStickerNumber: function() {
 		if (this.next.length === 0) {
