@@ -14,6 +14,7 @@ module.exports = eleventyConfig => {
 	);
 
 	eleventyConfig.addFilter("json_stringify", JSON.stringify);
+	eleventyConfig.addPassthroughCopy({ "src/public": "." });
 
 	if (process.env.ELEVENTY_ENV === "production") {
 		eleventyConfig.addTransform("htmlmin", (content, outputPath) => {
