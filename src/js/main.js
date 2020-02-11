@@ -32,7 +32,7 @@ function popRandomValue(list) {
 		.pop();
 }
 
-// Generic: detect pssive
+// Generic: detect passive
 let supportsPassive = false;
 try {
 	const opts = Object.defineProperty({}, "passive", {
@@ -54,7 +54,7 @@ font.load(null, fontTimeOut).then(
 		// Font has loaded
 		document.documentElement.classList.add("fonts-loaded");
 		// Start the marquee with a slight delay to make sure
-		// all instaces have been generated and elements are at
+		// all instances have been generated and elements are at
 		// their final width
 		setTimeout(() => {
 			startMaqueeMarq();
