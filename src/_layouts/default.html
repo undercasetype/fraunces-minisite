@@ -12,6 +12,20 @@
 			{{ site.title or renderData.title or title or metadata.title }}
 		</title>
 		<link rel="stylesheet" href="{% webpackAsset 'css/main.css' %}" />
+		<link
+			rel="preload"
+			href="{% webpackAsset 'fonts/Fraunces-VF.woff2' %}"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="{% webpackAsset 'fonts/FrauncesItalic-VF.woff2' %}"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
 		<script defer src="{% webpackAsset 'js/main.js' %}"></script>
 	</head>
 
