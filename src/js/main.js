@@ -32,7 +32,7 @@ function popRandomValue(list) {
 		.pop();
 }
 
-// Generic: detect pssive
+// Generic: detect passive
 let supportsPassive = false;
 try {
 	const opts = Object.defineProperty({}, "passive", {
@@ -53,14 +53,7 @@ font.load(null, fontTimeOut).then(
 	() => {
 		// Font has loaded
 		document.documentElement.classList.add("fonts-loaded");
-		// Start the marquee with a slight delay to make sure
-		// all instaces have been generated and elements are at
-		// their final width
-		setTimeout(() => {
-			startMaqueeMarq();
-		}, 100);
-
-		setViewportValues();
+		setupDocument();
 	},
 	() => {
 		// Font didn't load
@@ -144,8 +137,6 @@ if ("IntersectionObserver" in window) {
 function startMaqueeMarq() {
 	const marquees = document.querySelectorAll(".marquee-marq");
 	marquees.forEach(el => {
-		const content = el.querySelector(".marquee-marq-content");
-		el.appendChild(content.cloneNode(true));
 		el.classList.remove("paused");
 	});
 }
@@ -797,27 +788,33 @@ function movePiece() {
 	}
 }
 
-// Start checkerboard animation
-setupCheckerBoard();
-setTimeout(() => {
-	setInterval(() => {
-		movePiece();
-	}, 2000);
-}, 2000);
+function setupDocument() {
+	setViewportValues();
 
-// Stick four random stickers on the screen
-const staticOptions = [
-	[15, 20],
-	[15, 40],
-	[85, 30],
-	[20, 65],
-	[75, 80],
-	[30, 85],
-	[80, 55],
-	[80, 10]
-];
-for (let i = 0; i < 4; i++) {
-	const randomLocation = popRandomValue(staticOptions);
-	sticker.generateSticker(randomLocation[0], randomLocation[1]);
+	// Start checkerboard animation
+	setupCheckerBoard();
+	setTimeout(() => {
+		setInterval(() => {
+			movePiece();
+		}, 2000);
+	}, 2000);
+
+	// Stick four random stickers on the screen
+	const staticOptions = [
+		[15, 20],
+		[15, 40],
+		[85, 30],
+		[20, 65],
+		[75, 80],
+		[30, 85],
+		[70, 55],
+		[80, 10]
+	];
+	for (let i = 0; i < 4; i++) {
+		const randomLocation = popRandomValue(staticOptions);
+		sticker.generateSticker(randomLocation[0], randomLocation[1]);
+	}
+	sticker.current = false;
+
+	startMaqueeMarq();
 }
-sticker.current = false;
