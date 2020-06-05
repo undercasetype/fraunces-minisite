@@ -23,8 +23,9 @@ footer a:hover {
 }
 
 .footer-credits {
-	padding: 0 2em;
 	--GOOF: 100;
+
+	padding: 0 2em;
 }
 
 .footer-repo-link {

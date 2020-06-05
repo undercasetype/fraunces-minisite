@@ -322,7 +322,7 @@ let uvEnd;
 let uvPerc;
 const uvEl = document.querySelector(".uv-container");
 window.onscroll = throttle(() => {
-	scrollPos = window.scrollY;
+	scrollPos = window.pageYOffset;
 
 	if (scrollPos > uvStart && scrollPos < uvEnd) {
 		const offset = ((scrollPos - uvStart) / uvPerc).toFixed(2);
