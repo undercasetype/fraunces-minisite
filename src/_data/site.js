@@ -1,6 +1,13 @@
-const { webpackAssetUrl } = require("../../_tools/webpackHelpers");
+const { webpackAssetPath } = require("../../.eleventy");
+const path = require("path");
 
 const siteAbsUrl = "https://fraunces.undercase.xyz";
+
+const absAssetUrl = async assetPath => {
+	const assetFilePath = await webpackAssetPath(assetPath);
+	const asset = path.resolve("/", assetFilePath);
+	return `${siteAbsUrl}${asset}`;
+};
 
 module.exports = async () => ({
 	title: "Fraunces by Undercase Type",
@@ -20,7 +27,7 @@ module.exports = async () => ({
 		},
 		{
 			property: "og:image",
-			content: await webpackAssetUrl(siteAbsUrl, "img/fraunces_site.png")
+			content: await absAssetUrl("img/fraunces_site.png")
 		},
 		{
 			property: "og:url",
