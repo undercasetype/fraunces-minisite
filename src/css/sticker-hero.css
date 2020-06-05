@@ -57,6 +57,7 @@
 }
 
 .sticker.static::before {
+	transform: scale(0.8);
 	animation: none;
 }
 
@@ -73,6 +74,14 @@
 
 .sticker.dragging {
 	filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.2));
+}
+
+.sticker-0 {
+	width: 12vmax;
+	height: 12vmax;
+}
+.sticker-0::before {
+	background-image: url("../img/hero-stickers-00.svg");
 }
 
 .sticker-1 {
