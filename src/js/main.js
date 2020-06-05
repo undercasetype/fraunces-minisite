@@ -213,6 +213,7 @@ const sticker = {
 	offsetY: headerEl.clientHeight,
 	current: false,
 	next: [],
+	started: false,
 	calculateVwPos: function(x) {
 		return (x / stickable.clientWidth) * 100;
 	},
@@ -237,8 +238,14 @@ const sticker = {
 		}
 		const tilt = Math.floor(Math.random() * 40 + 1) - 20;
 		const scale = (Math.random() * (1 - 0.5) + 0.75).toFixed(2); // Generate a value between 0.75 and 1.25
-		const stickerNumber = this.getRandomStickerNumber();
 		const newSticker = document.createElement("div");
+		let stickerNumber = 0;
+		if (!this.started && !x && !y) {
+			// Start with special sticker 0 as for interactive sticker
+			this.started = true;
+		} else {
+			stickerNumber = this.getRandomStickerNumber();
+		}
 		newSticker.classList.add("sticker", `sticker-${stickerNumber}`);
 		newSticker.style.setProperty("--tilt", `${tilt}deg`);
 		newSticker.style.setProperty("--scale", scale);
