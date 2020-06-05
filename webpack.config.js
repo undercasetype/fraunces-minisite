@@ -126,6 +126,7 @@ module.exports = {
 			ignoreOrder: false
 		}),
 		new ManifestPlugin({
+			seed: {},
 			fileName: path.resolve(
 				input,
 				"_includes",
