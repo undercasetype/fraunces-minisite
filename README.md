@@ -2,7 +2,7 @@
 
 ## Project setup & development
 
-This project requires Node.js >= 12 and [yarn](https://yarnpkg.com/).
+This project requires Node.js >= 12 and [yarn](https://yarnpkg.com/) and is based on [Specimen Skeleton](https://github.com/kabisa/specimen-skeleton).
 
 To get started, run the following commands from the root of the repo:
 
