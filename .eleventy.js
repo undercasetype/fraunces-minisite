@@ -53,6 +53,8 @@ const relativePathTag = processPath => liquidEngine => {
 module.exports = eleventyConfig => {
 	eleventyConfig.setUseGitIgnore(false);
 
+	eleventyConfig.addPassthroughCopy({ "src/public": "." });
+
 	eleventyConfig.addFilter("json_stringify", JSON.stringify);
 
 	eleventyConfig.addLiquidTag(
