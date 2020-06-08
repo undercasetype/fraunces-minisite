@@ -48,7 +48,7 @@ try {
 }
 
 // Set up FontFaceObserver
-const font = new FontFaceObserver(fontName);
+const font = new FontFaceObserver(fontName, { style: "italic" });
 font.load(null, fontTimeOut).then(
 	() => {
 		// Font has loaded
@@ -58,7 +58,6 @@ font.load(null, fontTimeOut).then(
 	() => {
 		// Font didn't load
 		document.documentElement.classList.add("fonts-failed");
-		setViewportValues();
 	}
 );
 

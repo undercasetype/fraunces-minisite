@@ -1,0 +1,22 @@
+.loading {
+	background: var(--fraunces-black);
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.loading svg {
+	width: 20%;
+	fill: var(--fraunces-yellow);
+}
+
+html:not(.fonts-loaded) body > * {
+	display: none;
+}
+
+html .loading {
+	display: flex !important;
+}
+
+html.fonts-loaded .loading {
+	display: none !important;
+}
