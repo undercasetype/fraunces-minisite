@@ -18,14 +18,14 @@ body {
 }
 
 :root {
-	--opsz: 9.1;
-	--GOOF: 0;
-	--WONK: 0.5;
+	--opsz: 144;
+	--SOFT: 100;
+	--WONK: 1;
 }
 
 *,
 *::before,
 *::after {
-	font-variation-settings: "opsz" var(--opsz), "GOOF" var(--GOOF),
+	font-variation-settings: "opsz" var(--opsz), "SOFT" var(--SOFT),
 		"WONK" var(--WONK);
 }
