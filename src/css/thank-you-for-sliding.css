@@ -17,7 +17,7 @@
 }
 
 .thank-you-sliders label {
-	--GOOF: 100;
+	--SOFT: 100;
 
 	font-weight: 900;
 	display: block;
@@ -51,7 +51,7 @@
 .thank-you-demo-text,
 .thank-you-demo-text * {
 	font-variation-settings: "opsz" var(--opsz), "wght" var(--wght),
-		"GOOF" var(--GOOF), "WONK" var(--WONK);
+		"SOFT" var(--SOFT), "WONK" var(--WONK);
 }
 
 /* 832 */

@@ -1,24 +1,24 @@
-.goof-demo {
+.soft-demo {
 	padding: 6rem 0 4rem 0;
 	background: var(--fraunces-yellow);
 	position: relative;
 }
 
-.goof-demo-slider {
+.soft-demo-slider {
 	max-width: 40rem;
 	margin: 0 auto;
 	padding: 0 2rem;
 	text-align: center;
 }
 
-.goof-demo-slider label {
+.soft-demo-slider label {
 	font-weight: 900;
 	display: block;
 	font-size: 1.5rem;
 }
 
-.goof-demo-text {
-	--GOOF: 100;
+.soft-demo-text {
+	--SOFT: 100;
 	--opsz: 144;
 
 	font-weight: 900;
@@ -29,7 +29,7 @@
 	color: var(--fraunces-white);
 }
 
-.goof-demo .a-touch-of-class-sticker {
+.soft-demo .a-touch-of-class-sticker {
 	position: absolute;
 	top: 15%;
 	right: 9%;
@@ -40,7 +40,7 @@
 }
 
 @media screen and (max-width: 64rem) {
-	.goof-demo .a-touch-of-class-sticker {
+	.soft-demo .a-touch-of-class-sticker {
 		right: 5%;
 		width: 10em;
 		height: 10em;
@@ -48,7 +48,7 @@
 }
 
 @media screen and (max-width: 48rem) {
-	.goof-demo .a-touch-of-class-sticker {
+	.soft-demo .a-touch-of-class-sticker {
 		top: 4%;
 		right: 7%;
 		width: 6em;
@@ -57,12 +57,12 @@
 }
 
 @media screen and (max-width: 32rem) {
-	.goof-demo-slider {
+	.soft-demo-slider {
 		max-width: 50vw;
 		padding: 0;
 	}
 
-	.goof-demo-text {
+	.soft-demo-text {
 		font-size: 15vw;
 	}
 }

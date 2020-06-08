@@ -27,14 +27,14 @@
 	font-style: italic;
 }
 
-.marquee-marq-content .goofymin {
-	--GOOF: 0;
+.marquee-marq-content .softmin {
+	--SOFT: 0;
 }
-.marquee-marq-content .goofymid {
-	--GOOF: 50;
+.marquee-marq-content .softmid {
+	--SOFT: 50;
 }
-.marquee-marq-content .goofymax {
-	--GOOF: 100;
+.marquee-marq-content .softmax {
+	--SOFT: 100;
 }
 .marquee-marq-content .black {
 	font-weight: 900;
