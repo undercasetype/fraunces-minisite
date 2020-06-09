@@ -1,5 +1,4 @@
 .prose-content {
-	--opsz: 13;
 	--WONK: 1;
 	--SOFT: 100;
 
@@ -12,8 +11,6 @@
 }
 
 .prose-content h2 {
-	--opsz: 36;
-
 	font-weight: 900;
 	font-size: 2.25rem;
 }

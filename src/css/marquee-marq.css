@@ -20,6 +20,8 @@
 }
 
 .marquee-marq-content span {
+	font-variation-settings: "opsz" var(--opsz), "SOFT" var(--SOFT),
+		"WONK" var(--WONK);
 	padding: 0 0.25em;
 }
 

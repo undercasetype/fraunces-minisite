@@ -1,10 +1,7 @@
 .opsz-demo {
 	--offset: 50%;
 	--width: 864px; /* Line up with prose content */
-
-	/* Simulate .prose */
-	--opsz: 13;
-	--WONK: 1;
+	--WONK: 1; /* Simulate .prose */
 
 	font-weight: 300;
 	font-size: 1.375rem;
@@ -27,6 +24,7 @@
 	padding-left: 1.5rem;
 	padding-right: 1.5rem;
 	width: var(--width);
+	height: 100%;
 }
 
 .opsz-demo h3 {
@@ -62,13 +60,11 @@
 }
 
 .with-opsz {
-	font-optical-sizing: none;
 	background: var(--fraunces-white);
 }
 
 .without-opsz {
-	--opsz: 144;
-
+	font-optical-sizing: none;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -133,8 +129,6 @@
 }
 
 .opsz-medium-with {
-	--opsz: 72;
-
 	font-size: 2.5rem;
 }
 
@@ -147,8 +141,6 @@
 }
 
 .opsz-large-with {
-	--opsz: 144;
-
 	font-size: 7rem;
 }
 
