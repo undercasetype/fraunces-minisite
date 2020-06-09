@@ -18,7 +18,6 @@ body {
 }
 
 :root {
-	--opsz: 144;
 	--SOFT: 100;
 	--WONK: 1;
 }
@@ -26,6 +25,5 @@ body {
 *,
 *::before,
 *::after {
-	font-variation-settings: "opsz" var(--opsz), "SOFT" var(--SOFT),
-		"WONK" var(--WONK);
+	font-variation-settings: "SOFT" var(--SOFT), "WONK" var(--WONK);
 }

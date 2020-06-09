@@ -13,7 +13,6 @@
 }
 
 .sticker-hero h1 {
-	--opsz: 144;
 	--WONK: 1;
 	--SOFT: 100;
 
@@ -30,7 +29,6 @@
 }
 
 .sticker-hero h2 {
-	--opsz: 144;
 	--WONK: 1;
 
 	font-weight: 300;
