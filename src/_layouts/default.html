@@ -35,6 +35,20 @@
 			href="{% webpackAssetPath '../img/happy.svg' %}"
 		/>
 		<script defer src="{% webpackAssetPath '../js/main.js' %}"></script>
+		<script>
+			window.ga =
+				window.ga ||
+				function() {
+					(ga.q = ga.q || []).push(arguments);
+				};
+			ga.l = +new Date();
+			ga("create", "UA-168783573-1", "auto");
+			ga("send", "pageview");
+		</script>
+		<script
+			async
+			src="https://www.google-analytics.com/analytics.js"
+		></script>
 	</head>
 
 	<body>
