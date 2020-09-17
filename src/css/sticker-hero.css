@@ -30,6 +30,8 @@
 
 .sticker-hero h2 {
 	--WONK: 1;
+	--SOFT: 0;
+	--opsz: 144;
 
 	font-weight: 300;
 	color: var(--fraunces-yellow);
