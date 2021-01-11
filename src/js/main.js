@@ -73,6 +73,11 @@ for (const interactive of interactives) {
 	);
 
 	const varset = (name, value) => {
+		// iOS fix: setting opsz to >= maximum value doesn't work, so
+		// set it to something slightly less
+		if (name === "opsz") {
+			value = Math.min(value, 143.999);
+		}
 		area.style.setProperty(`--${name}`, value);
 	};
 

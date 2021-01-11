@@ -72,6 +72,15 @@
 	bottom: 0;
 }
 
+/* For older Safari, force opsz to 143.999 because when `font-optical-sizing: none`
+   turns off optical sizing, Safari snaps to the default (144), but then runs
+   into the "setting opsz to max"-bug. Setting it to 143.999 makes old Safari
+   look the same as modern browsers without optical sizing turned on. */
+.without-opsz * {
+	font-variation-settings: "SOFT" var(--SOFT), "WONK" var(--WONK),
+		"opsz" 143.999;
+}
+
 .opsz-slider-window {
 	position: relative;
 	z-index: 1;

@@ -65,6 +65,9 @@ module.exports = eleventyConfig => {
 		"includeWebpackAsset",
 		relativePathTag(webpackAssetContents)
 	);
+	eleventyConfig.setBrowserSyncConfig({
+		ghostMode: false
+	});
 
 	if (process.env.ELEVENTY_ENV === "production") {
 		eleventyConfig.addTransform("htmlmin", (content, outputPath) => {
