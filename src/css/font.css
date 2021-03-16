@@ -1,24 +1,9 @@
-@font-face {
-	font-family: "Fraunces";
-	src: url("../fonts/Fraunces-VF.woff2");
-	font-weight: 100 900;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Fraunces";
-	src: url("../fonts/FrauncesItalic-VF.woff2");
-	font-weight: 100 900;
-	font-style: italic;
-	font-display: swap;
-}
-
 body {
 	font-family: "Fraunces", monospace;
 }
 
 :root {
-	--SOFT: 0;
+	--SOFT: 100;
 	--WONK: 1;
 }
 

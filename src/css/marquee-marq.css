@@ -46,13 +46,13 @@
 	font-style: italic;
 }
 
-.marquee-marq-content .s000 {
+.marquee-marq-content .sharp {
 	--SOFT: 0;
 }
-.marquee-marq-content .s050 {
+.marquee-marq-content .soft {
 	--SOFT: 50;
 }
-.marquee-marq-content .s100 {
+.marquee-marq-content .supersoft {
 	--SOFT: 100;
 }
 
